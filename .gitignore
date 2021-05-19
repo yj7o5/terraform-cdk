@@ -35,3 +35,4 @@ terraform-cdk.github-issues
 .idea
 .husky
 tsconfig.tsbuildinfo
+.vagrant
