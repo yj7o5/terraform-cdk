@@ -40,7 +40,10 @@ export class TerraformOutput extends TerraformElement {
 
   protected synthesizeAttributes(): { [key: string]: any } {
     return {
-      value: this.value instanceof TerraformAttribute ? this.value.terraformReference : this.value,
+      value:
+        this.value instanceof TerraformAttribute
+          ? this.value.terraformReference
+          : this.value,
       description: this.description,
       sensitive: this.sensitive,
       dependsOn: this.dependsOn?.map((resource) => `\${${resource.fqn}}`),
