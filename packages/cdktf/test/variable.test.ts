@@ -135,9 +135,8 @@ test("sensitive variable", () => {
   const app = Testing.app();
   const stack = new TerraformStack(app, "test");
 
-  new TerraformVariable(stack, "test-variable", {
-    type: "string",
-    sensitive: true,
+  new TestResource(stack, "test-resource", {
+    name: variable.stringValue,
   });
   expect(Testing.synth(stack)).toMatchSnapshot();
 });
