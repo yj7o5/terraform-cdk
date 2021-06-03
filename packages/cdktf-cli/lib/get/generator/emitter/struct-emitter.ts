@@ -2,14 +2,11 @@ import { CodeMaker } from "codemaker";
 import { ResourceModel, Struct, ConfigStruct } from "../models";
 import { AttributesEmitter } from "./attributes-emitter";
 import { downcaseFirst } from "../../../util";
-
 export class StructEmitter {
   attributesEmitter: AttributesEmitter;
-
   constructor(private readonly code: CodeMaker) {
     this.attributesEmitter = new AttributesEmitter(this.code);
   }
-
   public emit(resource: ResourceModel) {
     resource.structs.forEach((struct) => {
       if (struct.isAttribute) {
@@ -19,40 +16,23 @@ export class StructEmitter {
       }
     });
   }
-
   private emitInterface(resource: ResourceModel, struct: Struct) {
     if (resource.isProvider) {
       this.code.openBlock(`export interface ${struct.name}`);
     } else {
       this.code.openBlock(`export interface ${struct.name}${struct.extends}`);
     }
-
     for (const att of struct.assignableAttributes) {
       if (att.description) {
-        this.code.line(`/**`);
-        this.code.line(`* ${att.description}`);
-        this.code.line(`* `);
-        this.code.line(
-          `* Docs at Terraform Registry: {@link ${resource.linkToDocs}#${att.terraformName} ${resource.className}#${att.terraformName}}`
-        );
-        this.code.line(`*/`);
-      } else {
-        this.code.line(`/**`);
-        this.code.line(
-          `* Docs at Terraform Registry: {@link ${resource.linkToDocs}#${att.terraformName} ${resource.className}#${att.terraformName}}`
-        );
-        this.code.line(`*/`);
+        this.code.line(`/** ${att.description} */`);
       }
-
       this.code.line(`readonly ${att.typeDefinition};`);
     }
     this.code.closeBlock();
-
     if (!(struct instanceof ConfigStruct) && !struct.isAttribute) {
       this.emitToTerraformFuction(struct);
     }
   }
-
   private emitClass(struct: Struct) {
     this.code.openBlock(`export class ${struct.name}${struct.extends}`);
     this.code.openBlock(
@@ -61,14 +41,12 @@ export class StructEmitter {
     this.code.line("super(parent, terraformAttribute, value, options);");
     this.code.closeBlock();
     this.code.line();
-
     this.code.openBlock(
       `public get value(): ${struct.attributeValueType} | undefined`
     );
     this.code.line("return this.realValue;");
     this.code.closeBlock();
     this.code.line();
-
     this.code.openBlock(
       `public static create(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: ${struct.attributeTypeAlias} | undefined)`
     );
@@ -87,7 +65,18 @@ export class StructEmitter {
     this.code.closeBlock();
     this.code.closeBlock();
     this.code.line();
-
+    this.code.openBlock(`protected valueToTerraform()`);
+    this.code.line(
+      `return ${this.attributesEmitter.getTypeToTerraform(
+        struct.attributeTypeModel,
+        "this.value"
+      )};`
+    );
+    this.code.closeBlock();
+    this.code.line();
+    for (const att of struct.attributes) {
+      this.attributesEmitter.emitAttributeAccessor(att);
+    }
     switch (struct.attributeBase) {
       case "List":
         this.code.openBlock(
@@ -100,12 +89,15 @@ export class StructEmitter {
         break;
       case "Set":
         this.code.openBlock(
-          `public toList(): ${struct.name.replace("Set", "List")}`
+          `public toList(): ${struct.name.replace(
+            "SetAttribute",
+            "ListAttribute"
+          )}`
         );
         this.code.line(
           `return new ${struct.name.replace(
-            "Set",
-            "List"
+            "SetAttribute",
+            "ListAttribute"
           )}(this.parent, this.attribute, this.value, { nested: this.nested, _operation: (fqn: string) => \`tolist(\${fqn})\` });`
         );
         this.code.closeBlock();
@@ -120,16 +112,13 @@ export class StructEmitter {
         this.code.closeBlock();
         break;
     }
-
     this.code.closeBlock();
     this.code.line();
-
     this.code.line(
       `export type ${struct.attributeTypeAlias} = ${struct.attributeValueType} | ${struct.name};`
     );
     this.code.line();
   }
-
   private emitToTerraformFuction(struct: Struct) {
     this.code.line();
     this.code.openBlock(
