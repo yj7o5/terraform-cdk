@@ -13,9 +13,7 @@ import {
   Scope,
   AttributeModel,
 } from "./models";
-
 const classNames: string[] = [];
-
 const uniqueClassName = (className: string): string => {
   if (classNames.includes(className)) {
     className = `${className}A`;
@@ -23,10 +21,8 @@ const uniqueClassName = (className: string): string => {
   classNames.push(className);
   return className;
 };
-
 class Parser {
   private structs = new Array<Struct>();
-
   public resourceFrom(
     provider: string,
     type: string,
@@ -37,12 +33,10 @@ class Parser {
     if (baseName.startsWith(`${provider}_`)) {
       baseName = baseName.substr(provider.length + 1);
     }
-
     const isProvider = terraformSchemaType === "provider";
     if (isProvider) {
       baseName = `${provider}_${baseName}`;
       if (!("attributes" in schema.block)) {
-        // eslint-disable-next-line  @typescript-eslint/camelcase
         schema.block = { attributes: {}, block_types: {} };
       }
       // somehow missing from provider schema
@@ -53,10 +47,9 @@ class Parser {
         computed: false,
       };
     }
-
     const className = uniqueClassName(toPascalCase(baseName));
     // avoid naming collision - see https://github.com/hashicorp/terraform-cdk/issues/299
-    const configStructName = uniqueClassName(`${className}Config`);
+    uniqueClassName(toPascalCase(`${baseName}Config`));
     const fileName =
       baseName === "index"
         ? "index-resource.ts"
@@ -72,7 +65,6 @@ class Parser {
       }),
       schema.block
     );
-
     const resourceModel = new ResourceModel({
       terraformType: type,
       baseName,
@@ -84,22 +76,20 @@ class Parser {
       attributes,
       terraformSchemaType,
       structs: this.structs,
-      configStructName,
     });
-
     return resourceModel;
   }
 
   private renderAttributeType(
     scope: Scope[],
-    attributeType: AttributeType
+    attributeType: AttributeType,
+    parentKind: string | undefined = undefined
   ): AttributeTypeModel {
     const parent = scope[scope.length - 1];
     const level = scope.length;
     const isComputed = !!scope.find((e) => e.isComputed === true);
     const isOptional = parent.isOptional;
     const isRequired = parent.isRequired;
-
     if (typeof attributeType === "string") {
       switch (attributeType) {
         case "bool":
@@ -134,16 +124,18 @@ class Parser {
           throw new Error(`invalid primitive type ${attributeType}`);
       }
     }
-
     if (Array.isArray(attributeType)) {
       if (attributeType.length !== 2) {
         throw new Error(`unexpected array`);
       }
-
       const [kind, type] = attributeType;
 
       if (kind === "set" || kind === "list") {
-        const attrType = this.renderAttributeType(scope, type as AttributeType);
+        const attrType = this.renderAttributeType(
+          scope,
+          type as AttributeType,
+          kind
+        );
         attrType.isList = kind === "list";
         attrType.isSet = kind === "set";
         attrType.isComputed = isComputed;
@@ -156,7 +148,8 @@ class Parser {
       if (kind === "map") {
         const valueType = this.renderAttributeType(
           scope,
-          type as AttributeType
+          type as AttributeType,
+          kind
         );
         valueType.isMap = true;
         valueType.isComputed = isComputed;
@@ -165,15 +158,18 @@ class Parser {
         valueType.level = level;
         return valueType;
       }
-
       if (kind === "object") {
         const objAttributes = type as { [name: string]: AttributeType };
         const attributes: { [name: string]: Attribute } = {};
         for (const [name, type] of Object.entries(objAttributes)) {
           attributes[name] = { type };
         }
-        const struct = this.addAnonymousStruct(scope, attributes);
-        const model = new AttributeTypeModel(struct.name, {
+        const [struct, structName] = this.addAnonymousStruct(
+          scope,
+          attributes,
+          parentKind
+        );
+        const model = new AttributeTypeModel(structName, {
           struct,
           isComputed,
           isOptional,
@@ -183,13 +179,10 @@ class Parser {
         return model;
       }
     }
-
     throw new Error(`unknown type ${attributeType}`);
   }
-
   public renderAttributesForBlock(parentType: Scope, block: Block) {
     const attributes = new Array<AttributeModel>();
-
     for (const [terraformAttributeName, att] of Object.entries(
       block.attributes || {}
     )) {
@@ -208,7 +201,6 @@ class Parser {
         att.type
       );
       const name = toCamelCase(terraformAttributeName);
-
       attributes.push(
         new AttributeModel({
           terraformFullName: parentType.fullName(terraformAttributeName),
@@ -224,7 +216,6 @@ class Parser {
         })
       );
     }
-
     for (const [blockTypeName, blockType] of Object.entries(
       block.block_types || {}
     )) {
@@ -238,7 +229,7 @@ class Parser {
         }),
         blockType.block
       );
-      const blockStruct = this.addStruct(
+      const [blockStruct] = this.addStruct(
         [
           parentType,
           new Scope({
@@ -262,9 +253,7 @@ class Parser {
         )
       );
     }
-
     return attributes;
-
     function attributeForBlockType(
       terraformName: string,
       blockType: BlockType,
@@ -295,7 +284,6 @@ class Parser {
             provider: isProvider,
             required,
           });
-
         case "map":
           return new AttributeModel({
             name,
@@ -309,7 +297,6 @@ class Parser {
             provider: isProvider,
             required: false,
           });
-
         case "list":
         case "set":
           optional =
@@ -339,7 +326,8 @@ class Parser {
   }
   private addAnonymousStruct(
     scope: Scope[],
-    attrs: { [name: string]: Attribute }
+    attrs: { [name: string]: Attribute },
+    parentKind: string | undefined
   ) {
     const attributes = new Array<AttributeModel>();
     const parent = scope[scope.length - 1];
@@ -377,14 +365,14 @@ class Parser {
       );
     }
 
-    return this.addStruct(scope, attributes, "object");
+    return this.addStruct(scope, attributes, parentKind ?? "object");
   }
 
   private addStruct(
     scope: Scope[],
     attributes: AttributeModel[],
     structContainer: string
-  ) {
+  ): [Struct, string] {
     const name = uniqueClassName(
       toPascalCase(scope.map((x) => toSnakeCase(x.name)).join("_"))
     );
@@ -392,46 +380,73 @@ class Parser {
     const isClass = parent.isComputed && !parent.isOptional;
     let struct: Struct | undefined = undefined;
     if (!isClass) {
-      struct = new Struct(name, attributes, false);
+      struct = new Struct(name, attributes);
       this.structs.push(struct);
     }
-
     const attributeStruct = new Struct(
       `Terraform${name}Attribute`,
       attributes,
       true,
-      struct
+      name,
+      isClass
     );
     this.structs.push(attributeStruct);
 
     switch (structContainer) {
       case "map":
         this.structs.push(
-          new Struct(`Terraform${name}MapAttribute`, [], true, struct, "Map")
+          new Struct(
+            `Terraform${name}MapAttribute`,
+            [],
+            true,
+            name,
+            isClass,
+            "Map"
+          )
         );
         break;
       case "list":
         this.structs.push(
-          new Struct(`Terraform${name}ListAttribute`, [], true, struct, "List")
+          new Struct(
+            `Terraform${name}ListAttribute`,
+            [],
+            true,
+            name,
+            isClass,
+            "List"
+          )
         );
         break;
       case "set":
         this.structs.push(
-          new Struct(`Terraform${name}SetAttribute`, [], true, struct, "Set")
+          new Struct(
+            `Terraform${name}SetAttribute`,
+            [],
+            true,
+            name,
+            isClass,
+            "Set"
+          )
         );
 
         //because we generate a toList function
         this.structs.push(
-          new Struct(`Terraform${name}ListAttribute`, [], true, struct, "List")
+          new Struct(
+            `Terraform${name}ListAttribute`,
+            [],
+            true,
+            name,
+            isClass,
+            "List"
+          )
         );
         break;
     }
-
     if (!struct) {
       struct = attributeStruct;
     }
 
-    return struct;
+    return [struct, name];
   }
 }
 
