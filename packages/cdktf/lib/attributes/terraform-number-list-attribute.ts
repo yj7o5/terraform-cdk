@@ -6,7 +6,6 @@ import {
   TerraformNumberAttribute,
 } from "./terraform-number-attribute";
 import { ITerraformAddressable } from "../terraform-addressable";
-
 export class TerraformNumberListAttribute extends TerraformListAttribute {
   public constructor(
     parent: ITerraformAddressable,
@@ -17,7 +16,7 @@ export class TerraformNumberListAttribute extends TerraformListAttribute {
     super(parent, terraformAttribute, value, options);
   }
 
-  public get value(): TerraformNumber[] | undefined {
+  public get internalValue(): TerraformNumber[] | undefined {
     return this.realValue;
   }
 
@@ -25,7 +24,7 @@ export class TerraformNumberListAttribute extends TerraformListAttribute {
     return new TerraformNumberAttribute(this, index.toString());
   }
 
-  public static create(
+  public static construct(
     parent: ITerraformAddressable,
     terraformAttribute: string,
     value: TerraformNumberList | undefined
@@ -36,20 +35,20 @@ export class TerraformNumberListAttribute extends TerraformListAttribute {
         terraformAttribute,
         value
       );
-    } else if (value.parent === parent) {
+    } else if (value.terraformParent === parent) {
       return value;
     } else {
       return new TerraformNumberListAttribute(
         parent,
         terraformAttribute,
-        value.value,
+        value.internalValue,
         { nested: value }
       );
     }
   }
 
   protected valueToTerraform() {
-    return listMapper(numberToTerraform)(this.value);
+    return listMapper(numberToTerraform)(this.internalValue);
   }
 }
 

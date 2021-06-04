@@ -6,7 +6,6 @@ import {
   TerraformBooleanAttribute,
 } from "./terraform-boolean-attribute";
 import { ITerraformAddressable } from "../terraform-addressable";
-
 export class TerraformBooleanListAttribute extends TerraformListAttribute {
   public constructor(
     parent: ITerraformAddressable,
@@ -17,7 +16,7 @@ export class TerraformBooleanListAttribute extends TerraformListAttribute {
     super(parent, terraformAttribute, value, options);
   }
 
-  public get value(): TerraformBoolean[] | undefined {
+  public get internalValue(): TerraformBoolean[] | undefined {
     return this.realValue;
   }
 
@@ -25,7 +24,7 @@ export class TerraformBooleanListAttribute extends TerraformListAttribute {
     return new TerraformBooleanAttribute(this, index.toString());
   }
 
-  public static create(
+  public static construct(
     parent: ITerraformAddressable,
     terraformAttribute: string,
     value: TerraformBooleanList | undefined
@@ -36,20 +35,20 @@ export class TerraformBooleanListAttribute extends TerraformListAttribute {
         terraformAttribute,
         value
       );
-    } else if (value.parent === parent) {
+    } else if (value.terraformParent === parent) {
       return value;
     } else {
       return new TerraformBooleanListAttribute(
         parent,
         terraformAttribute,
-        value.value,
+        value.internalValue,
         { nested: value }
       );
     }
   }
 
   protected valueToTerraform() {
-    return listMapper(booleanToTerraform)(this.value);
+    return listMapper(booleanToTerraform)(this.internalValue);
   }
 }
 

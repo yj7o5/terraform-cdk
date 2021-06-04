@@ -6,7 +6,6 @@ import {
   TerraformNumberAttribute,
 } from "./terraform-number-attribute";
 import { ITerraformAddressable } from "../terraform-addressable";
-
 export class TerraformNumberMapAttribute extends TerraformMapAttribute {
   public constructor(
     parent: ITerraformAddressable,
@@ -17,7 +16,7 @@ export class TerraformNumberMapAttribute extends TerraformMapAttribute {
     super(parent, terraformAttribute, value, options);
   }
 
-  public get value(): { [key: string]: TerraformNumber } | undefined {
+  public get internalValue(): { [key: string]: TerraformNumber } | undefined {
     return this.realValue;
   }
 
@@ -25,27 +24,27 @@ export class TerraformNumberMapAttribute extends TerraformMapAttribute {
     return new TerraformNumberAttribute(this, `${key}`);
   }
 
-  public static create(
+  public static construct(
     parent: ITerraformAddressable,
     terraformAttribute: string,
     value: TerraformNumberMap | undefined
   ) {
     if (!(value instanceof TerraformNumberMapAttribute)) {
       return new TerraformNumberMapAttribute(parent, terraformAttribute, value);
-    } else if (value.parent === parent) {
+    } else if (value.terraformParent === parent) {
       return value;
     } else {
       return new TerraformNumberMapAttribute(
         parent,
         terraformAttribute,
-        value.value,
+        value.internalValue,
         { nested: value }
       );
     }
   }
 
   protected valueToTerraform() {
-    return hashMapper(numberToTerraform)(this.value);
+    return hashMapper(numberToTerraform)(this.internalValue);
   }
 }
 

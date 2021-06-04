@@ -11,7 +11,6 @@ import {
   TerraformStringList,
   TerraformStringListAttribute,
 } from "../../lib/attributes";
-
 export interface TestResourceConfig extends TerraformMetaArguments {
   name: TerraformString;
   tags?: { [key: string]: string };
@@ -46,7 +45,7 @@ export class TestResource extends TerraformResource {
     return this._name;
   }
   public putName(value: TerraformString) {
-    this._name = TerraformStringAttribute.create(this, "name", value);
+    this._name = TerraformStringAttribute.construct(this, "name", value);
   }
 
   private _names!: TerraformStringListAttribute;
@@ -55,9 +54,13 @@ export class TestResource extends TerraformResource {
   }
   public putNames(value: TerraformStringList | undefined) {
     if (value === undefined) {
-      this._names.reset();
+      this._names.resetInternal();
     } else {
-      this._names = TerraformStringListAttribute.create(this, "names", value);
+      this._names = TerraformStringListAttribute.construct(
+        this,
+        "names",
+        value
+      );
     }
   }
 
@@ -85,11 +88,9 @@ export class OtherTestResource extends TerraformResource {
       lifecycle: config.lifecycle,
     });
   }
-
   public get names(): string[] {
     return this.getListAttribute("names");
   }
-
   public complexComputedList(index: string) {
     return new TestComplexComputedList(this, "complex_computed_list", index);
   }
@@ -98,7 +99,6 @@ export class OtherTestResource extends TerraformResource {
     return {};
   }
 }
-
 class TestComplexComputedList extends ComplexComputedList {
   public get id() {
     return this.getStringAttribute("id");

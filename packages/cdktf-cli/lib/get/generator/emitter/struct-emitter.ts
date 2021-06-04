@@ -41,42 +41,47 @@ export class StructEmitter {
     this.code.line("super(parent, terraformAttribute, value, options);");
     this.code.closeBlock();
     this.code.line();
+
     this.code.openBlock(
-      `public get value(): ${struct.attributeValueType} | undefined`
+      `public get internalValue(): ${struct.attributeValueType} | undefined`
     );
     this.code.line("return this.realValue;");
     this.code.closeBlock();
     this.code.line();
+
     this.code.openBlock(
-      `public static create(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: ${struct.attributeTypeAlias} | undefined)`
+      `public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: ${struct.attributeTypeAlias} | undefined)`
     );
     this.code.openBlock(`if (!(value instanceof ${struct.name}))`);
     this.code.line(
       `return new ${struct.name}(parent, terraformAttribute, value);`
     );
     this.code.closeBlock();
-    this.code.openBlock(`else if (value.parent === parent)`);
+    this.code.openBlock(`else if (value.terraformParent === parent)`);
     this.code.line(`return value;`);
     this.code.closeBlock();
     this.code.openBlock(`else`);
     this.code.line(
-      `return new ${struct.name}(parent, terraformAttribute, value.value, { nested: value });`
+      `return new ${struct.name}(parent, terraformAttribute, value.internalValue, { nested: value });`
     );
     this.code.closeBlock();
     this.code.closeBlock();
     this.code.line();
+
     this.code.openBlock(`protected valueToTerraform()`);
     this.code.line(
       `return ${this.attributesEmitter.getTypeToTerraform(
         struct.attributeTypeModel,
-        "this.value"
+        "this.internalValue"
       )};`
     );
     this.code.closeBlock();
     this.code.line();
+
     for (const att of struct.attributes) {
       this.attributesEmitter.emitAttributeAccessor(att);
     }
+
     switch (struct.attributeBase) {
       case "List":
         this.code.openBlock(
@@ -98,7 +103,7 @@ export class StructEmitter {
           `return new ${struct.name.replace(
             "SetAttribute",
             "ListAttribute"
-          )}(this.parent, this.attribute, this.value, { nested: this.nested, _operation: (fqn: string) => \`tolist(\${fqn})\` });`
+          )}(this.terraformParent, this.terraformAttribute, this.internalValue, { nested: this.nested, _operation: (fqn: string) => \`tolist(\${fqn})\` });`
         );
         this.code.closeBlock();
         break;
@@ -112,6 +117,7 @@ export class StructEmitter {
         this.code.closeBlock();
         break;
     }
+
     this.code.closeBlock();
     this.code.line();
     this.code.line(

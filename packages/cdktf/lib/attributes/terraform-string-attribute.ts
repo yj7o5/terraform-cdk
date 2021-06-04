@@ -4,7 +4,6 @@ import {
 } from "./terraform-attribute";
 import { stringToTerraform } from "../runtime";
 import { ITerraformAddressable } from "../terraform-addressable";
-
 export class TerraformStringAttribute extends TerraformAttribute {
   public constructor(
     parent: ITerraformAddressable,
@@ -15,31 +14,31 @@ export class TerraformStringAttribute extends TerraformAttribute {
     super(parent, terraformAttribute, value, options);
   }
 
-  public get value(): string | undefined {
+  public get internalValue(): string | undefined {
     return this.realValue;
   }
 
-  public static create(
+  public static construct(
     parent: ITerraformAddressable,
     terraformAttribute: string,
     value: TerraformString | undefined
   ) {
     if (typeof value === "string" || value === undefined) {
       return new TerraformStringAttribute(parent, terraformAttribute, value);
-    } else if (value.parent === parent) {
+    } else if (value.terraformParent === parent) {
       return value;
     } else {
       return new TerraformStringAttribute(
         parent,
         terraformAttribute,
-        value.value,
+        value.internalValue,
         { nested: value }
       );
     }
   }
 
   protected valueToTerraform() {
-    return stringToTerraform(this.value);
+    return stringToTerraform(this.internalValue);
   }
 }
 
