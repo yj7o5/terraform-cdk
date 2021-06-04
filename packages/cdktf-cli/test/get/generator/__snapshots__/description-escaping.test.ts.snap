@@ -15,10 +15,7 @@ export interface DescriptionEscapingConfig extends cdktf.TerraformMetaArguments 
  to messages published on this topic. Your project's PubSub service account 
  ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have 
  'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. 
- The expected format is 'projects/*\\\\/locations/*\\\\/keyRings/*\\\\/cryptoKeys/*'
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/google/r/description_escaping.html#broken_comments DescriptionEscaping#broken_comments}
-  */
+ The expected format is 'projects/*\\\\/locations/*\\\\/keyRings/*\\\\/cryptoKeys/*' */
   readonly brokenComments: cdktf.TerraformBoolean;
 }
 
@@ -62,7 +59,7 @@ export class DescriptionEscaping extends cdktf.TerraformResource {
     return this._brokenComments;
   }
   public putBrokenComments(value: cdktf.TerraformBoolean) {
-    this._brokenComments = cdktf.TerraformBooleanAttribute.create(this, 'broken_comments', value);
+    this._brokenComments = cdktf.TerraformBooleanAttribute.construct(this, 'broken_comments', value);
   }
 
   // =========
@@ -88,11 +85,7 @@ import * as cdktf from 'cdktf';
 // Configuration
 
 export interface CodeBlocksConfig extends cdktf.TerraformMetaArguments {
-  /**
-  * Here comes a code block \`\`\`foo.bar\`\`\` and here is more text.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/code_blocks.html#with_code_block CodeBlocks#with_code_block}
-  */
+  /** Here comes a code block \`\`\`foo.bar\`\`\` and here is more text. */
   readonly withCodeBlock: cdktf.TerraformBoolean;
 }
 
@@ -136,7 +129,7 @@ export class CodeBlocks extends cdktf.TerraformResource {
     return this._withCodeBlock;
   }
   public putWithCodeBlock(value: cdktf.TerraformBoolean) {
-    this._withCodeBlock = cdktf.TerraformBooleanAttribute.create(this, 'with_code_block', value);
+    this._withCodeBlock = cdktf.TerraformBooleanAttribute.construct(this, 'with_code_block', value);
   }
 
   // =========

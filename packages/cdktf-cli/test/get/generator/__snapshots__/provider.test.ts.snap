@@ -10,156 +10,63 @@ import * as cdktf from 'cdktf';
 // Configuration
 
 export interface AwsProviderConfig {
-  /**
-  * The access key for API operations. You can retrieve this
-from the 'Security & Credentials' section of the AWS console.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#access_key AwsProvider#access_key}
-  */
+  /** The access key for API operations. You can retrieve this
+from the 'Security & Credentials' section of the AWS console. */
   readonly accessKey?: cdktf.TerraformString;
-  /**
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#allowed_account_ids AwsProvider#allowed_account_ids}
-  */
   readonly allowedAccountIds?: cdktf.TerraformStringSet;
-  /**
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#forbidden_account_ids AwsProvider#forbidden_account_ids}
-  */
   readonly forbiddenAccountIds?: cdktf.TerraformStringSet;
-  /**
-  * Explicitly allow the provider to perform \\"insecure\\" SSL requests. If omitted,default value is \`false\`
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#insecure AwsProvider#insecure}
-  */
+  /** Explicitly allow the provider to perform \\"insecure\\" SSL requests. If omitted,default value is \`false\` */
   readonly insecure?: cdktf.TerraformBoolean;
-  /**
-  * The maximum number of times an AWS API request is
+  /** The maximum number of times an AWS API request is
 being executed. If the API request still fails, an error is
-thrown.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#max_retries AwsProvider#max_retries}
-  */
+thrown. */
   readonly maxRetries?: cdktf.TerraformNumber;
-  /**
-  * The profile for API operations. If not set, the default profile
-created with \`aws configure\` will be used.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#profile AwsProvider#profile}
-  */
+  /** The profile for API operations. If not set, the default profile
+created with \`aws configure\` will be used. */
   readonly profile?: cdktf.TerraformString;
-  /**
-  * The region where AWS operations will take place. Examples
-are us-east-1, us-west-2, etc.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#region AwsProvider#region}
-  */
+  /** The region where AWS operations will take place. Examples
+are us-east-1, us-west-2, etc. */
   readonly region: cdktf.TerraformString;
-  /**
-  * Set this to true to force the request to use path-style addressing,
+  /** Set this to true to force the request to use path-style addressing,
 i.e., http://s3.amazonaws.com/BUCKET/KEY. By default, the S3 client will
 use virtual hosted bucket addressing when possible
-(http://BUCKET.s3.amazonaws.com/KEY). Specific to the Amazon S3 service.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#s3_force_path_style AwsProvider#s3_force_path_style}
-  */
+(http://BUCKET.s3.amazonaws.com/KEY). Specific to the Amazon S3 service. */
   readonly s3ForcePathStyle?: cdktf.TerraformBoolean;
-  /**
-  * The secret key for API operations. You can retrieve this
-from the 'Security & Credentials' section of the AWS console.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#secret_key AwsProvider#secret_key}
-  */
+  /** The secret key for API operations. You can retrieve this
+from the 'Security & Credentials' section of the AWS console. */
   readonly secretKey?: cdktf.TerraformString;
-  /**
-  * The path to the shared credentials file. If not set
-this defaults to ~/.aws/credentials.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#shared_credentials_file AwsProvider#shared_credentials_file}
-  */
+  /** The path to the shared credentials file. If not set
+this defaults to ~/.aws/credentials. */
   readonly sharedCredentialsFile?: cdktf.TerraformString;
-  /**
-  * Skip the credentials validation via STS API. Used for AWS API implementations that do not have STS available/implemented.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#skip_credentials_validation AwsProvider#skip_credentials_validation}
-  */
+  /** Skip the credentials validation via STS API. Used for AWS API implementations that do not have STS available/implemented. */
   readonly skipCredentialsValidation?: cdktf.TerraformBoolean;
-  /**
-  * Skip getting the supported EC2 platforms. Used by users that don't have ec2:DescribeAccountAttributes permissions.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#skip_get_ec2_platforms AwsProvider#skip_get_ec2_platforms}
-  */
+  /** Skip getting the supported EC2 platforms. Used by users that don't have ec2:DescribeAccountAttributes permissions. */
   readonly skipGetEc2Platforms?: cdktf.TerraformBoolean;
-  /**
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#skip_metadata_api_check AwsProvider#skip_metadata_api_check}
-  */
   readonly skipMetadataApiCheck?: cdktf.TerraformBoolean;
-  /**
-  * Skip static validation of region name. Used by users of alternative AWS-like APIs or users w/ access to regions that are not public (yet).
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#skip_region_validation AwsProvider#skip_region_validation}
-  */
+  /** Skip static validation of region name. Used by users of alternative AWS-like APIs or users w/ access to regions that are not public (yet). */
   readonly skipRegionValidation?: cdktf.TerraformBoolean;
-  /**
-  * Skip requesting the account ID. Used for AWS API implementations that do not have IAM/STS API and/or metadata API.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#skip_requesting_account_id AwsProvider#skip_requesting_account_id}
-  */
+  /** Skip requesting the account ID. Used for AWS API implementations that do not have IAM/STS API and/or metadata API. */
   readonly skipRequestingAccountId?: cdktf.TerraformBoolean;
-  /**
-  * session token. A session token is only required if you are
-using temporary security credentials.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#token AwsProvider#token}
-  */
+  /** session token. A session token is only required if you are
+using temporary security credentials. */
   readonly token?: cdktf.TerraformString;
-  /**
-  * Alias name
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#alias AwsProvider#alias}
-  */
+  /** Alias name */
   readonly alias?: cdktf.TerraformString;
-  /**
-  * assume_role block
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#assume_role AwsProvider#assume_role}
-  */
+  /** assume_role block */
   readonly assumeRole?: TerraformAwsProviderAssumeRoleSet;
-  /**
-  * endpoints block
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#endpoints AwsProvider#endpoints}
-  */
+  /** endpoints block */
   readonly endpoints?: TerraformAwsProviderEndpointsSet;
-  /**
-  * ignore_tags block
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ignore_tags AwsProvider#ignore_tags}
-  */
+  /** ignore_tags block */
   readonly ignoreTags?: TerraformAwsProviderIgnoreTagsList;
 }
 export interface AwsProviderAssumeRole {
-  /**
-  * The external ID to use when assuming the role. If omitted, no external ID is passed to the AssumeRole call.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#external_id AwsProvider#external_id}
-  */
+  /** The external ID to use when assuming the role. If omitted, no external ID is passed to the AssumeRole call. */
   readonly externalId?: cdktf.TerraformString;
-  /**
-  * The permissions applied when assuming a role. You cannot use, this policy to grant further permissions that are in excess to those of the,  role that is being assumed.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#policy AwsProvider#policy}
-  */
+  /** The permissions applied when assuming a role. You cannot use, this policy to grant further permissions that are in excess to those of the,  role that is being assumed. */
   readonly policy?: cdktf.TerraformString;
-  /**
-  * The ARN of an IAM role to assume prior to making API calls.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#role_arn AwsProvider#role_arn}
-  */
+  /** The ARN of an IAM role to assume prior to making API calls. */
   readonly roleArn?: cdktf.TerraformString;
-  /**
-  * The session name to use when assuming the role. If omitted, no session name is passed to the AssumeRole call.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#session_name AwsProvider#session_name}
-  */
+  /** The session name to use when assuming the role. If omitted, no session name is passed to the AssumeRole call. */
   readonly sessionName?: cdktf.TerraformString;
 }
 
@@ -173,816 +80,389 @@ function awsProviderAssumeRoleToTerraform(struct?: AwsProviderAssumeRole): any {
   }
 }
 
+export class TerraformAwsProviderAssumeRoleAttribute extends cdktf.TerraformObjectAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderAssumeRole, options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderAssumeRole | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderAssumeRole | undefined) {
+    if (!(value instanceof TerraformAwsProviderAssumeRoleAttribute)) {
+      return new TerraformAwsProviderAssumeRoleAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderAssumeRoleAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return awsProviderAssumeRoleToTerraform(this.internalValue);
+  }
+
+
+  // external_id - computed: false, optional: true, required: false
+  public get externalId() {
+    return cdktf.TerraformStringAttribute.construct(this, 'external_id', this.internalValue?.externalId);
+  }
+
+  // policy - computed: false, optional: true, required: false
+  public get policy() {
+    return cdktf.TerraformStringAttribute.construct(this, 'policy', this.internalValue?.policy);
+  }
+
+  // role_arn - computed: false, optional: true, required: false
+  public get roleArn() {
+    return cdktf.TerraformStringAttribute.construct(this, 'role_arn', this.internalValue?.roleArn);
+  }
+
+  // session_name - computed: false, optional: true, required: false
+  public get sessionName() {
+    return cdktf.TerraformStringAttribute.construct(this, 'session_name', this.internalValue?.sessionName);
+  }
+}
+
+export type TerraformAwsProviderAssumeRole = AwsProviderAssumeRole | TerraformAwsProviderAssumeRoleAttribute;
+
+export class TerraformAwsProviderAssumeRoleSetAttribute extends cdktf.TerraformSetAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderAssumeRole[], options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderAssumeRole[] | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderAssumeRoleSet | undefined) {
+    if (!(value instanceof TerraformAwsProviderAssumeRoleSetAttribute)) {
+      return new TerraformAwsProviderAssumeRoleSetAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderAssumeRoleSetAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return cdktf.setMapper(awsProviderAssumeRoleToTerraform)(this.internalValue);
+  }
+
+  public toList(): TerraformAwsProviderAssumeRoleListAttribute {
+    return new TerraformAwsProviderAssumeRoleListAttribute(this.terraformParent, this.terraformAttribute, this.internalValue, { nested: this.nested, _operation: (fqn: string) => \`tolist(\${fqn})\` });
+  }
+}
+
+export type TerraformAwsProviderAssumeRoleSet = AwsProviderAssumeRole[] | TerraformAwsProviderAssumeRoleSetAttribute;
+
+export class TerraformAwsProviderAssumeRoleListAttribute extends cdktf.TerraformListAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderAssumeRole[], options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderAssumeRole[] | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderAssumeRoleList | undefined) {
+    if (!(value instanceof TerraformAwsProviderAssumeRoleListAttribute)) {
+      return new TerraformAwsProviderAssumeRoleListAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderAssumeRoleListAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return cdktf.listMapper(awsProviderAssumeRoleToTerraform)(this.internalValue);
+  }
+
+  public get(index: number): TerraformAwsProviderAssumeRoleAttribute {
+    return new TerraformAwsProviderAssumeRoleAttribute(this, index.toString());
+  }
+}
+
+export type TerraformAwsProviderAssumeRoleList = AwsProviderAssumeRole[] | TerraformAwsProviderAssumeRoleListAttribute;
+
 export interface AwsProviderEndpoints {
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#accessanalyzer AwsProvider#accessanalyzer}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly accessanalyzer?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#acm AwsProvider#acm}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly acm?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#acmpca AwsProvider#acmpca}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly acmpca?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#amplify AwsProvider#amplify}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly amplify?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#apigateway AwsProvider#apigateway}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly apigateway?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#applicationautoscaling AwsProvider#applicationautoscaling}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly applicationautoscaling?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#applicationinsights AwsProvider#applicationinsights}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly applicationinsights?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#appmesh AwsProvider#appmesh}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly appmesh?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#appstream AwsProvider#appstream}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly appstream?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#appsync AwsProvider#appsync}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly appsync?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#athena AwsProvider#athena}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly athena?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#autoscaling AwsProvider#autoscaling}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly autoscaling?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#autoscalingplans AwsProvider#autoscalingplans}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly autoscalingplans?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#backup AwsProvider#backup}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly backup?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#batch AwsProvider#batch}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly batch?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#budgets AwsProvider#budgets}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly budgets?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloud9 AwsProvider#cloud9}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloud9?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudformation AwsProvider#cloudformation}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudformation?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudfront AwsProvider#cloudfront}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudfront?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudhsm AwsProvider#cloudhsm}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudhsm?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudsearch AwsProvider#cloudsearch}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudsearch?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudtrail AwsProvider#cloudtrail}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudtrail?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudwatch AwsProvider#cloudwatch}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudwatch?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudwatchevents AwsProvider#cloudwatchevents}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudwatchevents?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cloudwatchlogs AwsProvider#cloudwatchlogs}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cloudwatchlogs?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#codebuild AwsProvider#codebuild}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly codebuild?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#codecommit AwsProvider#codecommit}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly codecommit?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#codedeploy AwsProvider#codedeploy}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly codedeploy?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#codepipeline AwsProvider#codepipeline}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly codepipeline?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cognitoidentity AwsProvider#cognitoidentity}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cognitoidentity?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cognitoidp AwsProvider#cognitoidp}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cognitoidp?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#configservice AwsProvider#configservice}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly configservice?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#cur AwsProvider#cur}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly cur?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#dataexchange AwsProvider#dataexchange}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly dataexchange?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#datapipeline AwsProvider#datapipeline}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly datapipeline?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#datasync AwsProvider#datasync}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly datasync?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#dax AwsProvider#dax}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly dax?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#devicefarm AwsProvider#devicefarm}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly devicefarm?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#directconnect AwsProvider#directconnect}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly directconnect?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#dlm AwsProvider#dlm}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly dlm?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#dms AwsProvider#dms}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly dms?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#docdb AwsProvider#docdb}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly docdb?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ds AwsProvider#ds}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ds?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#dynamodb AwsProvider#dynamodb}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly dynamodb?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ec2 AwsProvider#ec2}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ec2?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ecr AwsProvider#ecr}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ecr?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ecs AwsProvider#ecs}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ecs?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#efs AwsProvider#efs}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly efs?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#eks AwsProvider#eks}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly eks?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#elasticache AwsProvider#elasticache}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly elasticache?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#elasticbeanstalk AwsProvider#elasticbeanstalk}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly elasticbeanstalk?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#elastictranscoder AwsProvider#elastictranscoder}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly elastictranscoder?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#elb AwsProvider#elb}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly elb?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#emr AwsProvider#emr}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly emr?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#es AwsProvider#es}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly es?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#firehose AwsProvider#firehose}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly firehose?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#fms AwsProvider#fms}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly fms?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#forecast AwsProvider#forecast}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly forecast?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#fsx AwsProvider#fsx}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly fsx?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#gamelift AwsProvider#gamelift}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly gamelift?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#glacier AwsProvider#glacier}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly glacier?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#globalaccelerator AwsProvider#globalaccelerator}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly globalaccelerator?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#glue AwsProvider#glue}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly glue?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#greengrass AwsProvider#greengrass}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly greengrass?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#guardduty AwsProvider#guardduty}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly guardduty?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#iam AwsProvider#iam}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly iam?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#imagebuilder AwsProvider#imagebuilder}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly imagebuilder?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#inspector AwsProvider#inspector}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly inspector?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#iot AwsProvider#iot}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly iot?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#iotanalytics AwsProvider#iotanalytics}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly iotanalytics?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#iotevents AwsProvider#iotevents}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly iotevents?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kafka AwsProvider#kafka}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kafka?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kinesis AwsProvider#kinesis}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kinesis?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kinesis_analytics AwsProvider#kinesis_analytics}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kinesisAnalytics?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kinesisanalytics AwsProvider#kinesisanalytics}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kinesisanalytics?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kinesisvideo AwsProvider#kinesisvideo}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kinesisvideo?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#kms AwsProvider#kms}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly kms?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#lakeformation AwsProvider#lakeformation}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly lakeformation?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#lambda AwsProvider#lambda}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly lambda?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#lexmodels AwsProvider#lexmodels}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly lexmodels?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#licensemanager AwsProvider#licensemanager}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly licensemanager?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#lightsail AwsProvider#lightsail}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly lightsail?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#macie AwsProvider#macie}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly macie?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#managedblockchain AwsProvider#managedblockchain}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly managedblockchain?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#marketplacecatalog AwsProvider#marketplacecatalog}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly marketplacecatalog?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mediaconnect AwsProvider#mediaconnect}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mediaconnect?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mediaconvert AwsProvider#mediaconvert}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mediaconvert?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#medialive AwsProvider#medialive}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly medialive?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mediapackage AwsProvider#mediapackage}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mediapackage?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mediastore AwsProvider#mediastore}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mediastore?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mediastoredata AwsProvider#mediastoredata}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mediastoredata?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#mq AwsProvider#mq}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly mq?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#neptune AwsProvider#neptune}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly neptune?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#opsworks AwsProvider#opsworks}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly opsworks?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#organizations AwsProvider#organizations}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly organizations?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#personalize AwsProvider#personalize}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly personalize?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#pinpoint AwsProvider#pinpoint}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly pinpoint?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#pricing AwsProvider#pricing}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly pricing?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#qldb AwsProvider#qldb}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly qldb?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#quicksight AwsProvider#quicksight}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly quicksight?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#r53 AwsProvider#r53}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly r53?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ram AwsProvider#ram}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ram?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#rds AwsProvider#rds}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly rds?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#redshift AwsProvider#redshift}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly redshift?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#resourcegroups AwsProvider#resourcegroups}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly resourcegroups?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#route53 AwsProvider#route53}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly route53?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#route53domains AwsProvider#route53domains}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly route53Domains?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#route53resolver AwsProvider#route53resolver}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly route53Resolver?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#s3 AwsProvider#s3}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly s3?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#s3control AwsProvider#s3control}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly s3Control?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#sagemaker AwsProvider#sagemaker}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly sagemaker?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#sdb AwsProvider#sdb}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly sdb?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#secretsmanager AwsProvider#secretsmanager}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly secretsmanager?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#securityhub AwsProvider#securityhub}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly securityhub?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#serverlessrepo AwsProvider#serverlessrepo}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly serverlessrepo?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#servicecatalog AwsProvider#servicecatalog}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly servicecatalog?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#servicediscovery AwsProvider#servicediscovery}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly servicediscovery?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#servicequotas AwsProvider#servicequotas}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly servicequotas?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ses AwsProvider#ses}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ses?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#shield AwsProvider#shield}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly shield?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#sns AwsProvider#sns}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly sns?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#sqs AwsProvider#sqs}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly sqs?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ssm AwsProvider#ssm}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly ssm?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#stepfunctions AwsProvider#stepfunctions}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly stepfunctions?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#storagegateway AwsProvider#storagegateway}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly storagegateway?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#sts AwsProvider#sts}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly sts?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#swf AwsProvider#swf}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly swf?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#transfer AwsProvider#transfer}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly transfer?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#waf AwsProvider#waf}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly waf?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#wafregional AwsProvider#wafregional}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly wafregional?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#wafv2 AwsProvider#wafv2}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly wafv2?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#worklink AwsProvider#worklink}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly worklink?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#workmail AwsProvider#workmail}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly workmail?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#workspaces AwsProvider#workspaces}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly workspaces?: cdktf.TerraformString;
-  /**
-  * Use this to override the default service endpoint URL
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#xray AwsProvider#xray}
-  */
+  /** Use this to override the default service endpoint URL */
   readonly xray?: cdktf.TerraformString;
 }
 
@@ -1127,28 +607,859 @@ function awsProviderEndpointsToTerraform(struct?: AwsProviderEndpoints): any {
   }
 }
 
+export class TerraformAwsProviderEndpointsAttribute extends cdktf.TerraformObjectAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderEndpoints, options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderEndpoints | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderEndpoints | undefined) {
+    if (!(value instanceof TerraformAwsProviderEndpointsAttribute)) {
+      return new TerraformAwsProviderEndpointsAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderEndpointsAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return awsProviderEndpointsToTerraform(this.internalValue);
+  }
+
+
+  // accessanalyzer - computed: false, optional: true, required: false
+  public get accessanalyzer() {
+    return cdktf.TerraformStringAttribute.construct(this, 'accessanalyzer', this.internalValue?.accessanalyzer);
+  }
+
+  // acm - computed: false, optional: true, required: false
+  public get acm() {
+    return cdktf.TerraformStringAttribute.construct(this, 'acm', this.internalValue?.acm);
+  }
+
+  // acmpca - computed: false, optional: true, required: false
+  public get acmpca() {
+    return cdktf.TerraformStringAttribute.construct(this, 'acmpca', this.internalValue?.acmpca);
+  }
+
+  // amplify - computed: false, optional: true, required: false
+  public get amplify() {
+    return cdktf.TerraformStringAttribute.construct(this, 'amplify', this.internalValue?.amplify);
+  }
+
+  // apigateway - computed: false, optional: true, required: false
+  public get apigateway() {
+    return cdktf.TerraformStringAttribute.construct(this, 'apigateway', this.internalValue?.apigateway);
+  }
+
+  // applicationautoscaling - computed: false, optional: true, required: false
+  public get applicationautoscaling() {
+    return cdktf.TerraformStringAttribute.construct(this, 'applicationautoscaling', this.internalValue?.applicationautoscaling);
+  }
+
+  // applicationinsights - computed: false, optional: true, required: false
+  public get applicationinsights() {
+    return cdktf.TerraformStringAttribute.construct(this, 'applicationinsights', this.internalValue?.applicationinsights);
+  }
+
+  // appmesh - computed: false, optional: true, required: false
+  public get appmesh() {
+    return cdktf.TerraformStringAttribute.construct(this, 'appmesh', this.internalValue?.appmesh);
+  }
+
+  // appstream - computed: false, optional: true, required: false
+  public get appstream() {
+    return cdktf.TerraformStringAttribute.construct(this, 'appstream', this.internalValue?.appstream);
+  }
+
+  // appsync - computed: false, optional: true, required: false
+  public get appsync() {
+    return cdktf.TerraformStringAttribute.construct(this, 'appsync', this.internalValue?.appsync);
+  }
+
+  // athena - computed: false, optional: true, required: false
+  public get athena() {
+    return cdktf.TerraformStringAttribute.construct(this, 'athena', this.internalValue?.athena);
+  }
+
+  // autoscaling - computed: false, optional: true, required: false
+  public get autoscaling() {
+    return cdktf.TerraformStringAttribute.construct(this, 'autoscaling', this.internalValue?.autoscaling);
+  }
+
+  // autoscalingplans - computed: false, optional: true, required: false
+  public get autoscalingplans() {
+    return cdktf.TerraformStringAttribute.construct(this, 'autoscalingplans', this.internalValue?.autoscalingplans);
+  }
+
+  // backup - computed: false, optional: true, required: false
+  public get backup() {
+    return cdktf.TerraformStringAttribute.construct(this, 'backup', this.internalValue?.backup);
+  }
+
+  // batch - computed: false, optional: true, required: false
+  public get batch() {
+    return cdktf.TerraformStringAttribute.construct(this, 'batch', this.internalValue?.batch);
+  }
+
+  // budgets - computed: false, optional: true, required: false
+  public get budgets() {
+    return cdktf.TerraformStringAttribute.construct(this, 'budgets', this.internalValue?.budgets);
+  }
+
+  // cloud9 - computed: false, optional: true, required: false
+  public get cloud9() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloud9', this.internalValue?.cloud9);
+  }
+
+  // cloudformation - computed: false, optional: true, required: false
+  public get cloudformation() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudformation', this.internalValue?.cloudformation);
+  }
+
+  // cloudfront - computed: false, optional: true, required: false
+  public get cloudfront() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudfront', this.internalValue?.cloudfront);
+  }
+
+  // cloudhsm - computed: false, optional: true, required: false
+  public get cloudhsm() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudhsm', this.internalValue?.cloudhsm);
+  }
+
+  // cloudsearch - computed: false, optional: true, required: false
+  public get cloudsearch() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudsearch', this.internalValue?.cloudsearch);
+  }
+
+  // cloudtrail - computed: false, optional: true, required: false
+  public get cloudtrail() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudtrail', this.internalValue?.cloudtrail);
+  }
+
+  // cloudwatch - computed: false, optional: true, required: false
+  public get cloudwatch() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudwatch', this.internalValue?.cloudwatch);
+  }
+
+  // cloudwatchevents - computed: false, optional: true, required: false
+  public get cloudwatchevents() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudwatchevents', this.internalValue?.cloudwatchevents);
+  }
+
+  // cloudwatchlogs - computed: false, optional: true, required: false
+  public get cloudwatchlogs() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cloudwatchlogs', this.internalValue?.cloudwatchlogs);
+  }
+
+  // codebuild - computed: false, optional: true, required: false
+  public get codebuild() {
+    return cdktf.TerraformStringAttribute.construct(this, 'codebuild', this.internalValue?.codebuild);
+  }
+
+  // codecommit - computed: false, optional: true, required: false
+  public get codecommit() {
+    return cdktf.TerraformStringAttribute.construct(this, 'codecommit', this.internalValue?.codecommit);
+  }
+
+  // codedeploy - computed: false, optional: true, required: false
+  public get codedeploy() {
+    return cdktf.TerraformStringAttribute.construct(this, 'codedeploy', this.internalValue?.codedeploy);
+  }
+
+  // codepipeline - computed: false, optional: true, required: false
+  public get codepipeline() {
+    return cdktf.TerraformStringAttribute.construct(this, 'codepipeline', this.internalValue?.codepipeline);
+  }
+
+  // cognitoidentity - computed: false, optional: true, required: false
+  public get cognitoidentity() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cognitoidentity', this.internalValue?.cognitoidentity);
+  }
+
+  // cognitoidp - computed: false, optional: true, required: false
+  public get cognitoidp() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cognitoidp', this.internalValue?.cognitoidp);
+  }
+
+  // configservice - computed: false, optional: true, required: false
+  public get configservice() {
+    return cdktf.TerraformStringAttribute.construct(this, 'configservice', this.internalValue?.configservice);
+  }
+
+  // cur - computed: false, optional: true, required: false
+  public get cur() {
+    return cdktf.TerraformStringAttribute.construct(this, 'cur', this.internalValue?.cur);
+  }
+
+  // dataexchange - computed: false, optional: true, required: false
+  public get dataexchange() {
+    return cdktf.TerraformStringAttribute.construct(this, 'dataexchange', this.internalValue?.dataexchange);
+  }
+
+  // datapipeline - computed: false, optional: true, required: false
+  public get datapipeline() {
+    return cdktf.TerraformStringAttribute.construct(this, 'datapipeline', this.internalValue?.datapipeline);
+  }
+
+  // datasync - computed: false, optional: true, required: false
+  public get datasync() {
+    return cdktf.TerraformStringAttribute.construct(this, 'datasync', this.internalValue?.datasync);
+  }
+
+  // dax - computed: false, optional: true, required: false
+  public get dax() {
+    return cdktf.TerraformStringAttribute.construct(this, 'dax', this.internalValue?.dax);
+  }
+
+  // devicefarm - computed: false, optional: true, required: false
+  public get devicefarm() {
+    return cdktf.TerraformStringAttribute.construct(this, 'devicefarm', this.internalValue?.devicefarm);
+  }
+
+  // directconnect - computed: false, optional: true, required: false
+  public get directconnect() {
+    return cdktf.TerraformStringAttribute.construct(this, 'directconnect', this.internalValue?.directconnect);
+  }
+
+  // dlm - computed: false, optional: true, required: false
+  public get dlm() {
+    return cdktf.TerraformStringAttribute.construct(this, 'dlm', this.internalValue?.dlm);
+  }
+
+  // dms - computed: false, optional: true, required: false
+  public get dms() {
+    return cdktf.TerraformStringAttribute.construct(this, 'dms', this.internalValue?.dms);
+  }
+
+  // docdb - computed: false, optional: true, required: false
+  public get docdb() {
+    return cdktf.TerraformStringAttribute.construct(this, 'docdb', this.internalValue?.docdb);
+  }
+
+  // ds - computed: false, optional: true, required: false
+  public get ds() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ds', this.internalValue?.ds);
+  }
+
+  // dynamodb - computed: false, optional: true, required: false
+  public get dynamodb() {
+    return cdktf.TerraformStringAttribute.construct(this, 'dynamodb', this.internalValue?.dynamodb);
+  }
+
+  // ec2 - computed: false, optional: true, required: false
+  public get ec2() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ec2', this.internalValue?.ec2);
+  }
+
+  // ecr - computed: false, optional: true, required: false
+  public get ecr() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ecr', this.internalValue?.ecr);
+  }
+
+  // ecs - computed: false, optional: true, required: false
+  public get ecs() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ecs', this.internalValue?.ecs);
+  }
+
+  // efs - computed: false, optional: true, required: false
+  public get efs() {
+    return cdktf.TerraformStringAttribute.construct(this, 'efs', this.internalValue?.efs);
+  }
+
+  // eks - computed: false, optional: true, required: false
+  public get eks() {
+    return cdktf.TerraformStringAttribute.construct(this, 'eks', this.internalValue?.eks);
+  }
+
+  // elasticache - computed: false, optional: true, required: false
+  public get elasticache() {
+    return cdktf.TerraformStringAttribute.construct(this, 'elasticache', this.internalValue?.elasticache);
+  }
+
+  // elasticbeanstalk - computed: false, optional: true, required: false
+  public get elasticbeanstalk() {
+    return cdktf.TerraformStringAttribute.construct(this, 'elasticbeanstalk', this.internalValue?.elasticbeanstalk);
+  }
+
+  // elastictranscoder - computed: false, optional: true, required: false
+  public get elastictranscoder() {
+    return cdktf.TerraformStringAttribute.construct(this, 'elastictranscoder', this.internalValue?.elastictranscoder);
+  }
+
+  // elb - computed: false, optional: true, required: false
+  public get elb() {
+    return cdktf.TerraformStringAttribute.construct(this, 'elb', this.internalValue?.elb);
+  }
+
+  // emr - computed: false, optional: true, required: false
+  public get emr() {
+    return cdktf.TerraformStringAttribute.construct(this, 'emr', this.internalValue?.emr);
+  }
+
+  // es - computed: false, optional: true, required: false
+  public get es() {
+    return cdktf.TerraformStringAttribute.construct(this, 'es', this.internalValue?.es);
+  }
+
+  // firehose - computed: false, optional: true, required: false
+  public get firehose() {
+    return cdktf.TerraformStringAttribute.construct(this, 'firehose', this.internalValue?.firehose);
+  }
+
+  // fms - computed: false, optional: true, required: false
+  public get fms() {
+    return cdktf.TerraformStringAttribute.construct(this, 'fms', this.internalValue?.fms);
+  }
+
+  // forecast - computed: false, optional: true, required: false
+  public get forecast() {
+    return cdktf.TerraformStringAttribute.construct(this, 'forecast', this.internalValue?.forecast);
+  }
+
+  // fsx - computed: false, optional: true, required: false
+  public get fsx() {
+    return cdktf.TerraformStringAttribute.construct(this, 'fsx', this.internalValue?.fsx);
+  }
+
+  // gamelift - computed: false, optional: true, required: false
+  public get gamelift() {
+    return cdktf.TerraformStringAttribute.construct(this, 'gamelift', this.internalValue?.gamelift);
+  }
+
+  // glacier - computed: false, optional: true, required: false
+  public get glacier() {
+    return cdktf.TerraformStringAttribute.construct(this, 'glacier', this.internalValue?.glacier);
+  }
+
+  // globalaccelerator - computed: false, optional: true, required: false
+  public get globalaccelerator() {
+    return cdktf.TerraformStringAttribute.construct(this, 'globalaccelerator', this.internalValue?.globalaccelerator);
+  }
+
+  // glue - computed: false, optional: true, required: false
+  public get glue() {
+    return cdktf.TerraformStringAttribute.construct(this, 'glue', this.internalValue?.glue);
+  }
+
+  // greengrass - computed: false, optional: true, required: false
+  public get greengrass() {
+    return cdktf.TerraformStringAttribute.construct(this, 'greengrass', this.internalValue?.greengrass);
+  }
+
+  // guardduty - computed: false, optional: true, required: false
+  public get guardduty() {
+    return cdktf.TerraformStringAttribute.construct(this, 'guardduty', this.internalValue?.guardduty);
+  }
+
+  // iam - computed: false, optional: true, required: false
+  public get iam() {
+    return cdktf.TerraformStringAttribute.construct(this, 'iam', this.internalValue?.iam);
+  }
+
+  // imagebuilder - computed: false, optional: true, required: false
+  public get imagebuilder() {
+    return cdktf.TerraformStringAttribute.construct(this, 'imagebuilder', this.internalValue?.imagebuilder);
+  }
+
+  // inspector - computed: false, optional: true, required: false
+  public get inspector() {
+    return cdktf.TerraformStringAttribute.construct(this, 'inspector', this.internalValue?.inspector);
+  }
+
+  // iot - computed: false, optional: true, required: false
+  public get iot() {
+    return cdktf.TerraformStringAttribute.construct(this, 'iot', this.internalValue?.iot);
+  }
+
+  // iotanalytics - computed: false, optional: true, required: false
+  public get iotanalytics() {
+    return cdktf.TerraformStringAttribute.construct(this, 'iotanalytics', this.internalValue?.iotanalytics);
+  }
+
+  // iotevents - computed: false, optional: true, required: false
+  public get iotevents() {
+    return cdktf.TerraformStringAttribute.construct(this, 'iotevents', this.internalValue?.iotevents);
+  }
+
+  // kafka - computed: false, optional: true, required: false
+  public get kafka() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kafka', this.internalValue?.kafka);
+  }
+
+  // kinesis - computed: false, optional: true, required: false
+  public get kinesis() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kinesis', this.internalValue?.kinesis);
+  }
+
+  // kinesis_analytics - computed: false, optional: true, required: false
+  public get kinesisAnalytics() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kinesis_analytics', this.internalValue?.kinesisAnalytics);
+  }
+
+  // kinesisanalytics - computed: false, optional: true, required: false
+  public get kinesisanalytics() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kinesisanalytics', this.internalValue?.kinesisanalytics);
+  }
+
+  // kinesisvideo - computed: false, optional: true, required: false
+  public get kinesisvideo() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kinesisvideo', this.internalValue?.kinesisvideo);
+  }
+
+  // kms - computed: false, optional: true, required: false
+  public get kms() {
+    return cdktf.TerraformStringAttribute.construct(this, 'kms', this.internalValue?.kms);
+  }
+
+  // lakeformation - computed: false, optional: true, required: false
+  public get lakeformation() {
+    return cdktf.TerraformStringAttribute.construct(this, 'lakeformation', this.internalValue?.lakeformation);
+  }
+
+  // lambda - computed: false, optional: true, required: false
+  public get lambda() {
+    return cdktf.TerraformStringAttribute.construct(this, 'lambda', this.internalValue?.lambda);
+  }
+
+  // lexmodels - computed: false, optional: true, required: false
+  public get lexmodels() {
+    return cdktf.TerraformStringAttribute.construct(this, 'lexmodels', this.internalValue?.lexmodels);
+  }
+
+  // licensemanager - computed: false, optional: true, required: false
+  public get licensemanager() {
+    return cdktf.TerraformStringAttribute.construct(this, 'licensemanager', this.internalValue?.licensemanager);
+  }
+
+  // lightsail - computed: false, optional: true, required: false
+  public get lightsail() {
+    return cdktf.TerraformStringAttribute.construct(this, 'lightsail', this.internalValue?.lightsail);
+  }
+
+  // macie - computed: false, optional: true, required: false
+  public get macie() {
+    return cdktf.TerraformStringAttribute.construct(this, 'macie', this.internalValue?.macie);
+  }
+
+  // managedblockchain - computed: false, optional: true, required: false
+  public get managedblockchain() {
+    return cdktf.TerraformStringAttribute.construct(this, 'managedblockchain', this.internalValue?.managedblockchain);
+  }
+
+  // marketplacecatalog - computed: false, optional: true, required: false
+  public get marketplacecatalog() {
+    return cdktf.TerraformStringAttribute.construct(this, 'marketplacecatalog', this.internalValue?.marketplacecatalog);
+  }
+
+  // mediaconnect - computed: false, optional: true, required: false
+  public get mediaconnect() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mediaconnect', this.internalValue?.mediaconnect);
+  }
+
+  // mediaconvert - computed: false, optional: true, required: false
+  public get mediaconvert() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mediaconvert', this.internalValue?.mediaconvert);
+  }
+
+  // medialive - computed: false, optional: true, required: false
+  public get medialive() {
+    return cdktf.TerraformStringAttribute.construct(this, 'medialive', this.internalValue?.medialive);
+  }
+
+  // mediapackage - computed: false, optional: true, required: false
+  public get mediapackage() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mediapackage', this.internalValue?.mediapackage);
+  }
+
+  // mediastore - computed: false, optional: true, required: false
+  public get mediastore() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mediastore', this.internalValue?.mediastore);
+  }
+
+  // mediastoredata - computed: false, optional: true, required: false
+  public get mediastoredata() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mediastoredata', this.internalValue?.mediastoredata);
+  }
+
+  // mq - computed: false, optional: true, required: false
+  public get mq() {
+    return cdktf.TerraformStringAttribute.construct(this, 'mq', this.internalValue?.mq);
+  }
+
+  // neptune - computed: false, optional: true, required: false
+  public get neptune() {
+    return cdktf.TerraformStringAttribute.construct(this, 'neptune', this.internalValue?.neptune);
+  }
+
+  // opsworks - computed: false, optional: true, required: false
+  public get opsworks() {
+    return cdktf.TerraformStringAttribute.construct(this, 'opsworks', this.internalValue?.opsworks);
+  }
+
+  // organizations - computed: false, optional: true, required: false
+  public get organizations() {
+    return cdktf.TerraformStringAttribute.construct(this, 'organizations', this.internalValue?.organizations);
+  }
+
+  // personalize - computed: false, optional: true, required: false
+  public get personalize() {
+    return cdktf.TerraformStringAttribute.construct(this, 'personalize', this.internalValue?.personalize);
+  }
+
+  // pinpoint - computed: false, optional: true, required: false
+  public get pinpoint() {
+    return cdktf.TerraformStringAttribute.construct(this, 'pinpoint', this.internalValue?.pinpoint);
+  }
+
+  // pricing - computed: false, optional: true, required: false
+  public get pricing() {
+    return cdktf.TerraformStringAttribute.construct(this, 'pricing', this.internalValue?.pricing);
+  }
+
+  // qldb - computed: false, optional: true, required: false
+  public get qldb() {
+    return cdktf.TerraformStringAttribute.construct(this, 'qldb', this.internalValue?.qldb);
+  }
+
+  // quicksight - computed: false, optional: true, required: false
+  public get quicksight() {
+    return cdktf.TerraformStringAttribute.construct(this, 'quicksight', this.internalValue?.quicksight);
+  }
+
+  // r53 - computed: false, optional: true, required: false
+  public get r53() {
+    return cdktf.TerraformStringAttribute.construct(this, 'r53', this.internalValue?.r53);
+  }
+
+  // ram - computed: false, optional: true, required: false
+  public get ram() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ram', this.internalValue?.ram);
+  }
+
+  // rds - computed: false, optional: true, required: false
+  public get rds() {
+    return cdktf.TerraformStringAttribute.construct(this, 'rds', this.internalValue?.rds);
+  }
+
+  // redshift - computed: false, optional: true, required: false
+  public get redshift() {
+    return cdktf.TerraformStringAttribute.construct(this, 'redshift', this.internalValue?.redshift);
+  }
+
+  // resourcegroups - computed: false, optional: true, required: false
+  public get resourcegroups() {
+    return cdktf.TerraformStringAttribute.construct(this, 'resourcegroups', this.internalValue?.resourcegroups);
+  }
+
+  // route53 - computed: false, optional: true, required: false
+  public get route53() {
+    return cdktf.TerraformStringAttribute.construct(this, 'route53', this.internalValue?.route53);
+  }
+
+  // route53domains - computed: false, optional: true, required: false
+  public get route53Domains() {
+    return cdktf.TerraformStringAttribute.construct(this, 'route53domains', this.internalValue?.route53Domains);
+  }
+
+  // route53resolver - computed: false, optional: true, required: false
+  public get route53Resolver() {
+    return cdktf.TerraformStringAttribute.construct(this, 'route53resolver', this.internalValue?.route53Resolver);
+  }
+
+  // s3 - computed: false, optional: true, required: false
+  public get s3() {
+    return cdktf.TerraformStringAttribute.construct(this, 's3', this.internalValue?.s3);
+  }
+
+  // s3control - computed: false, optional: true, required: false
+  public get s3Control() {
+    return cdktf.TerraformStringAttribute.construct(this, 's3control', this.internalValue?.s3Control);
+  }
+
+  // sagemaker - computed: false, optional: true, required: false
+  public get sagemaker() {
+    return cdktf.TerraformStringAttribute.construct(this, 'sagemaker', this.internalValue?.sagemaker);
+  }
+
+  // sdb - computed: false, optional: true, required: false
+  public get sdb() {
+    return cdktf.TerraformStringAttribute.construct(this, 'sdb', this.internalValue?.sdb);
+  }
+
+  // secretsmanager - computed: false, optional: true, required: false
+  public get secretsmanager() {
+    return cdktf.TerraformStringAttribute.construct(this, 'secretsmanager', this.internalValue?.secretsmanager);
+  }
+
+  // securityhub - computed: false, optional: true, required: false
+  public get securityhub() {
+    return cdktf.TerraformStringAttribute.construct(this, 'securityhub', this.internalValue?.securityhub);
+  }
+
+  // serverlessrepo - computed: false, optional: true, required: false
+  public get serverlessrepo() {
+    return cdktf.TerraformStringAttribute.construct(this, 'serverlessrepo', this.internalValue?.serverlessrepo);
+  }
+
+  // servicecatalog - computed: false, optional: true, required: false
+  public get servicecatalog() {
+    return cdktf.TerraformStringAttribute.construct(this, 'servicecatalog', this.internalValue?.servicecatalog);
+  }
+
+  // servicediscovery - computed: false, optional: true, required: false
+  public get servicediscovery() {
+    return cdktf.TerraformStringAttribute.construct(this, 'servicediscovery', this.internalValue?.servicediscovery);
+  }
+
+  // servicequotas - computed: false, optional: true, required: false
+  public get servicequotas() {
+    return cdktf.TerraformStringAttribute.construct(this, 'servicequotas', this.internalValue?.servicequotas);
+  }
+
+  // ses - computed: false, optional: true, required: false
+  public get ses() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ses', this.internalValue?.ses);
+  }
+
+  // shield - computed: false, optional: true, required: false
+  public get shield() {
+    return cdktf.TerraformStringAttribute.construct(this, 'shield', this.internalValue?.shield);
+  }
+
+  // sns - computed: false, optional: true, required: false
+  public get sns() {
+    return cdktf.TerraformStringAttribute.construct(this, 'sns', this.internalValue?.sns);
+  }
+
+  // sqs - computed: false, optional: true, required: false
+  public get sqs() {
+    return cdktf.TerraformStringAttribute.construct(this, 'sqs', this.internalValue?.sqs);
+  }
+
+  // ssm - computed: false, optional: true, required: false
+  public get ssm() {
+    return cdktf.TerraformStringAttribute.construct(this, 'ssm', this.internalValue?.ssm);
+  }
+
+  // stepfunctions - computed: false, optional: true, required: false
+  public get stepfunctions() {
+    return cdktf.TerraformStringAttribute.construct(this, 'stepfunctions', this.internalValue?.stepfunctions);
+  }
+
+  // storagegateway - computed: false, optional: true, required: false
+  public get storagegateway() {
+    return cdktf.TerraformStringAttribute.construct(this, 'storagegateway', this.internalValue?.storagegateway);
+  }
+
+  // sts - computed: false, optional: true, required: false
+  public get sts() {
+    return cdktf.TerraformStringAttribute.construct(this, 'sts', this.internalValue?.sts);
+  }
+
+  // swf - computed: false, optional: true, required: false
+  public get swf() {
+    return cdktf.TerraformStringAttribute.construct(this, 'swf', this.internalValue?.swf);
+  }
+
+  // transfer - computed: false, optional: true, required: false
+  public get transfer() {
+    return cdktf.TerraformStringAttribute.construct(this, 'transfer', this.internalValue?.transfer);
+  }
+
+  // waf - computed: false, optional: true, required: false
+  public get waf() {
+    return cdktf.TerraformStringAttribute.construct(this, 'waf', this.internalValue?.waf);
+  }
+
+  // wafregional - computed: false, optional: true, required: false
+  public get wafregional() {
+    return cdktf.TerraformStringAttribute.construct(this, 'wafregional', this.internalValue?.wafregional);
+  }
+
+  // wafv2 - computed: false, optional: true, required: false
+  public get wafv2() {
+    return cdktf.TerraformStringAttribute.construct(this, 'wafv2', this.internalValue?.wafv2);
+  }
+
+  // worklink - computed: false, optional: true, required: false
+  public get worklink() {
+    return cdktf.TerraformStringAttribute.construct(this, 'worklink', this.internalValue?.worklink);
+  }
+
+  // workmail - computed: false, optional: true, required: false
+  public get workmail() {
+    return cdktf.TerraformStringAttribute.construct(this, 'workmail', this.internalValue?.workmail);
+  }
+
+  // workspaces - computed: false, optional: true, required: false
+  public get workspaces() {
+    return cdktf.TerraformStringAttribute.construct(this, 'workspaces', this.internalValue?.workspaces);
+  }
+
+  // xray - computed: false, optional: true, required: false
+  public get xray() {
+    return cdktf.TerraformStringAttribute.construct(this, 'xray', this.internalValue?.xray);
+  }
+}
+
+export type TerraformAwsProviderEndpoints = AwsProviderEndpoints | TerraformAwsProviderEndpointsAttribute;
+
+export class TerraformAwsProviderEndpointsSetAttribute extends cdktf.TerraformSetAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderEndpoints[], options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderEndpoints[] | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderEndpointsSet | undefined) {
+    if (!(value instanceof TerraformAwsProviderEndpointsSetAttribute)) {
+      return new TerraformAwsProviderEndpointsSetAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderEndpointsSetAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return cdktf.setMapper(awsProviderEndpointsToTerraform)(this.internalValue);
+  }
+
+  public toList(): TerraformAwsProviderEndpointsListAttribute {
+    return new TerraformAwsProviderEndpointsListAttribute(this.terraformParent, this.terraformAttribute, this.internalValue, { nested: this.nested, _operation: (fqn: string) => \`tolist(\${fqn})\` });
+  }
+}
+
+export type TerraformAwsProviderEndpointsSet = AwsProviderEndpoints[] | TerraformAwsProviderEndpointsSetAttribute;
+
+export class TerraformAwsProviderEndpointsListAttribute extends cdktf.TerraformListAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderEndpoints[], options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderEndpoints[] | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderEndpointsList | undefined) {
+    if (!(value instanceof TerraformAwsProviderEndpointsListAttribute)) {
+      return new TerraformAwsProviderEndpointsListAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderEndpointsListAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return cdktf.listMapper(awsProviderEndpointsToTerraform)(this.internalValue);
+  }
+
+  public get(index: number): TerraformAwsProviderEndpointsAttribute {
+    return new TerraformAwsProviderEndpointsAttribute(this, index.toString());
+  }
+}
+
+export type TerraformAwsProviderEndpointsList = AwsProviderEndpoints[] | TerraformAwsProviderEndpointsListAttribute;
+
 export interface AwsProviderIgnoreTags {
-  /**
-  * Resource tag key prefixes to ignore across all resources.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#key_prefixes AwsProvider#key_prefixes}
-  */
+  /** Resource tag key prefixes to ignore across all resources. */
   readonly keyPrefixes?: cdktf.TerraformStringSet;
-  /**
-  * Resource tag keys to ignore across all resources.
-  * 
-  * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#keys AwsProvider#keys}
-  */
+  /** Resource tag keys to ignore across all resources. */
   readonly keys?: cdktf.TerraformStringSet;
 }
 
 function awsProviderIgnoreTagsToTerraform(struct?: AwsProviderIgnoreTags): any {
   if (!cdktf.canInspect(struct)) { return struct; }
   return {
-    key_prefixes: struct!.keyPrefixes instanceof cdktf.TerraformAttribute ? struct!.keyPrefixes.toTerraform() : cdktf.stringToTerraform(struct!.keyPrefixes),
-    keys: struct!.keys instanceof cdktf.TerraformAttribute ? struct!.keys.toTerraform() : cdktf.stringToTerraform(struct!.keys),
+    key_prefixes: struct!.keyPrefixes instanceof cdktf.TerraformAttribute ? struct!.keyPrefixes.toTerraform() : cdktf.setMapper(cdktf.stringToTerraform)(struct!.keyPrefixes),
+    keys: struct!.keys instanceof cdktf.TerraformAttribute ? struct!.keys.toTerraform() : cdktf.setMapper(cdktf.stringToTerraform)(struct!.keys),
   }
 }
+
+export class TerraformAwsProviderIgnoreTagsAttribute extends cdktf.TerraformObjectAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderIgnoreTags, options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderIgnoreTags | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderIgnoreTags | undefined) {
+    if (!(value instanceof TerraformAwsProviderIgnoreTagsAttribute)) {
+      return new TerraformAwsProviderIgnoreTagsAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderIgnoreTagsAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return awsProviderIgnoreTagsToTerraform(this.internalValue);
+  }
+
+
+  // key_prefixes - computed: false, optional: true, required: false
+  public get keyPrefixes() {
+    return cdktf.TerraformStringSetAttribute.construct(this, 'key_prefixes', this.internalValue?.keyPrefixes);
+  }
+
+  // keys - computed: false, optional: true, required: false
+  public get keys() {
+    return cdktf.TerraformStringSetAttribute.construct(this, 'keys', this.internalValue?.keys);
+  }
+}
+
+export type TerraformAwsProviderIgnoreTags = AwsProviderIgnoreTags | TerraformAwsProviderIgnoreTagsAttribute;
+
+export class TerraformAwsProviderIgnoreTagsListAttribute extends cdktf.TerraformListAttribute {
+  public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: AwsProviderIgnoreTags[], options?: cdktf.TerraformAttributeOptions) {
+    super(parent, terraformAttribute, value, options);
+  }
+
+  public get internalValue(): AwsProviderIgnoreTags[] | undefined {
+    return this.realValue;
+  }
+
+  public static construct(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value: TerraformAwsProviderIgnoreTagsList | undefined) {
+    if (!(value instanceof TerraformAwsProviderIgnoreTagsListAttribute)) {
+      return new TerraformAwsProviderIgnoreTagsListAttribute(parent, terraformAttribute, value);
+    }
+    else if (value.terraformParent === parent) {
+      return value;
+    }
+    else {
+      return new TerraformAwsProviderIgnoreTagsListAttribute(parent, terraformAttribute, value.internalValue, { nested: value });
+    }
+  }
+
+  protected valueToTerraform(): any {
+    return cdktf.listMapper(awsProviderIgnoreTagsToTerraform)(this.internalValue);
+  }
+
+  public get(index: number): TerraformAwsProviderIgnoreTagsAttribute {
+    return new TerraformAwsProviderIgnoreTagsAttribute(this, index.toString());
+  }
+}
+
+export type TerraformAwsProviderIgnoreTagsList = AwsProviderIgnoreTags[] | TerraformAwsProviderIgnoreTagsListAttribute;
 
 
 /**
@@ -1389,8 +1700,8 @@ export class AwsProvider extends cdktf.TerraformProvider {
   protected synthesizeAttributes(): { [name: string]: any } {
     return {
       access_key: this._accessKey instanceof cdktf.TerraformAttribute ? this._accessKey.toTerraform() : cdktf.stringToTerraform(this._accessKey),
-      allowed_account_ids: this._allowedAccountIds instanceof cdktf.TerraformAttribute ? this._allowedAccountIds.toTerraform() : cdktf.stringToTerraform(this._allowedAccountIds),
-      forbidden_account_ids: this._forbiddenAccountIds instanceof cdktf.TerraformAttribute ? this._forbiddenAccountIds.toTerraform() : cdktf.stringToTerraform(this._forbiddenAccountIds),
+      allowed_account_ids: this._allowedAccountIds instanceof cdktf.TerraformAttribute ? this._allowedAccountIds.toTerraform() : cdktf.setMapper(cdktf.stringToTerraform)(this._allowedAccountIds),
+      forbidden_account_ids: this._forbiddenAccountIds instanceof cdktf.TerraformAttribute ? this._forbiddenAccountIds.toTerraform() : cdktf.setMapper(cdktf.stringToTerraform)(this._forbiddenAccountIds),
       insecure: this._insecure instanceof cdktf.TerraformAttribute ? this._insecure.toTerraform() : cdktf.booleanToTerraform(this._insecure),
       max_retries: this._maxRetries instanceof cdktf.TerraformAttribute ? this._maxRetries.toTerraform() : cdktf.numberToTerraform(this._maxRetries),
       profile: this._profile instanceof cdktf.TerraformAttribute ? this._profile.toTerraform() : cdktf.stringToTerraform(this._profile),
@@ -1405,8 +1716,8 @@ export class AwsProvider extends cdktf.TerraformProvider {
       skip_requesting_account_id: this._skipRequestingAccountId instanceof cdktf.TerraformAttribute ? this._skipRequestingAccountId.toTerraform() : cdktf.booleanToTerraform(this._skipRequestingAccountId),
       token: this._token instanceof cdktf.TerraformAttribute ? this._token.toTerraform() : cdktf.stringToTerraform(this._token),
       alias: this._alias instanceof cdktf.TerraformAttribute ? this._alias.toTerraform() : cdktf.stringToTerraform(this._alias),
-      assume_role: this._assumeRole instanceof cdktf.TerraformAttribute ? this._assumeRole.toTerraform() : terraformAwsProviderAssumeRoleSetToTerraform(this._assumeRole),
-      endpoints: this._endpoints instanceof cdktf.TerraformAttribute ? this._endpoints.toTerraform() : terraformAwsProviderEndpointsSetToTerraform(this._endpoints),
+      assume_role: this._assumeRole instanceof cdktf.TerraformAttribute ? this._assumeRole.toTerraform() : cdktf.setMapper(awsProviderAssumeRoleToTerraform)(this._assumeRole),
+      endpoints: this._endpoints instanceof cdktf.TerraformAttribute ? this._endpoints.toTerraform() : cdktf.setMapper(awsProviderEndpointsToTerraform)(this._endpoints),
       ignore_tags: this._ignoreTags instanceof cdktf.TerraformAttribute ? this._ignoreTags.toTerraform() : cdktf.listMapper(awsProviderIgnoreTagsToTerraform)(this._ignoreTags),
     };
   }
