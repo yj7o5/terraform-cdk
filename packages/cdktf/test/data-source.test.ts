@@ -1,4 +1,4 @@
-import { TerraformStack, Testing, Token } from "../lib";
+import { TerraformStack, Testing } from "../lib";
 import { TestResource } from "./helper";
 import { TestDataSource } from "./helper/data-source";
 
@@ -21,6 +21,9 @@ test("with complex computed list", () => {
   });
   new TestResource(stack, "test-resource", {
     name: dataSource.complexComputedList("0").id,
+  });
+  new TestResource(stack, "test-resource", {
+    name: dataSource.complexComputedList(0).id,
   });
 
   expect(Testing.synth(stack)).toMatchSnapshot();
@@ -50,6 +53,9 @@ test("with number map", () => {
   new TestResource(stack, "test-resource", {
     name: Token.asString(dataSource.numberMap("id")),
   });
+  new TestResource(stack, "test-resource", {
+    name: dataSource.numberMap("id").terraformReference,
+  });
 
   expect(Testing.synth(stack)).toMatchSnapshot();
 });
@@ -63,6 +69,9 @@ test("with boolean map", () => {
   });
   new TestResource(stack, "test-resource", {
     name: dataSource.booleanMap("id").toString(),
+  });
+  new TestResource(stack, "test-resource", {
+    name: dataSource.booleanMap("id").terraformReference,
   });
 
   expect(Testing.synth(stack)).toMatchSnapshot();
