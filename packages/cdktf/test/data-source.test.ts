@@ -20,9 +20,6 @@ test("with complex computed list", () => {
     name: "foo",
   });
   new TestResource(stack, "test-resource", {
-    name: dataSource.complexComputedList("0").id,
-  });
-  new TestResource(stack, "test-resource", {
     name: dataSource.complexComputedList(0).id,
   });
 
@@ -51,9 +48,6 @@ test("with number map", () => {
     name: "foo",
   });
   new TestResource(stack, "test-resource", {
-    name: Token.asString(dataSource.numberMap("id")),
-  });
-  new TestResource(stack, "test-resource", {
     name: dataSource.numberMap("id").terraformReference,
   });
 
@@ -66,9 +60,6 @@ test("with boolean map", () => {
 
   const dataSource = new TestDataSource(stack, "test", {
     name: "foo",
-  });
-  new TestResource(stack, "test-resource", {
-    name: dataSource.booleanMap("id").toString(),
   });
   new TestResource(stack, "test-resource", {
     name: dataSource.booleanMap("id").terraformReference,
