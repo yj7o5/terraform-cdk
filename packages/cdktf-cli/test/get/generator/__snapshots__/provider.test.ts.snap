@@ -9,7 +9,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface AwsProviderConfig {
+export interface undefined {
   /** The access key for API operations. You can retrieve this
 from the 'Security & Credentials' section of the AWS console. */
   readonly accessKey?: cdktf.TerraformString;
@@ -1476,9 +1476,9 @@ export class AwsProvider extends cdktf.TerraformProvider {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options AwsProviderConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: AwsProviderConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws',
       terraformGeneratorMetadata: {

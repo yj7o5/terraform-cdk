@@ -9,7 +9,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface AcmCertificateConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly certificateAuthorityArn?: cdktf.TerraformString;
   readonly certificateBody?: cdktf.TerraformString;
   readonly certificateChain?: cdktf.TerraformString;
@@ -32,25 +32,21 @@ export class TerraformAcmCertificateDomainValidationOptionsAttribute extends cdk
 
 
   // domain_name - computed: true, optional: false, required: false
-  private _domainName: cdktf.TerraformStringAttribute;
   public get domainName() {
     return cdktf.TerraformStringAttribute.construct(this, 'domain_name', undefined);
   }
 
   // resource_record_name - computed: true, optional: false, required: false
-  private _resourceRecordName: cdktf.TerraformStringAttribute;
   public get resourceRecordName() {
     return cdktf.TerraformStringAttribute.construct(this, 'resource_record_name', undefined);
   }
 
   // resource_record_type - computed: true, optional: false, required: false
-  private _resourceRecordType: cdktf.TerraformStringAttribute;
   public get resourceRecordType() {
     return cdktf.TerraformStringAttribute.construct(this, 'resource_record_type', undefined);
   }
 
   // resource_record_value - computed: true, optional: false, required: false
-  private _resourceRecordValue: cdktf.TerraformStringAttribute;
   public get resourceRecordValue() {
     return cdktf.TerraformStringAttribute.construct(this, 'resource_record_value', undefined);
   }
@@ -162,9 +158,9 @@ export class AcmCertificate extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options AcmCertificateConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: AcmCertificateConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_acm_certificate',
       terraformGeneratorMetadata: {

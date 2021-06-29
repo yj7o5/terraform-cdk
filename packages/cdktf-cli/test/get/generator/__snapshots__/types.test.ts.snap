@@ -9,7 +9,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface BooleanListConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooRequired: cdktf.TerraformBooleanList;
   readonly fooOptional?: cdktf.TerraformBooleanList;
 }
@@ -28,9 +28,9 @@ export class BooleanList extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options BooleanListConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: BooleanListConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_boolean_list',
       terraformGeneratorMetadata: {
@@ -95,7 +95,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface BooleanMapConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformBooleanMap;
   readonly fooOptional?: cdktf.TerraformBooleanMap;
 }
@@ -114,9 +114,9 @@ export class BooleanMap extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options BooleanMapConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: BooleanMapConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_boolean_map',
       terraformGeneratorMetadata: {
@@ -193,7 +193,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface ComputedComplexConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
 }
 export class TerraformComputedComplexEgressAttribute extends cdktf.TerraformObjectAttribute {
   public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: any, options?: cdktf.TerraformAttributeOptions) {
@@ -206,55 +206,46 @@ export class TerraformComputedComplexEgressAttribute extends cdktf.TerraformObje
 
 
   // cidr_blocks - computed: true, optional: false, required: false
-  private _cidrBlocks: cdktf.TerraformStringListAttribute;
   public get cidrBlocks() {
     return cdktf.TerraformStringListAttribute.construct(this, 'cidr_blocks', undefined);
   }
 
   // description - computed: true, optional: false, required: false
-  private _description: cdktf.TerraformStringAttribute;
   public get description() {
     return cdktf.TerraformStringAttribute.construct(this, 'description', undefined);
   }
 
   // from_port - computed: true, optional: false, required: false
-  private _fromPort: cdktf.TerraformNumberAttribute;
   public get fromPort() {
     return cdktf.TerraformNumberAttribute.construct(this, 'from_port', undefined);
   }
 
   // ipv6_cidr_blocks - computed: true, optional: false, required: false
-  private _ipv6CidrBlocks: cdktf.TerraformStringListAttribute;
   public get ipv6CidrBlocks() {
     return cdktf.TerraformStringListAttribute.construct(this, 'ipv6_cidr_blocks', undefined);
   }
 
   // prefix_list_ids - computed: true, optional: false, required: false
-  private _prefixListIds: cdktf.TerraformStringListAttribute;
   public get prefixListIds() {
     return cdktf.TerraformStringListAttribute.construct(this, 'prefix_list_ids', undefined);
   }
 
   // protocol - computed: true, optional: false, required: false
-  private _protocol: cdktf.TerraformStringAttribute;
   public get protocol() {
     return cdktf.TerraformStringAttribute.construct(this, 'protocol', undefined);
   }
 
   // security_groups - computed: true, optional: false, required: false
-  private _securityGroups: cdktf.TerraformStringSetAttribute;
   public get securityGroups() {
     return cdktf.TerraformStringSetAttribute.construct(this, 'security_groups', undefined);
   }
 
   // self - computed: true, optional: false, required: false
-  private _self: cdktf.TerraformBooleanAttribute;
   public get selfAttribute() {
     return cdktf.TerraformBooleanAttribute.construct(this, 'self', undefined);
   }
 
   // to_port - computed: true, optional: false, required: false
-  private _toPort: cdktf.TerraformNumberAttribute;
   public get toPort() {
     return cdktf.TerraformNumberAttribute.construct(this, 'to_port', undefined);
   }
@@ -289,8 +280,9 @@ export class TerraformComputedComplexEgressListAttribute extends cdktf.Terraform
 }
 
 
-// Resource
-
+/**
+* Represents a {@link https://www.terraform.io/docs/providers/aws/r/computed_complex.html aws_computed_complex}
+*/
 export class ComputedComplex extends cdktf.TerraformResource {
 
   // ===========
@@ -302,9 +294,9 @@ export class ComputedComplex extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options ComputedComplexConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: ComputedComplexConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_computed_complex',
       terraformGeneratorMetadata: {
@@ -349,7 +341,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface ComputedComplexNestedConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
 }
 export class TerraformComputedComplexNestedResourcesAutoscalingGroupsAttribute extends cdktf.TerraformObjectAttribute {
   public constructor(parent: cdktf.ITerraformAddressable, terraformAttribute: string, value?: any, options?: cdktf.TerraformAttributeOptions) {
@@ -362,7 +354,6 @@ export class TerraformComputedComplexNestedResourcesAutoscalingGroupsAttribute e
 
 
   // name - computed: true, optional: false, required: false
-  private _name: cdktf.TerraformStringAttribute;
   public get name() {
     return cdktf.TerraformStringAttribute.construct(this, 'name', undefined);
   }
@@ -393,13 +384,11 @@ export class TerraformComputedComplexNestedResourcesAttribute extends cdktf.Terr
 
 
   // autoscaling_groups - computed: true, optional: false, required: false
-  private _autoscalingGroups: TerraformComputedComplexNestedResourcesAutoscalingGroupsListAttribute;
   public get autoscalingGroups() {
     return new TerraformComputedComplexNestedResourcesAutoscalingGroupsListAttribute(this, 'autoscaling_groups');
   }
 
   // remote_access_security_group_id - computed: true, optional: false, required: false
-  private _remoteAccessSecurityGroupId: cdktf.TerraformStringAttribute;
   public get remoteAccessSecurityGroupId() {
     return cdktf.TerraformStringAttribute.construct(this, 'remote_access_security_group_id', undefined);
   }
@@ -420,8 +409,9 @@ export class TerraformComputedComplexNestedResourcesListAttribute extends cdktf.
 }
 
 
-// Resource
-
+/**
+* Represents a {@link https://www.terraform.io/docs/providers/aws/r/computed_complex_nested.html aws_computed_complex_nested}
+*/
 export class ComputedComplexNested extends cdktf.TerraformResource {
 
   // ===========
@@ -433,9 +423,9 @@ export class ComputedComplexNested extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options ComputedComplexNestedConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: ComputedComplexNestedConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_computed_complex_nested',
       terraformGeneratorMetadata: {
@@ -480,7 +470,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface BlockTypeNestedComputedListConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   /** inputs block */
   readonly inputs?: TerraformBlockTypeNestedComputedListInputsList;
 }
@@ -495,7 +485,6 @@ export class TerraformBlockTypeNestedComputedListInputsStartingPositionConfigura
 
 
   // starting_position - computed: true, optional: false, required: false
-  private _startingPosition: cdktf.TerraformStringAttribute;
   public get startingPosition() {
     return cdktf.TerraformStringAttribute.construct(this, 'starting_position', undefined);
   }
@@ -608,8 +597,9 @@ export class TerraformBlockTypeNestedComputedListInputsListAttribute extends cdk
 export type TerraformBlockTypeNestedComputedListInputsList = BlockTypeNestedComputedListInputs[] | TerraformBlockTypeNestedComputedListInputsListAttribute;
 
 
-// Resource
-
+/**
+* Represents a {@link https://www.terraform.io/docs/providers/aws/r/block_type_nested_computed_list.html aws_block_type_nested_computed_list}
+*/
 export class BlockTypeNestedComputedList extends cdktf.TerraformResource {
 
   // ===========
@@ -621,9 +611,9 @@ export class BlockTypeNestedComputedList extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options BlockTypeNestedComputedListConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: BlockTypeNestedComputedListConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_block_type_nested_computed_list',
       terraformGeneratorMetadata: {
@@ -677,7 +667,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface ComputedOptionalComplexConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly egress?: TerraformComputedOptionalComplexEgressSet;
 }
 export interface ComputedOptionalComplexEgress {
@@ -860,9 +850,9 @@ export class ComputedOptionalComplex extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options ComputedOptionalComplexConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: ComputedOptionalComplexConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_computed_optional_complex',
       terraformGeneratorMetadata: {
@@ -916,7 +906,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface DeeplyNestedBlockTypesConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   /** lifecycle_rule block */
   readonly lifecycleRule?: TerraformDeeplyNestedBlockTypesLifecycleRuleList;
 }
@@ -1129,9 +1119,9 @@ export class DeeplyNestedBlockTypes extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options DeeplyNestedBlockTypesConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: DeeplyNestedBlockTypesConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_deeply_nested_block_types',
       terraformGeneratorMetadata: {
@@ -1185,7 +1175,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface IgnoredAttributesConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
 }
 
 /**
@@ -1202,9 +1192,9 @@ export class IgnoredAttributes extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options IgnoredAttributesConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: IgnoredAttributesConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_ignored_attributes',
       terraformGeneratorMetadata: {
@@ -1256,7 +1246,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface IncompatibleAttributeNamesConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fetchPasswordData?: cdktf.TerraformString;
   readonly selfAttribute: cdktf.TerraformString;
   readonly equalTo: cdktf.TerraformString;
@@ -1276,9 +1266,9 @@ export class IncompatibleAttributeNames extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options IncompatibleAttributeNamesConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: IncompatibleAttributeNamesConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_incompatible_attribute_names',
       terraformGeneratorMetadata: {
@@ -1354,7 +1344,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface ListOfStringMapConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
 }
 
 /**
@@ -1371,9 +1361,9 @@ export class ListOfStringMap extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options ListOfStringMapConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: ListOfStringMapConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_list_of_string_map',
       terraformGeneratorMetadata: {
@@ -1418,7 +1408,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface NumberListConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooRequired: cdktf.TerraformNumberList;
   readonly fooOptional?: cdktf.TerraformNumberList;
 }
@@ -1437,9 +1427,9 @@ export class NumberList extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options NumberListConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: NumberListConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_number_list',
       terraformGeneratorMetadata: {
@@ -1504,7 +1494,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface NumberMapConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformNumberMap;
   readonly fooOptional?: cdktf.TerraformNumberMap;
 }
@@ -1523,9 +1513,9 @@ export class NumberMap extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options NumberMapConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: NumberMapConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_number_map',
       terraformGeneratorMetadata: {
@@ -1602,7 +1592,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface PrimitiveBooleanConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformBoolean;
   readonly fooOptional?: cdktf.TerraformBoolean;
   readonly fooRequired: cdktf.TerraformBoolean;
@@ -1622,9 +1612,9 @@ export class PrimitiveBoolean extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options PrimitiveBooleanConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: PrimitiveBooleanConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_primitive_boolean',
       terraformGeneratorMetadata: {
@@ -1712,7 +1702,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface PrimitiveDynamicConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformDynamic;
   readonly fooOptional?: cdktf.TerraformDynamic;
   readonly fooRequired: cdktf.TerraformDynamic;
@@ -1732,9 +1722,9 @@ export class PrimitiveDynamic extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options PrimitiveDynamicConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: PrimitiveDynamicConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_primitive_dynamic',
       terraformGeneratorMetadata: {
@@ -1822,7 +1812,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface PrimitiveNumberConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformNumber;
   readonly fooOptional?: cdktf.TerraformNumber;
   readonly fooRequired: cdktf.TerraformNumber;
@@ -1842,9 +1832,9 @@ export class PrimitiveNumber extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options PrimitiveNumberConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: PrimitiveNumberConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_primitive_number',
       terraformGeneratorMetadata: {
@@ -1932,7 +1922,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface PrimitiveStringConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly fooComputedOptional?: cdktf.TerraformString;
   readonly fooOptional?: cdktf.TerraformString;
   readonly fooRequired: cdktf.TerraformString;
@@ -1952,9 +1942,9 @@ export class PrimitiveString extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options PrimitiveStringConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: PrimitiveStringConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_primitive_string',
       terraformGeneratorMetadata: {
@@ -2042,7 +2032,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface NameConflictConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly values?: cdktf.TerraformString;
   readonly resetValues?: cdktf.TerraformString;
   readonly template?: cdktf.TerraformString;
@@ -2063,9 +2053,9 @@ export class NameConflict extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options NameConflictConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: NameConflictConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_name_conflict',
       terraformGeneratorMetadata: {
@@ -2167,7 +2157,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface BlockTypeSetListConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   /** timeouts_set block */
   readonly timeoutsSet?: TerraformBlockTypeSetListTimeoutsSetSet;
   /** timeouts_list block */
@@ -2374,9 +2364,9 @@ export class BlockTypeSetList extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options BlockTypeSetListConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: BlockTypeSetListConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_block_type_set_list',
       terraformGeneratorMetadata: {
@@ -2446,7 +2436,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface SingleBlockTypeConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   /** timeouts block */
   readonly timeouts?: TerraformSingleBlockTypeTimeouts;
 }
@@ -2510,9 +2500,9 @@ export class SingleBlockType extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options SingleBlockTypeConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: SingleBlockTypeConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_single_block_type',
       terraformGeneratorMetadata: {
@@ -2566,7 +2556,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface StringListConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly subjectAlternativeNamesOptionalComputed?: cdktf.TerraformStringList;
   readonly subjectAlternativeNamesRequired: cdktf.TerraformStringList;
   readonly subjectAlternativeNamesOptional?: cdktf.TerraformStringList;
@@ -2586,9 +2576,9 @@ export class StringList extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options StringListConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: StringListConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_string_list',
       terraformGeneratorMetadata: {
@@ -2676,7 +2666,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface StringMapConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly subjectAlternativeNamesComputedOptional?: cdktf.TerraformStringMap;
   readonly subjectAlternativeNamesOptional?: cdktf.TerraformStringMap;
 }
@@ -2695,9 +2685,9 @@ export class StringMap extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options StringMapConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: StringMapConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_string_map',
       terraformGeneratorMetadata: {

@@ -9,9 +9,8 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface DescriptionEscapingConfig extends cdktf.TerraformMetaArguments {
-  /**
-  * The resource name of the Cloud KMS CryptoKey to be used to protect access 
+export interface undefined extends cdktf.TerraformMetaArguments {
+  /** The resource name of the Cloud KMS CryptoKey to be used to protect access 
  to messages published on this topic. Your project's PubSub service account 
  ('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have 
  'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature. 
@@ -33,9 +32,9 @@ export class DescriptionEscaping extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options DescriptionEscapingConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: DescriptionEscapingConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'description_escaping',
       terraformGeneratorMetadata: {
@@ -84,7 +83,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface CodeBlocksConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   /** Here comes a code block \`\`\`foo.bar\`\`\` and here is more text. */
   readonly withCodeBlock: cdktf.TerraformBoolean;
 }
@@ -103,9 +102,9 @@ export class CodeBlocks extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options CodeBlocksConfig
+  * @param options undefined
   */
-  public constructor(scope: Construct, id: string, config: CodeBlocksConfig) {
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'code_blocks',
       terraformGeneratorMetadata: {

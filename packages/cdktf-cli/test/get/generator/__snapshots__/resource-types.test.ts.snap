@@ -9,7 +9,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface CloudfrontDistributionConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly aliases?: cdktf.TerraformStringSet;
   readonly comment?: cdktf.TerraformString;
   readonly defaultRootObject?: cdktf.TerraformString;
@@ -2777,15 +2777,23 @@ export class TerraformCloudfrontDistributionViewerCertificateListAttribute exten
 export type TerraformCloudfrontDistributionViewerCertificateList = CloudfrontDistributionViewerCertificate[] | TerraformCloudfrontDistributionViewerCertificateListAttribute;
 
 
-// Resource
-
+/**
+* Represents a {@link https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html aws_cloudfront_distribution}
+*/
 export class CloudfrontDistribution extends cdktf.TerraformResource {
 
   // ===========
   // INITIALIZER
   // ===========
 
-  public constructor(scope: Construct, id: string, config: CloudfrontDistributionConfig) {
+  /**
+  * Create a new {@link https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html aws_cloudfront_distribution} Resource
+  *
+  * @param scope The scope in which to define this construct
+  * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
+  * @param options undefined
+  */
+  public constructor(scope: Construct, id: string, config: undefined) {
     super(scope, id, {
       terraformResourceType: 'aws_cloudfront_distribution',
       terraformGeneratorMetadata: {
@@ -3188,19 +3196,27 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface FmsAdminAccountConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly accountId?: cdktf.TerraformString;
 }
 
-// Resource
-
+/**
+* Represents a {@link https://www.terraform.io/docs/providers/aws/r/fms_admin_account.html aws_fms_admin_account}
+*/
 export class FmsAdminAccount extends cdktf.TerraformResource {
 
   // ===========
   // INITIALIZER
   // ===========
 
-  public constructor(scope: Construct, id: string, config: FmsAdminAccountConfig = {}) {
+  /**
+  * Create a new {@link https://www.terraform.io/docs/providers/aws/r/fms_admin_account.html aws_fms_admin_account} Resource
+  *
+  * @param scope The scope in which to define this construct
+  * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
+  * @param options undefined = {}
+  */
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_fms_admin_account',
       terraformGeneratorMetadata: {
@@ -3261,7 +3277,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface S3BucketConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly accelerationStatus?: cdktf.TerraformString;
   readonly acl?: cdktf.TerraformString;
   readonly bucket?: cdktf.TerraformString;
@@ -5700,9 +5716,9 @@ export class S3Bucket extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options S3BucketConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: S3BucketConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_s3_bucket',
       terraformGeneratorMetadata: {
@@ -6104,7 +6120,7 @@ import * as cdktf from 'cdktf';
 
 // Configuration
 
-export interface SecurityGroupConfig extends cdktf.TerraformMetaArguments {
+export interface undefined extends cdktf.TerraformMetaArguments {
   readonly description?: cdktf.TerraformString;
   readonly egress?: TerraformSecurityGroupEgressSet;
   readonly ingress?: TerraformSecurityGroupIngressSet;
@@ -6513,9 +6529,9 @@ export class SecurityGroup extends cdktf.TerraformResource {
   *
   * @param scope The scope in which to define this construct
   * @param id The scoped construct ID. Must be unique amongst siblings in the same scope
-  * @param options SecurityGroupConfig = {}
+  * @param options undefined = {}
   */
-  public constructor(scope: Construct, id: string, config: SecurityGroupConfig = {}) {
+  public constructor(scope: Construct, id: string, config: undefined = {}) {
     super(scope, id, {
       terraformResourceType: 'aws_security_group',
       terraformGeneratorMetadata: {
