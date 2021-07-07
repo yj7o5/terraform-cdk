@@ -1,6 +1,6 @@
 {
   "language": "python",
-  "app": "pipenv run python main.py",
+  "app": "pipenv --python /usr/local/bin/python3 run python main.py",
   "terraformProviders": [
     "terraform-providers/docker@~> 2.0"
   ],

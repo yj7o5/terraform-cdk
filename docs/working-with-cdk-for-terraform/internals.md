@@ -562,6 +562,8 @@ For the implementation you can see that it executes `jsii.get`, this is a call t
 
 ## Synthesizing a CDKTF Python stack (`cdktf synth`)
 
+The `cdktf synth` command executes the `app` command specified in the `cdktf.json`, which executes the command in a process. The command runs the CDK program, which creates [Constructs](https://github.com/aws/constructs) inside Node.js. This is done through [JSII](https://aws.github.io/jsii/).
+
 [JSII uses stdin, stdout, and stderror to communicate between the target language thread and the node.js thread](https://aws.github.io/jsii/overview/runtime-architecture/).
 If you want to see these messages in action you can use the `JSII_DEBUG=1` environment variable and JSII will print the communication.
 
@@ -757,7 +759,72 @@ The creation is confirmed by this message:
 { "ok": { "$jsii.byref": "kreuzwerker_docker.Container@10004" } }
 ```
 
-todo: talk about synth and json
+Inside the Node.js process these invocations form a tree of scopes (e.g. stacks / resource classes) and individual resources.
+The underlying [constructs](https://github.com/aws/constructs) library calls the `onSynthesise` methods on each node of the tree. The `TerraformStack` resource generates a Terraform JSON Manifest that represents the infrastructure. This is done by walking through the Constructs Tree, where on each node the `toTerraform` serlialization function is called.
+
+For the given program this results in this JSON:
+
+```jsonc
+{
+  "//": {
+    "metadata": {
+      "version": "0.0.0",
+      "stackName": "python-docker"
+    }
+  },
+  "terraform": {
+    "required_providers": {
+      "docker": {
+        "version": "~> 2.0",
+        "source": "terraform-providers/docker"
+      }
+    }
+  },
+  "provider": {
+    "docker": [{}]
+  },
+  "resource": {
+    "docker_image": {
+      "pythondocker_nginxlatest_BB45EBC9": {
+        "keep_locally": false,
+        "name": "nginx:latest",
+        "//": {
+          "metadata": {
+            "path": "python-docker/nginxImage",
+            "uniqueId": "pythondocker_nginxlatest_BB45EBC9",
+            "stackTrace": [
+              // ...
+            ]
+          }
+        }
+      }
+    },
+    "docker_container": {
+      "pythondocker_nginxContainer_27657FE9": {
+        "image": "${docker_image.pythondocker_nginxlatest_BB45EBC9.latest}",
+        "name": "tutorial",
+        "ports": [
+          {
+            "external": 8000,
+            "internal": 80
+          }
+        ],
+        "//": {
+          "metadata": {
+            "path": "python-docker/nginxContainer",
+            "uniqueId": "pythondocker_nginxContainer_27657FE9",
+            "stackTrace": [
+              // ...
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+You can see the same identifiers as above and you can see that terraform references (`${docker_image.pythondocker_nginxlatest_BB45EBC9.latest}`) are being used.
 
 ## Running Terraform (`cdktf diff` / `cdktf deploy`)
 
