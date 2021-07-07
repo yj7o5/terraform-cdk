@@ -282,7 +282,7 @@ private emitProvider(fqpn: string, provider: Provider) {
   }
 ```
 
-In the end we get
+In the end we get we (optionally) create another TypeScript file for the provider of the provider (which can be used to set config like access keys or the region used for all created resources). Finally we also create an index.ts file which re-exports all created files and offers an entrypoint (also used with JSII).
 
 #### Generating TypeScript code for Terraform modules (`ModuleGenerator`)
 
