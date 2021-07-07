@@ -573,7 +573,7 @@ Let's walk through the messages sent between the two processes when executing
 docker_image = Image(self, 'nginx-latest', name='nginx:latest', keep_locally=False)
 ```
 
-The Python process sends a serilaized request to create the image construct to the Node.js process:
+The Python process sends a serialized request to create the image construct to the Node.js process:
 
 ```json
 {
