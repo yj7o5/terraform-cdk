@@ -562,7 +562,202 @@ For the implementation you can see that it executes `jsii.get`, this is a call t
 
 ## Synthesizing a CDKTF Python stack (`cdktf synth`)
 
-todo: explain how jsii works at runtime (e.g. show data interchange format between Python and TypeScript)
+[JSII uses stdin, stdout, and stderror to communicate between the target language thread and the node.js thread](https://aws.github.io/jsii/overview/runtime-architecture/).
+If you want to see these messages in action you can use the `JSII_DEBUG=1` environment variable and JSII will print the communication.
+
+Let's walk through the messages sent between the two processes when executing
+
+```py
+docker_image = Image(self, 'nginx-latest', name='nginx:latest', keep_locally=False)
+```
+
+The Python process sends a serilaized request to create the image construct to the Node.js process:
+
+```json
+{
+  "fqn": "kreuzwerker_docker.Image",
+  "args": [
+    {
+      "$jsii.byref": "cdktf.TerraformStack@10001"
+    },
+    "nginx-latest",
+    {
+      "$jsii.struct": {
+        "fqn": "kreuzwerker_docker.ImageConfig",
+        "data": {
+          "count": null,
+          "dependsOn": null,
+          "lifecycle": null,
+          "provider": null,
+          "name": "nginx:latest",
+          "buildAttribute": null,
+          "forceRemove": null,
+          "keepLocally": false,
+          "pullTrigger": null,
+          "pullTriggers": null
+        }
+      }
+    }
+  ],
+  "overrides": [],
+  "interfaces": [
+    "constructs.IConstruct",
+    "cdktf.ITerraformResource",
+    "cdktf.ITerraformDependable"
+  ],
+  "api": "create"
+}
+```
+
+The `api` field indicates that we want to create a resource, the `fqn` field specifies which resource and the `args` field notes the arguments passed to the call.
+The first argument (`self` in the python code) is an object with a `$jsii.byref` field, this denotes an JSII-internal reference to a previously created object.
+The second argument is a string literal, it's transferred as such.
+The third argument is an object, it's serialized through a `$jsii.struct` which has a `fqn` field for the type to be created and the `data` field for the data of the struct. The `null` values are defaults when no value is provided.
+
+The answer on this JSON is:
+
+```json
+{
+  "ok": {
+    "$jsii.byref": "kreuzwerker_docker.Image@10003"
+  }
+}
+```
+
+This is a reference to a specific docker image that was created in the Node.js context based on the specification we passed to it.
+
+Now we want to use this image resource and get the name of the image into the docker container.
+
+```python
+Container(self, 'nginx-cdktf', name='nginx-python-cdktf',
+          image=docker_image.name, ports=[
+              {
+                  'internal': 80,
+                  'external': 8000
+              }], privileged=False)
+```
+
+The property access `docker_image.name` leads to this call to the Node.js process:
+
+```json
+{
+  "objref": {
+    "$jsii.byref": "kreuzwerker_docker.Image@10003"
+  },
+  "property": "name",
+  "api": "get"
+}
+```
+
+The api used is `get` so the python process asks the Node.js environment for the value in the `property` of an object specified through `objref`. The object is the same reference that was returned when we created the Docker Image.
+
+The result of the call is:
+
+```json
+{
+  "ok": {
+    "value": "${docker_image.pythondocker_nginxlatest_BB45EBC9.name}"
+  }
+}
+```
+
+The value is a terraform reference for the docker image name that will now be used in the container. The resource name is prefixed with the stack name and suffixed with a hash based on the hierarchical path to the resource. This means if you wrap the Construct in another scope, e.g. by wrapping it in a class extending Resource you would get a different hash to avoid conflicts.
+
+All data for the container is gathered so a message is sent to construct it:
+
+```json
+{
+  "fqn": "kreuzwerker_docker.Container",
+  "args": [
+    { "$jsii.byref": "cdktf.TerraformStack@10001" },
+    "nginx-cdktf",
+    {
+      "$jsii.struct": {
+        "fqn": "kreuzwerker_docker.ContainerConfig",
+        "data": {
+          "count": null,
+          "dependsOn": null,
+          "lifecycle": null,
+          "provider": null,
+          "image": "${docker_image.currentimplementationexample_nginxlatest_BB45EBC9.name}",
+          "name": "nginx-python-cdktf",
+          "attach": null,
+          "capabilities": null,
+          "command": null,
+          "cpuSet": null,
+          "cpuShares": null,
+          "destroyGraceSeconds": null,
+          "devices": null,
+          "dns": null,
+          "dnsOpts": null,
+          "dnsSearch": null,
+          "domainname": null,
+          "entrypoint": null,
+          "env": null,
+          "groupAdd": null,
+          "healthcheck": null,
+          "host": null,
+          "hostname": null,
+          "init": null,
+          "ipcMode": null,
+          "labels": null,
+          "links": null,
+          "logDriver": null,
+          "logOpts": null,
+          "logs": null,
+          "maxRetryCount": null,
+          "memory": null,
+          "memorySwap": null,
+          "mounts": null,
+          "mustRun": null,
+          "networkAlias": null,
+          "networkMode": null,
+          "networks": null,
+          "networksAdvanced": null,
+          "pidMode": null,
+          "ports": [{ "$jsii.map": { "internal": 80, "external": 8000 } }],
+          "privileged": false,
+          "publishAllPorts": null,
+          "readOnly": null,
+          "removeVolumes": null,
+          "restart": null,
+          "rm": null,
+          "securityOpts": null,
+          "shmSize": null,
+          "start": null,
+          "stdinOpen": null,
+          "sysctls": null,
+          "tmpfs": null,
+          "tty": null,
+          "ulimit": null,
+          "upload": null,
+          "user": null,
+          "usernsMode": null,
+          "volumes": null,
+          "workingDir": null
+        }
+      }
+    }
+  ],
+  "overrides": [],
+  "interfaces": [
+    "constructs.IConstruct",
+    "cdktf.ITerraformResource",
+    "cdktf.ITerraformDependable"
+  ],
+  "api": "create"
+}
+```
+
+As you can see the image is using the terraform reference provided.
+
+The creation is confirmed by this message:
+
+```json
+{ "ok": { "$jsii.byref": "kreuzwerker_docker.Container@10004" } }
+```
+
+todo: talk about synth and json
 
 ## Running Terraform (`cdktf diff` / `cdktf deploy`)
 
