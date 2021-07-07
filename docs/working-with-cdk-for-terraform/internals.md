@@ -228,12 +228,70 @@ Depending on whether we have Terraform providers and/or modules we instantiate a
 `packages/cdktf-cli/lib/get/generator/provider-generator.ts`
 uses `codemaker` lib from AWS and has a `emitProvider()` method which is called for each provider.
 
+`emitProvider` loops over all resource schemas, data source schemas and emits files for their representation in TypeScript
+
+```typescript
+private emitProvider(fqpn: string, provider: Provider) {
+    const files: string[] = [];
+    for (const [type, resource] of Object.entries(
+      provider.resource_schemas || []
+    )) {
+      files.push(
+        this.emitResourceFile(
+          this.resourceParser.parse(name, type, resource, "resource")
+        )
+      );
+    }
+
+    for (const [type, resource] of Object.entries(
+      provider.data_source_schemas || []
+    )) {
+      files.push(
+        this.emitResourceFile(
+          this.resourceParser.parse(
+            name,
+            `data_${type}`,
+            resource,
+            "data_source"
+          )
+        )
+      );
+    }
+
+    if (provider.provider) {
+      const providerResource = this.resourceParser.parse(
+        name,
+        `provider`,
+        provider.provider,
+        "provider"
+      );
+      if (this.providerConstraints) {
+        const constraint = this.providerConstraints.find((p) =>
+          isMatching(p, fqpn)
+        );
+        if (!constraint) {
+          throw new Error(`can't handle ${fqpn}`);
+        }
+        providerResource.providerVersionConstraint = constraint.version;
+        providerResource.terraformProviderSource = constraint.source;
+      }
+      files.push(this.emitResourceFile(providerResource));
+    }
+
+    this.emitIndexFile(name, files);
+  }
+```
+
+In the end we get
 
 #### Generating TypeScript code for Terraform modules (`ModuleGenerator`)
 
 
 ### Translating the bindings to Python (using `JSII`)
+todo: add explanation how jsii works (maybe fan out that one?) and show example code how this looks like under the hood
 
 ## Synthesizing a CDKTF Python stack (`cdktf synth`)
+todo: explain how jsii works at runtime (e.g. show data interchange format between Python and TypeScript)
 
 ## Running Terraform (`cdktf diff` / `cdktf deploy`)
+todo: show how cdktf-cli dermines stack and invokes Terraform
