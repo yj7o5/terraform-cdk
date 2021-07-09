@@ -828,4 +828,8 @@ You can see the same identifiers as above and you can see that terraform referen
 
 ## Running Terraform (`cdktf diff` / `cdktf deploy`)
 
+When deploying a CDKTF stack, the cdktf-cli invokes Terraform to apply the generated configuration (that is the `cdk.tf.json` file).
+
+
+
 todo: show how cdktf-cli dermines stack and invokes Terraform
