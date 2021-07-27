@@ -10,9 +10,12 @@ import path from "path";
 import { Go } from "./wasm_exec";
 import { deepMerge } from "./deepmerge";
 import { gunzipSync } from "zlib";
+import { expressionSchema } from "./schema";
+import * as z from "zod";
 
 interface GoBridge {
   parse: (filename: string, hcl: string) => Promise<string>;
+  parseExpression: (filename: string, hclExpression: string) => Promise<string>;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -115,4 +118,23 @@ export async function convertFiles(
     await parse("hcl2json.tf", tfFileContents),
     ...tfJSONFileContents
   );
+}
+
+export async function parseExpression(
+  filename: string,
+  contents: string
+): Promise<Record<string, any>> {
+  const res = await wasm.parseExpression(filename, contents);
+  const json = JSON.parse(res);
+  const expr = await expressionSchema.parseAsync(json).catch((err) => {
+    throw new Error(
+      `Error parsing expression schema: ${JSON.stringify(
+        (err as z.ZodError).errors,
+        null,
+        2
+      )}`
+    );
+  });
+
+  return expr;
 }

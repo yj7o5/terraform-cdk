@@ -19,6 +19,7 @@ export function extractReferencesFromExpression(
   nodeIds: readonly string[],
   scopedIds: readonly string[] = [] // dynamics introduce new scoped variables that are not the globally accessible ids
 ): Reference[] {
+  console.log(input);
   const isDoubleParanthesis = input.startsWith("${{");
   if (!input.startsWith("${")) {
     return [];

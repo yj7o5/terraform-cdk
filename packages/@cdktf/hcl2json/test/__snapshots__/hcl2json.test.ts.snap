@@ -8477,3 +8477,2200 @@ exports[`parse converts VPC module 1`] = `
   }
 }"
 `;
+
+exports[`parseExpression arithmetics 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 72,
+      "Column": 73,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "LHS": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 36,
+          "Column": 37,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 3,
+          "Column": 4,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_s3_bucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 3,
+              "Column": 4,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "examplebucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 30,
+              "Column": 31,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "count",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 30,
+              "Column": 31,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "Op": Object {
+      "Impl": Object {},
+      "Type": "number",
+    },
+    "RHS": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 70,
+          "Column": 71,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 39,
+          "Column": 40,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_s3_bucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 52,
+              "Column": 53,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 39,
+              "Column": 40,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "otherbucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 64,
+              "Column": 65,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 52,
+              "Column": 53,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "count",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 70,
+              "Column": 71,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 64,
+              "Column": 65,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 70,
+        "Column": 71,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`parseExpression conditional 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 86,
+      "Column": 87,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Condition": Object {
+      "LHS": Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 42,
+            "Column": 43,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 3,
+            "Column": 4,
+            "Line": 1,
+          },
+        },
+        "Traversal": Array [
+          Object {
+            "Name": "aws_kms_key",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 14,
+                "Column": 15,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 3,
+                "Column": 4,
+                "Line": 1,
+              },
+            },
+          },
+          Object {
+            "Name": "key",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 18,
+                "Column": 19,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 14,
+                "Column": 15,
+                "Line": 1,
+              },
+            },
+          },
+          Object {
+            "Name": "deletion_window_in_days",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 42,
+                "Column": 43,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 18,
+                "Column": 19,
+                "Line": 1,
+              },
+            },
+          },
+        ],
+      },
+      "Op": Object {
+        "Impl": Object {},
+        "Type": "bool",
+      },
+      "RHS": Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 46,
+            "Column": 47,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 45,
+            "Column": 46,
+            "Line": 1,
+          },
+        },
+        "Val": Object {},
+      },
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 46,
+          "Column": 47,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 3,
+          "Column": 4,
+          "Line": 1,
+        },
+      },
+    },
+    "FalseResult": Object {
+      "Exprs": null,
+      "OpenRange": Object {
+        "End": Object {
+          "Byte": 83,
+          "Column": 84,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 82,
+          "Column": 83,
+          "Line": 1,
+        },
+      },
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 84,
+          "Column": 85,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 82,
+          "Column": 83,
+          "Line": 1,
+        },
+      },
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 84,
+        "Column": 85,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "TrueResult": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 79,
+          "Column": 80,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 49,
+          "Column": 50,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_s3_bucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 62,
+              "Column": 63,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 49,
+              "Column": 50,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "examplebucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 76,
+              "Column": 77,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 62,
+              "Column": 63,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "id",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 79,
+              "Column": 80,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 76,
+              "Column": 77,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`parseExpression deep access 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 88,
+      "Column": 89,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 86,
+        "Column": 87,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "Traversal": Array [
+      Object {
+        "Name": "google_compute_instance",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 26,
+            "Column": 27,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 3,
+            "Column": 4,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "example",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 34,
+            "Column": 35,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 26,
+            "Column": 27,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "network_interface",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 52,
+            "Column": 53,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 34,
+            "Column": 35,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Key": Object {},
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 54,
+            "Column": 55,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 52,
+            "Column": 53,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "access_config",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 68,
+            "Column": 69,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 54,
+            "Column": 55,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Key": Object {},
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 70,
+            "Column": 71,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 68,
+            "Column": 69,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "assigned_nat_ip",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 86,
+            "Column": 87,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 70,
+            "Column": 71,
+            "Line": 1,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`parseExpression for expression 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 61,
+      "Column": 62,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "CloseRange": Object {
+      "End": Object {
+        "Byte": 59,
+        "Column": 60,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 58,
+        "Column": 59,
+        "Line": 1,
+      },
+    },
+    "CollExpr": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 44,
+          "Column": 45,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 18,
+          "Column": 19,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_route53_record",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 18,
+              "Column": 19,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "example",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 44,
+              "Column": 45,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "CondExpr": null,
+    "Group": false,
+    "KeyExpr": null,
+    "KeyVar": "",
+    "OpenRange": Object {
+      "End": Object {
+        "Byte": 4,
+        "Column": 5,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 59,
+        "Column": 60,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "ValExpr": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 58,
+          "Column": 59,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 47,
+          "Column": 48,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "record",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 53,
+              "Column": 54,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 47,
+              "Column": 48,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "fqdn",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 58,
+              "Column": 59,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 53,
+              "Column": 54,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "ValVar": "record",
+  },
+}
+`;
+
+exports[`parseExpression for map 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 241,
+      "Column": 8,
+      "Line": 7,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "CloseRange": Object {
+      "End": Object {
+        "Byte": 239,
+        "Column": 6,
+        "Line": 7,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 238,
+        "Column": 5,
+        "Line": 7,
+      },
+    },
+    "CollExpr": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 75,
+          "Column": 71,
+          "Line": 2,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 22,
+          "Column": 18,
+          "Line": 2,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_acm_certificate",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 41,
+              "Column": 37,
+              "Line": 2,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 22,
+              "Column": 18,
+              "Line": 2,
+            },
+          },
+        },
+        Object {
+          "Name": "example",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 49,
+              "Column": 45,
+              "Line": 2,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 41,
+              "Column": 37,
+              "Line": 2,
+            },
+          },
+        },
+        Object {
+          "Name": "domain_validation_options",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 75,
+              "Column": 71,
+              "Line": 2,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 49,
+              "Column": 45,
+              "Line": 2,
+            },
+          },
+        },
+      ],
+    },
+    "CondExpr": null,
+    "Group": false,
+    "KeyExpr": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 93,
+          "Column": 89,
+          "Line": 2,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 78,
+          "Column": 74,
+          "Line": 2,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "dvo",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 81,
+              "Column": 77,
+              "Line": 2,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 78,
+              "Column": 74,
+              "Line": 2,
+            },
+          },
+        },
+        Object {
+          "Name": "domain_name",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 93,
+              "Column": 89,
+              "Line": 2,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 81,
+              "Column": 77,
+              "Line": 2,
+            },
+          },
+        },
+      ],
+    },
+    "KeyVar": "",
+    "OpenRange": Object {
+      "End": Object {
+        "Byte": 4,
+        "Column": 5,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 239,
+        "Column": 6,
+        "Line": 7,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "ValExpr": Object {
+      "Items": Array [
+        Object {
+          "KeyExpr": Object {
+            "ForceNonLiteral": false,
+            "Wrapped": Object {
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 111,
+                  "Column": 13,
+                  "Line": 3,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 107,
+                  "Column": 9,
+                  "Line": 3,
+                },
+              },
+              "Traversal": Array [
+                Object {
+                  "Name": "name",
+                  "SrcRange": Object {
+                    "End": Object {
+                      "Byte": 111,
+                      "Column": 13,
+                      "Line": 3,
+                    },
+                    "Filename": "test",
+                    "Start": Object {
+                      "Byte": 107,
+                      "Column": 9,
+                      "Line": 3,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          "ValueExpr": Object {
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 140,
+                "Column": 42,
+                "Line": 3,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 116,
+                "Column": 18,
+                "Line": 3,
+              },
+            },
+            "Traversal": Array [
+              Object {
+                "Name": "dvo",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 119,
+                    "Column": 21,
+                    "Line": 3,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 116,
+                    "Column": 18,
+                    "Line": 3,
+                  },
+                },
+              },
+              Object {
+                "Name": "resource_record_name",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 140,
+                    "Column": 42,
+                    "Line": 3,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 119,
+                    "Column": 21,
+                    "Line": 3,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        Object {
+          "KeyExpr": Object {
+            "ForceNonLiteral": false,
+            "Wrapped": Object {
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 155,
+                  "Column": 15,
+                  "Line": 4,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 149,
+                  "Column": 9,
+                  "Line": 4,
+                },
+              },
+              "Traversal": Array [
+                Object {
+                  "Name": "record",
+                  "SrcRange": Object {
+                    "End": Object {
+                      "Byte": 155,
+                      "Column": 15,
+                      "Line": 4,
+                    },
+                    "Filename": "test",
+                    "Start": Object {
+                      "Byte": 149,
+                      "Column": 9,
+                      "Line": 4,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          "ValueExpr": Object {
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 183,
+                "Column": 43,
+                "Line": 4,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 158,
+                "Column": 18,
+                "Line": 4,
+              },
+            },
+            "Traversal": Array [
+              Object {
+                "Name": "dvo",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 161,
+                    "Column": 21,
+                    "Line": 4,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 158,
+                    "Column": 18,
+                    "Line": 4,
+                  },
+                },
+              },
+              Object {
+                "Name": "resource_record_value",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 183,
+                    "Column": 43,
+                    "Line": 4,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 161,
+                    "Column": 21,
+                    "Line": 4,
+                  },
+                },
+              },
+            ],
+          },
+        },
+        Object {
+          "KeyExpr": Object {
+            "ForceNonLiteral": false,
+            "Wrapped": Object {
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 196,
+                  "Column": 13,
+                  "Line": 5,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 192,
+                  "Column": 9,
+                  "Line": 5,
+                },
+              },
+              "Traversal": Array [
+                Object {
+                  "Name": "type",
+                  "SrcRange": Object {
+                    "End": Object {
+                      "Byte": 196,
+                      "Column": 13,
+                      "Line": 5,
+                    },
+                    "Filename": "test",
+                    "Start": Object {
+                      "Byte": 192,
+                      "Column": 9,
+                      "Line": 5,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          "ValueExpr": Object {
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 225,
+                "Column": 42,
+                "Line": 5,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 201,
+                "Column": 18,
+                "Line": 5,
+              },
+            },
+            "Traversal": Array [
+              Object {
+                "Name": "dvo",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 204,
+                    "Column": 21,
+                    "Line": 5,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 201,
+                    "Column": 18,
+                    "Line": 5,
+                  },
+                },
+              },
+              Object {
+                "Name": "resource_record_type",
+                "SrcRange": Object {
+                  "End": Object {
+                    "Byte": 225,
+                    "Column": 42,
+                    "Line": 5,
+                  },
+                  "Filename": "test",
+                  "Start": Object {
+                    "Byte": 204,
+                    "Column": 21,
+                    "Line": 5,
+                  },
+                },
+              },
+            ],
+          },
+        },
+      ],
+      "OpenRange": Object {
+        "End": Object {
+          "Byte": 98,
+          "Column": 94,
+          "Line": 2,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 97,
+          "Column": 93,
+          "Line": 2,
+        },
+      },
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 233,
+          "Column": 8,
+          "Line": 6,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 97,
+          "Column": 93,
+          "Line": 2,
+        },
+      },
+    },
+    "ValVar": "dvo",
+  },
+}
+`;
+
+exports[`parseExpression function call 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 19,
+      "Column": 20,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Args": Array [
+      Object {
+        "Parts": Array [
+          Object {
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 15,
+                "Column": 16,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 10,
+                "Column": 11,
+                "Line": 1,
+              },
+            },
+            "Val": Object {},
+          },
+        ],
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 16,
+            "Column": 17,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 9,
+            "Column": 10,
+            "Line": 1,
+          },
+        },
+      },
+    ],
+    "CloseParenRange": Object {
+      "End": Object {
+        "Byte": 17,
+        "Column": 18,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 16,
+        "Column": 17,
+        "Line": 1,
+      },
+    },
+    "ExpandFinal": false,
+    "Name": "lower",
+    "NameRange": Object {
+      "End": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "OpenParenRange": Object {
+      "End": Object {
+        "Byte": 9,
+        "Column": 10,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`parseExpression interpolation 1`] = `
+Object {
+  "Parts": Array [
+    Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 5,
+          "Column": 6,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 1,
+          "Column": 2,
+          "Line": 1,
+        },
+      },
+      "Val": Object {},
+    },
+    Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 26,
+          "Column": 27,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 7,
+          "Column": 8,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "terraform",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 7,
+              "Column": 8,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "workspace",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 26,
+              "Column": 27,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+  ],
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 28,
+      "Column": 29,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+}
+`;
+
+exports[`parseExpression method reference 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 21,
+      "Column": 22,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Args": Array [
+      Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 18,
+            "Column": 19,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 9,
+            "Column": 10,
+            "Line": 1,
+          },
+        },
+        "Traversal": Array [
+          Object {
+            "Name": "var",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 12,
+                "Column": 13,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 9,
+                "Column": 10,
+                "Line": 1,
+              },
+            },
+          },
+          Object {
+            "Name": "input",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 18,
+                "Column": 19,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 12,
+                "Column": 13,
+                "Line": 1,
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "CloseParenRange": Object {
+      "End": Object {
+        "Byte": 19,
+        "Column": 20,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 18,
+        "Column": 19,
+        "Line": 1,
+      },
+    },
+    "ExpandFinal": false,
+    "Name": "lower",
+    "NameRange": Object {
+      "End": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "OpenParenRange": Object {
+      "End": Object {
+        "Byte": 9,
+        "Column": 10,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`parseExpression method reference second arg and access 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 47,
+      "Column": 48,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Source": Object {
+      "Args": Array [
+        Object {
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 38,
+              "Column": 39,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 11,
+              "Column": 12,
+              "Line": 1,
+            },
+          },
+          "Traversal": Array [
+            Object {
+              "Name": "aws_s3_bucket",
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 24,
+                  "Column": 25,
+                  "Line": 1,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 11,
+                  "Column": 12,
+                  "Line": 1,
+                },
+              },
+            },
+            Object {
+              "Name": "examplebucket",
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 38,
+                  "Column": 39,
+                  "Line": 1,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 24,
+                  "Column": 25,
+                  "Line": 1,
+                },
+              },
+            },
+          ],
+        },
+        Object {
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 41,
+              "Column": 42,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 40,
+              "Column": 41,
+              "Line": 1,
+            },
+          },
+          "Val": Object {},
+        },
+      ],
+      "CloseParenRange": Object {
+        "End": Object {
+          "Byte": 42,
+          "Column": 43,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 41,
+          "Column": 42,
+          "Line": 1,
+        },
+      },
+      "ExpandFinal": false,
+      "Name": "element",
+      "NameRange": Object {
+        "End": Object {
+          "Byte": 10,
+          "Column": 11,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 3,
+          "Column": 4,
+          "Line": 1,
+        },
+      },
+      "OpenParenRange": Object {
+        "End": Object {
+          "Byte": 11,
+          "Column": 12,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 10,
+          "Column": 11,
+          "Line": 1,
+        },
+      },
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 45,
+        "Column": 46,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "Traversal": Array [
+      Object {
+        "Name": "id",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 45,
+            "Column": 46,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 42,
+            "Column": 43,
+            "Line": 1,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`parseExpression multiple vars 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 56,
+      "Column": 57,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Args": Array [
+      Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 29,
+            "Column": 30,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 9,
+            "Column": 10,
+            "Line": 1,
+          },
+        },
+        "Traversal": Array [
+          Object {
+            "Name": "var",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 12,
+                "Column": 13,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 9,
+                "Column": 10,
+                "Line": 1,
+              },
+            },
+          },
+          Object {
+            "Name": "one_set_of_users",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 29,
+                "Column": 30,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 12,
+                "Column": 13,
+                "Line": 1,
+              },
+            },
+          },
+        ],
+      },
+      Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 53,
+            "Column": 54,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 31,
+            "Column": 32,
+            "Line": 1,
+          },
+        },
+        "Traversal": Array [
+          Object {
+            "Name": "var",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 34,
+                "Column": 35,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 31,
+                "Column": 32,
+                "Line": 1,
+              },
+            },
+          },
+          Object {
+            "Name": "other_set_of_users",
+            "SrcRange": Object {
+              "End": Object {
+                "Byte": 53,
+                "Column": 54,
+                "Line": 1,
+              },
+              "Filename": "test",
+              "Start": Object {
+                "Byte": 34,
+                "Column": 35,
+                "Line": 1,
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "CloseParenRange": Object {
+      "End": Object {
+        "Byte": 54,
+        "Column": 55,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 53,
+        "Column": 54,
+        "Line": 1,
+      },
+    },
+    "ExpandFinal": false,
+    "Name": "merge",
+    "NameRange": Object {
+      "End": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "OpenParenRange": Object {
+      "End": Object {
+        "Byte": 9,
+        "Column": 10,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`parseExpression plain reference 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 31,
+      "Column": 32,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 29,
+        "Column": 30,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "Traversal": Array [
+      Object {
+        "Name": "docker_image",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 15,
+            "Column": 16,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 3,
+            "Column": 4,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "ubuntu",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 22,
+            "Column": 23,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 15,
+            "Column": 16,
+            "Line": 1,
+          },
+        },
+      },
+      Object {
+        "Name": "latest",
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 29,
+            "Column": 30,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 22,
+            "Column": 23,
+            "Line": 1,
+          },
+        },
+      },
+    ],
+  },
+}
+`;
+
+exports[`parseExpression splat 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 37,
+      "Column": 38,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Each": Object {
+      "Source": Object {
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 32,
+            "Column": 33,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 30,
+            "Column": 31,
+            "Line": 1,
+          },
+        },
+      },
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 35,
+          "Column": 36,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 32,
+          "Column": 33,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "id",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 35,
+              "Column": 36,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 32,
+              "Column": 33,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "Item": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 32,
+          "Column": 33,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 30,
+          "Column": 31,
+          "Line": 1,
+        },
+      },
+    },
+    "MarkerRange": Object {
+      "End": Object {
+        "Byte": 32,
+        "Column": 33,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 30,
+        "Column": 31,
+        "Line": 1,
+      },
+    },
+    "Source": Object {
+      "SrcRange": Object {
+        "End": Object {
+          "Byte": 30,
+          "Column": 31,
+          "Line": 1,
+        },
+        "Filename": "test",
+        "Start": Object {
+          "Byte": 3,
+          "Column": 4,
+          "Line": 1,
+        },
+      },
+      "Traversal": Array [
+        Object {
+          "Name": "aws_s3_bucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 3,
+              "Column": 4,
+              "Line": 1,
+            },
+          },
+        },
+        Object {
+          "Name": "examplebucket",
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 30,
+              "Column": 31,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 16,
+              "Column": 17,
+              "Line": 1,
+            },
+          },
+        },
+      ],
+    },
+    "SrcRange": Object {
+      "End": Object {
+        "Byte": 35,
+        "Column": 36,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
+
+exports[`parseExpression splat in method 1`] = `
+Object {
+  "SrcRange": Object {
+    "End": Object {
+      "Byte": 41,
+      "Column": 42,
+      "Line": 1,
+    },
+    "Filename": "test",
+    "Start": Object {
+      "Byte": 0,
+      "Column": 1,
+      "Line": 1,
+    },
+  },
+  "Wrapped": Object {
+    "Args": Array [
+      Object {
+        "Each": Object {
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 38,
+              "Column": 39,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+          },
+        },
+        "Item": Object {
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 38,
+              "Column": 39,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+          },
+        },
+        "MarkerRange": Object {
+          "End": Object {
+            "Byte": 38,
+            "Column": 39,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 36,
+            "Column": 37,
+            "Line": 1,
+          },
+        },
+        "Source": Object {
+          "SrcRange": Object {
+            "End": Object {
+              "Byte": 36,
+              "Column": 37,
+              "Line": 1,
+            },
+            "Filename": "test",
+            "Start": Object {
+              "Byte": 9,
+              "Column": 10,
+              "Line": 1,
+            },
+          },
+          "Traversal": Array [
+            Object {
+              "Name": "aws_s3_bucket",
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 22,
+                  "Column": 23,
+                  "Line": 1,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 9,
+                  "Column": 10,
+                  "Line": 1,
+                },
+              },
+            },
+            Object {
+              "Name": "examplebucket",
+              "SrcRange": Object {
+                "End": Object {
+                  "Byte": 36,
+                  "Column": 37,
+                  "Line": 1,
+                },
+                "Filename": "test",
+                "Start": Object {
+                  "Byte": 22,
+                  "Column": 23,
+                  "Line": 1,
+                },
+              },
+            },
+          ],
+        },
+        "SrcRange": Object {
+          "End": Object {
+            "Byte": 38,
+            "Column": 39,
+            "Line": 1,
+          },
+          "Filename": "test",
+          "Start": Object {
+            "Byte": 9,
+            "Column": 10,
+            "Line": 1,
+          },
+        },
+      },
+    ],
+    "CloseParenRange": Object {
+      "End": Object {
+        "Byte": 39,
+        "Column": 40,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 38,
+        "Column": 39,
+        "Line": 1,
+      },
+    },
+    "ExpandFinal": false,
+    "Name": "toset",
+    "NameRange": Object {
+      "End": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 3,
+        "Column": 4,
+        "Line": 1,
+      },
+    },
+    "OpenParenRange": Object {
+      "End": Object {
+        "Byte": 9,
+        "Column": 10,
+        "Line": 1,
+      },
+      "Filename": "test",
+      "Start": Object {
+        "Byte": 8,
+        "Column": 9,
+        "Line": 1,
+      },
+    },
+  },
+}
+`;
