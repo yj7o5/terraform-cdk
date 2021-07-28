@@ -27,8 +27,8 @@
   },
   "license": "MPL-2.0",
   "dependencies": {
-    "@cdktf/hcl2json": "0.0.0",
     "@cdktf/hcl2cdk": "0.0.0",
+    "@cdktf/hcl2json": "0.0.0",
     "@skorfmann/ink-confirm-input": "^3.0.0",
     "@skorfmann/terraform-cloud": "^1.10.1",
     "@types/node": "^14.0.26",
@@ -53,7 +53,7 @@
     "stream-buffers": "^3.0.2",
     "strip-ansi": "^6.0.0",
     "uuid": "^8.3.0",
-    "yargs": "^15.1.0",
+    "yargs": "^17.0.1",
     "zod": "^1.11.7"
   },
   "eslintConfig": {
@@ -82,7 +82,12 @@
       "@typescript-eslint/no-var-requires": 0,
       "react/no-unescaped-entities": 0,
       "no-sequences": "error",
-      "no-irregular-whitespace": ["error", { "skipTemplates": true }]
+      "no-irregular-whitespace": [
+        "error",
+        {
+          "skipTemplates": true
+        }
+      ]
     },
     "ignorePatterns": [
       "node_modules",
