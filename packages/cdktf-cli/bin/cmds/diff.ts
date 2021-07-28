@@ -13,6 +13,10 @@ class Command implements yargs.CommandModule {
     "Perform a diff (terraform plan) for the given stack";
   public readonly aliases = ["plan"];
 
+  public readonly completion = (_argv: any) => {
+    return ["stack-a", "stack-b"];
+  };
+
   public readonly builder = (args: yargs.Argv) =>
     args
       .positional("stack", {

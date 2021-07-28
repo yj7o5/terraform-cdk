@@ -60,6 +60,20 @@ yargs
     hidden: true,
     desc: "Used internally for env variable",
   })
+  .completion("completion", async (current, argv) => {
+    let commandCompletionCallback: (argv: any) => Promise<string[]>;
+    try {
+      const mod = require(path.resolve(__dirname, "cmds", current));
+      if (!mod.completion) {
+        return [];
+      }
+      commandCompletionCallback = mod.completion;
+    } catch (e) {
+      return [];
+    }
+
+    return await commandCompletionCallback(argv);
+  })
   .command({
     command: "*", // catches everything not previously matched
     handler: (argv) => {
