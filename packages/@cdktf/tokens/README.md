@@ -8,3 +8,15 @@ It's cruical to keep the user in the context of their language. A core purpose i
 ```sh
 yarn install @cdktf/tokens
 ```
+
+```ts
+import { mask, unmask, isToken, generateAttribute } from "@cdktf/tokens";
+
+// e.g. within the scope of a docker.Image
+const maskedString = mask("a string"); // "TOKEN[TOKEN.3]"
+const stringReference = unmask(maskedString); // docker_image.the_name.latest
+const isReference = isToken(maskedString); // true
+const lazyMask = lazy(() => "a lazy string");
+
+generateAttribute({ name: "latest", type: "string" }); // attribute definition inside a class as a string
+```
