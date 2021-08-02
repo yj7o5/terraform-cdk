@@ -222,6 +222,10 @@ export function variableName(
   return variableName;
 }
 
+export function moduleName(source: string) {
+  return camelCase(source);
+}
+
 export function constructAst(type: string, isModuleImport: boolean) {
   if (isModuleImport) {
     return t.memberExpression(

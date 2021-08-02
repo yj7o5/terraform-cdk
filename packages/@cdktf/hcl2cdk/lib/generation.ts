@@ -23,6 +23,7 @@ import {
   extractDynamicBlocks,
   constructAst,
   isRegistryModule,
+  moduleName,
 } from "./expressions";
 
 function getReference(graph: DirectedGraph, id: string) {
@@ -405,9 +406,11 @@ export function modules(
     );
   }
 
+  // We convert every local module as a class extending resource
+  scope.modules.add(source);
   return asExpression(
     scope,
-    "cdktf.TerraformHclModule",
+    moduleName(source),
     key,
     { ...props, source },
     nodeIds,

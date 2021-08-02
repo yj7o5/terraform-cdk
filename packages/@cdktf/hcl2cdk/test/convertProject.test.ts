@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import * as fs from "fs-extra";
 import * as path from "path";
 import * as os from "os";
 import { execSync } from "child_process";
@@ -6,7 +6,9 @@ import { convertProject, getTerraformConfigFromDir } from "../lib";
 
 const createFiles = (cwd: string, files: [string, string][]) => {
   files.forEach(([p, content]) => {
-    fs.writeFileSync(path.resolve(cwd, p), content, "utf8");
+    const filePath = path.resolve(cwd, p);
+    fs.mkdirpSync(path.dirname(filePath));
+    fs.writeFileSync(filePath, content, "utf8");
   });
 };
 
@@ -26,6 +28,7 @@ const createTSCdkProject = (cwd: string) =>
       `import { Construct } from "constructs";
 import { App, TerraformStack } from "cdktf";
 
+// define local abstractions here
 
 class MyStack extends TerraformStack {
     constructor(scope: Construct, name: string) {
@@ -194,6 +197,117 @@ describe("convertProject", () => {
 
     const previousPlan = getTerraformPlan(importPath);
     createTSCdkProject(targetPath);
+    const mainTs = fs.readFileSync(path.resolve(targetPath, "main.ts"), "utf8");
+
+    const { code, cdktfJson } = await convertProject(
+      getTerraformConfigFromDir(importPath),
+      mainTs,
+      require(path.resolve(targetPath, "cdktf.json")),
+      {
+        language: "typescript",
+      }
+    );
+
+    fs.writeFileSync(path.resolve(targetPath, "main.ts"), code, "utf8");
+    fs.writeFileSync(
+      path.resolve(targetPath, "cdktf.json"),
+      JSON.stringify(cdktfJson),
+      "utf8"
+    );
+
+    const currentPlan = getCdkPlan(targetPath);
+
+    expect(resources(currentPlan)).toEqual(resources(previousPlan));
+  });
+
+  it.only("can do module conversion", async () => {
+    const { importPath, targetPath } = terraformProject([
+      [
+        "main.tf",
+        `
+        module "module-a" {
+          source = "./module-a"
+
+          container_name = "module-a"
+          image_name = "ubuntu"
+        }
+
+        module "module-a2" {
+          source = "./module-a"
+
+          container_name = "module-a2"
+          image_name = "nginx"
+        }
+
+        module "module-b" {
+          source = "./module-b"
+
+          cluster_name = "cdktf"
+        }
+        `,
+      ],
+      [
+        "module-a/vars.tf",
+        `variable "image_name" {
+          type = string
+        }
+        variable "container_name" {
+          type = string
+        }
+        `,
+      ],
+      [
+        "module-a/terraform.tf",
+        `
+        terraform {
+          required_providers {
+            docker = {
+                source  = "kreuzwerker/docker"
+                version = "2.14.0"
+              }
+            }
+          }
+        
+          provider "docker" {
+            host = "unix:///var/run/docker.sock"
+          }
+        `,
+      ],
+      [
+        "module-a/container.tf",
+        `
+        resource "docker_image" "img" {
+          name = "\${var.image_name}:latest"
+        }
+        
+        resource "docker_container" "container" {
+          image = docker_image.img.latest
+          name  = "\${var.container_name}"
+        }
+        `,
+      ],
+      [
+        "module-b/cluster.tf",
+        `
+        variable "cluster_name" {
+          type = string
+        }
+
+        module "k3s" {
+          source  = "camptocamp/k3s/docker"
+          version = "0.11.0"
+          
+          cluster_endpoint = ""
+          cluster_name = var.cluster_name
+          network_name = ""
+        }`,
+      ],
+    ]);
+
+    const previousPlan = getTerraformPlan(importPath);
+    createTSCdkProject(targetPath);
+
+    console.log("OUT", targetPath);
     const mainTs = fs.readFileSync(path.resolve(targetPath, "main.ts"), "utf8");
 
     const { code, cdktfJson } = await convertProject(

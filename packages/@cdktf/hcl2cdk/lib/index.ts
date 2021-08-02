@@ -1,15 +1,19 @@
 import { parse } from "@cdktf/hcl2json";
 import * as t from "@babel/types";
 import prettier from "prettier";
-import * as path from "path";
-import * as glob from "glob";
-import * as fs from "fs";
 import { DirectedGraph } from "graphology";
 import * as rosetta from "jsii-rosetta";
 import * as z from "zod";
+import * as path from "path";
+import * as glob from "glob";
+import * as fs from "fs";
 
 import { schema } from "./schema";
-import { findUsedReferences, isRegistryModule } from "./expressions";
+import {
+  findUsedReferences,
+  isRegistryModule,
+  moduleName,
+} from "./expressions";
 import {
   backendToExpression,
   cdktfImport,
@@ -30,6 +34,60 @@ import {
   forEachNamespaced,
   resourceStats,
 } from "./iteration";
+
+export function getTerraformConfigFromDir(importPath: string) {
+  const absPath = path.resolve(importPath);
+  const fileContents = glob
+    .sync("./*.tf", { cwd: absPath })
+    .map((p) => fs.readFileSync(path.resolve(absPath, p), "utf8"));
+
+  return fileContents.join("\n");
+}
+
+export async function convertModules(modulePaths: Set<string>) {
+  const allProviders: string[] = [];
+  const allModuleCode: string[] = [];
+
+  modulePaths.forEach(async (modulePath) => {
+    const { providerRequirements, modules, scope } = await convertModule(
+      modulePath
+    );
+    allProviders.push(...providerRequirements);
+    allModuleCode.push(...modules);
+
+    scope.modules.forEach((mod) => {
+      modulePaths.add(mod);
+    });
+  });
+
+  // TODO: dedupe providers
+  return {
+    modules: allModuleCode,
+    providerRequirements: allProviders,
+  };
+}
+
+async function convertModule(modulePath: string) {
+  const hcl = getTerraformConfigFromDir(modulePath);
+  const converted = await convertToTypescript(hcl);
+  const moduleCode = `
+  class ${moduleName(modulePath)} extends cdktf.Resource {
+    constructor(
+      private readonly scope: Scope,
+      private readonly name: string,
+      private readonly config: any, // TODO: type
+    ) {
+      super(scope, name);
+
+      ${converted.code}
+  }
+  `;
+  return {
+    providerRequirements: converted.providerRequirements,
+    modules: [moduleCode, converted.modules],
+    scope: converted.scope,
+  };
+}
 
 export async function convertToTypescript(hcl: string) {
   // Get the JSON representation of the HCL
@@ -54,7 +112,11 @@ ${JSON.stringify((err as z.ZodError).errors)}`);
 
   // Each key in the scope needs to be unique, therefore we save them in a set
   // Each variable needs to be unique as well, we save them in a record so we can identify if two variables are the same
-  const scope: Scope = { constructs: new Set<string>(), variables: {} };
+  const scope: Scope = {
+    constructs: new Set<string>(),
+    variables: {},
+    modules: new Set<string>(),
+  };
 
   // Get all items in the JSON as a map of id to function that generates the AST
   // We will use this to construct the nodes for a dependency graph
@@ -189,6 +251,9 @@ ${JSON.stringify((err as z.ZodError).errors)}`);
     [] as t.Statement[]
   );
 
+  const { modules: moduleCode, providerRequirements: moduleProviders } =
+    await convertModules(scope.modules);
+
   // In Terraform one can implicitly define the provider by using resources of that type
   const explicitProviders = Object.keys(plan.provider || {});
   const implicitProviders = Object.keys({ ...plan.resource, ...plan.data }).map(
@@ -196,7 +261,7 @@ ${JSON.stringify((err as z.ZodError).errors)}`);
   );
 
   const providerRequirements = Array.from(
-    new Set([...explicitProviders, ...implicitProviders])
+    new Set([...explicitProviders, ...implicitProviders, ...moduleProviders])
   ).reduce(
     (carry, req) => ({ ...carry, [req]: "*" }),
     {} as Record<string, string>
@@ -266,10 +331,11 @@ You can read more about this at https://github.com/hashicorp/terraform-cdk/blob/
       ...moduleImports(plan.module),
     ]),
     code: gen([...((backendExpressions || []) as any), ...expressions]),
-    providers: Object.entries(providerRequirements).map(([source, version]) =>
-      version === "*" ? source : `${source}@${version}`
+    providerRequirements: Object.entries(providerRequirements).map(
+      ([source, version]) => (version === "*" ? source : `${source}@${version}`)
     ),
-    modules: moduleRequirements,
+    moduleRequirements,
+    modules: moduleCode.join("/n"),
     // We track some usage data to make it easier to understand what is used
     stats: {
       numberOfModules: moduleRequirements.length,
@@ -278,6 +344,7 @@ You can read more about this at https://github.com/hashicorp/terraform-cdk/blob/
       data: resourceStats(plan.data || {}),
       convertedLines: hcl.split("\n").length,
     },
+    scope,
   };
 }
 
@@ -309,17 +376,9 @@ export async function convert(hcl: string, { language }: ConvertOptions) {
     all: translater({ fileName, contents: tsCode.all }),
     imports: translater({ fileName, contents: tsCode.imports }),
     code: translater({ fileName, contents: tsCode.code }),
+    modules: translater({ fileName, contents: tsCode.modules }),
     stats: { ...tsCode.stats, language },
   };
-}
-
-export function getTerraformConfigFromDir(importPath: string) {
-  const absPath = path.resolve(importPath);
-  const fileContents = glob
-    .sync("./*.tf", { cwd: absPath })
-    .map((p) => fs.readFileSync(path.resolve(absPath, p), "utf8"));
-
-  return fileContents.join("\n");
 }
 
 type CdktfJson = Record<string, unknown> & {
@@ -339,8 +398,9 @@ export async function convertProject(
   const {
     imports,
     code,
-    providers,
-    modules: tfModules,
+    providerRequirements,
+    moduleRequirements,
+    modules,
     stats,
   } = await convert(combinedHcl, {
     language,
@@ -351,12 +411,17 @@ export async function convertProject(
     code
   );
 
+  const completeOutputMainFile = outputMainFile.replace(
+    "// define local abstractions here",
+    modules
+  );
+
   const cdktfJson = { ...inputCdktfJson };
-  cdktfJson.terraformProviders = providers;
-  cdktfJson.terraformModules = tfModules;
+  cdktfJson.terraformProviders = providerRequirements;
+  cdktfJson.terraformModules = moduleRequirements;
 
   return {
-    code: prettier.format(outputMainFile, { parser: "babel" }),
+    code: prettier.format(completeOutputMainFile, { parser: "babel" }),
     cdktfJson,
     stats,
   };
