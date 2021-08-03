@@ -1,4 +1,4 @@
-export * from "./tokens";
+export * from "@cdktf/tokens";
 export * from "./terraform-stack";
 export * from "./terraform-element";
 export * from "./terraform-module";

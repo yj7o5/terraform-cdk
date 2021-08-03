@@ -1,7 +1,7 @@
-import { todo } from "../lib";
+import { generateAttribute } from "../lib";
 
-describe("tokens", () => {
+describe("#generateAttribute", () => {
   it("does stuff", async () => {
-    expect(todo).toBe("implement");
+    expect(generateAttribute).not.toBeUndefined();
   });
 });

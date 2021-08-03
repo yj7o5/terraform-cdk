@@ -3,7 +3,7 @@ import { TerraformElement } from "./terraform-element";
 import { TerraformProvider } from "./terraform-provider";
 import { deepMerge } from "./util";
 import { ITerraformDependable } from "./terraform-dependable";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 import * as path from "path";
 
 export interface TerraformModuleOptions {

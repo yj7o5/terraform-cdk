@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 import { TerraformElement } from "./terraform-element";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 import { deepMerge, keysToSnakeCase } from "./util";
 
 export interface DataTerraformRemoteStateConfig {

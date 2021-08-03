@@ -2,6 +2,7 @@ import { CodeMaker } from "codemaker";
 import { ResourceModel, Struct, ConfigStruct } from "../models";
 import { AttributesEmitter } from "./attributes-emitter";
 import { downcaseFirst } from "../../../util";
+import { generateAttributeType } from "@cdktf/tokens";
 
 export class StructEmitter {
   attributesEmitter: AttributesEmitter;
@@ -44,7 +45,7 @@ export class StructEmitter {
         this.code.line(`*/`);
       }
 
-      this.code.line(`readonly ${att.typeDefinition};`);
+      this.code.line(`readonly ${generateAttributeType(att)};`);
     }
     this.code.closeBlock();
 

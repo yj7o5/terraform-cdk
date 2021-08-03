@@ -1,13 +1,10 @@
 import { CodeMaker } from "codemaker";
 import { ResourceModel } from "../models";
-import { AttributesEmitter } from "./attributes-emitter";
+import { generateAttribute, generateToTerraform } from "@cdktf/tokens";
+import { CUSTOM_DEFAULTS } from "../custom-defaults";
 
 export class ResourceEmitter {
-  attributesEmitter: AttributesEmitter;
-
-  constructor(private readonly code: CodeMaker) {
-    this.attributesEmitter = new AttributesEmitter(this.code);
-  }
+  constructor(private readonly code: CodeMaker) {}
 
   public emit(resource: ResourceModel) {
     this.code.line();
@@ -48,7 +45,7 @@ export class ResourceEmitter {
     this.code.open(`return {`);
 
     for (const att of resource.synthesizableAttributes) {
-      this.attributesEmitter.emitToTerraform(att, false);
+      generateToTerraform(this.code, CUSTOM_DEFAULTS, att, false);
     }
 
     this.code.close(`};`);
@@ -57,11 +54,7 @@ export class ResourceEmitter {
 
   private emitResourceAttributes(resource: ResourceModel) {
     for (const att of resource.attributes) {
-      this.attributesEmitter.emit(
-        att,
-        this.attributesEmitter.needsResetEscape(att, resource.attributes),
-        this.attributesEmitter.needsInputEscape(att, resource.attributes)
-      );
+      generateAttribute(this.code, resource.attributes, att);
     }
   }
 

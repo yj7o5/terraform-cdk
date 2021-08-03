@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 import { TerraformModuleOptions, TerraformModule } from "./terraform-module";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 
 export interface TerraformHclModuleOptions extends TerraformModuleOptions {
   readonly variables?: { [key: string]: any };

@@ -1,6 +1,6 @@
 import { Construct } from "constructs";
 import { TerraformElement } from "./terraform-element";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 
 export class TerraformLocal extends TerraformElement {
   private _expression: any;

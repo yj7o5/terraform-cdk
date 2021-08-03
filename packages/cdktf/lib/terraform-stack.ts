@@ -1,5 +1,5 @@
 import { Construct, IConstruct, ISynthesisSession, Node } from "constructs";
-import { resolve } from "./_tokens";
+import { resolve } from "@cdktf/tokens";
 import * as fs from "fs";
 import * as path from "path";
 import { TerraformElement } from "./terraform-element";

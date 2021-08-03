@@ -1,5 +1,5 @@
 import { Construct } from "constructs";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 import { TerraformElement } from "./terraform-element";
 import { TerraformProvider } from "./terraform-provider";
 import { keysToSnakeCase, deepMerge } from "./util";

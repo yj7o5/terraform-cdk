@@ -1,4 +1,4 @@
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 import { ITerraformResource } from "./terraform-resource";
 
 abstract class ComplexComputedAttribute {

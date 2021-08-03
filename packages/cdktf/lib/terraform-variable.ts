@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { TerraformElement } from "./terraform-element";
 import { keysToSnakeCase, deepMerge } from "./util";
-import { Token } from "./tokens";
+import { Token } from "@cdktf/tokens";
 
 export abstract class VariableType {
   public static readonly STRING = "string";
