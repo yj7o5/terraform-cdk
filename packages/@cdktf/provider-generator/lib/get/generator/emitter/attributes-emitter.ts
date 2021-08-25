@@ -176,6 +176,7 @@ export class AttributesEmitter {
     if (att.isProvider) {
       return `this.${att.storageName}`;
     }
+
     const type = att.type;
     if (type.isString) {
       return `this.getStringAttribute('${att.terraformName}')`;
