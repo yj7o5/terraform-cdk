@@ -41,7 +41,9 @@ export class AttributeModel {
 
   public get typeDefinition() {
     const optional = this.optional ? "?" : "";
-    return `${this.name}${optional}: ${this.type.name}`;
+    return `${this.name}${optional}: ${this.type.isSingleItem ? "I" : ""}${
+      this.type.name
+    }`;
   }
 
   public get isAssignable() {

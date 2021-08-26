@@ -8,11 +8,9 @@ export class HelloTerra extends TerraformStack {
 
     new AwsProvider(this, "aws", {
       region: "eu-central-1",
-      ignoreTags: [
-        {
-          keys: ["foo"],
-        },
-      ],
+      ignoreTags: {
+        keys: ["foo"],
+      },
     });
 
     const topic = new SNS.SnsTopic(this, "Topic", {

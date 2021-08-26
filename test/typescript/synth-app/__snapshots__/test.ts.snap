@@ -39,13 +39,11 @@ exports[`full integration test synth synth generates JSON 1`] = `
     \\"aws\\": [
       {
         \\"region\\": \\"eu-central-1\\",
-        \\"ignore_tags\\": [
-          {
-            \\"keys\\": [
-              \\"foo\\"
-            ]
-          }
-        ]
+        \\"ignore_tags\\": {
+          \\"keys\\": [
+            \\"foo\\"
+          ]
+        }
       }
     ]
   },

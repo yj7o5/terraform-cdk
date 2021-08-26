@@ -122,7 +122,7 @@ using temporary security credentials.
   * 
   * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#assume_role AwsProvider#assume_role}
   */
-  readonly assumeRole?: AwsProviderAssumeRole[];
+  readonly assumeRole?: IAwsProviderAssumeRole;
   /**
   * endpoints block
   * 
@@ -134,9 +134,9 @@ using temporary security credentials.
   * 
   * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws#ignore_tags AwsProvider#ignore_tags}
   */
-  readonly ignoreTags?: AwsProviderIgnoreTags[];
+  readonly ignoreTags?: IAwsProviderIgnoreTags;
 }
-export interface AwsProviderAssumeRole {
+export interface IAwsProviderAssumeRole {
   /**
   * The external ID to use when assuming the role. If omitted, no external ID is passed to the AssumeRole call.
   * 
@@ -163,7 +163,7 @@ export interface AwsProviderAssumeRole {
   readonly sessionName?: string;
 }
 
-function awsProviderAssumeRoleToTerraform(struct?: AwsProviderAssumeRole): any {
+function awsProviderAssumeRoleToTerraform(struct?: IAwsProviderAssumeRole): any {
   if (!cdktf.canInspect(struct)) { return struct; }
   return {
     external_id: cdktf.stringToTerraform(struct!.externalId),
@@ -173,6 +173,82 @@ function awsProviderAssumeRoleToTerraform(struct?: AwsProviderAssumeRole): any {
   }
 }
 
+export class AwsProviderAssumeRole extends cdktf.ComplexObject {
+  /**
+  * @param options AwsProviderAssumeRole = {}
+  */
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAwsProviderAssumeRole = {}) {
+    super(terraformResource, terraformAttribute);
+    this._externalId = config.externalId;
+    this._policy = config.policy;
+    this._roleArn = config.roleArn;
+    this._sessionName = config.sessionName;
+  }
+
+  // external_id - computed: false, optional: true, required: false
+  private _externalId?: string;
+  public get externalId() {
+    return this._externalId;
+  }
+  public set externalId(value: string  | undefined) {
+    this._externalId = value;
+  }
+  public resetExternalId() {
+    this._externalId = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get externalIdInput() {
+    return this._externalId
+  }
+
+  // policy - computed: false, optional: true, required: false
+  private _policy?: string;
+  public get policy() {
+    return this._policy;
+  }
+  public set policy(value: string  | undefined) {
+    this._policy = value;
+  }
+  public resetPolicy() {
+    this._policy = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get policyInput() {
+    return this._policy
+  }
+
+  // role_arn - computed: false, optional: true, required: false
+  private _roleArn?: string;
+  public get roleArn() {
+    return this._roleArn;
+  }
+  public set roleArn(value: string  | undefined) {
+    this._roleArn = value;
+  }
+  public resetRoleArn() {
+    this._roleArn = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get roleArnInput() {
+    return this._roleArn
+  }
+
+  // session_name - computed: false, optional: true, required: false
+  private _sessionName?: string;
+  public get sessionName() {
+    return this._sessionName;
+  }
+  public set sessionName(value: string  | undefined) {
+    this._sessionName = value;
+  }
+  public resetSessionName() {
+    this._sessionName = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get sessionNameInput() {
+    return this._sessionName
+  }
+}
 export interface AwsProviderEndpoints {
   /**
   * Use this to override the default service endpoint URL
@@ -1127,7 +1203,7 @@ function awsProviderEndpointsToTerraform(struct?: AwsProviderEndpoints): any {
   }
 }
 
-export interface AwsProviderIgnoreTags {
+export interface IAwsProviderIgnoreTags {
   /**
   * Resource tag key prefixes to ignore across all resources.
   * 
@@ -1142,7 +1218,7 @@ export interface AwsProviderIgnoreTags {
   readonly keys?: string[];
 }
 
-function awsProviderIgnoreTagsToTerraform(struct?: AwsProviderIgnoreTags): any {
+function awsProviderIgnoreTagsToTerraform(struct?: IAwsProviderIgnoreTags): any {
   if (!cdktf.canInspect(struct)) { return struct; }
   return {
     key_prefixes: cdktf.listMapper(cdktf.stringToTerraform)(struct!.keyPrefixes),
@@ -1150,6 +1226,48 @@ function awsProviderIgnoreTagsToTerraform(struct?: AwsProviderIgnoreTags): any {
   }
 }
 
+export class AwsProviderIgnoreTags extends cdktf.ComplexObject {
+  /**
+  * @param options AwsProviderIgnoreTags = {}
+  */
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAwsProviderIgnoreTags = {}) {
+    super(terraformResource, terraformAttribute);
+    this._keyPrefixes = config.keyPrefixes;
+    this._keys = config.keys;
+  }
+
+  // key_prefixes - computed: false, optional: true, required: false
+  private _keyPrefixes?: string[];
+  public get keyPrefixes() {
+    return this._keyPrefixes;
+  }
+  public set keyPrefixes(value: string[]  | undefined) {
+    this._keyPrefixes = value;
+  }
+  public resetKeyPrefixes() {
+    this._keyPrefixes = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get keyPrefixesInput() {
+    return this._keyPrefixes
+  }
+
+  // keys - computed: false, optional: true, required: false
+  private _keys?: string[];
+  public get keys() {
+    return this._keys;
+  }
+  public set keys(value: string[]  | undefined) {
+    this._keys = value;
+  }
+  public resetKeys() {
+    this._keys = undefined;
+  }
+  // Temporarily expose input value. Use with caution.
+  public get keysInput() {
+    return this._keys
+  }
+}
 
 /**
 * Represents a {@link https://www.terraform.io/docs/providers/aws aws}
@@ -1477,11 +1595,11 @@ export class AwsProvider extends cdktf.TerraformProvider {
   }
 
   // assume_role - computed: false, optional: true, required: false
-  private _assumeRole?: AwsProviderAssumeRole[];
+  private _assumeRole?: IAwsProviderAssumeRole;
   public get assumeRole() {
-    return this._assumeRole;
+    return this._assumeRole ? new AwsProviderAssumeRole(this as any, \\"assume_role\\", this._assumeRole) : undefined;
   }
-  public set assumeRole(value: AwsProviderAssumeRole[]  | undefined) {
+  public set assumeRole(value: AwsProviderAssumeRole  | undefined) {
     this._assumeRole = value;
   }
   public resetAssumeRole() {
@@ -1509,11 +1627,11 @@ export class AwsProvider extends cdktf.TerraformProvider {
   }
 
   // ignore_tags - computed: false, optional: true, required: false
-  private _ignoreTags?: AwsProviderIgnoreTags[];
+  private _ignoreTags?: IAwsProviderIgnoreTags;
   public get ignoreTags() {
-    return this._ignoreTags;
+    return this._ignoreTags ? new AwsProviderIgnoreTags(this as any, \\"ignore_tags\\", this._ignoreTags) : undefined;
   }
-  public set ignoreTags(value: AwsProviderIgnoreTags[]  | undefined) {
+  public set ignoreTags(value: AwsProviderIgnoreTags  | undefined) {
     this._ignoreTags = value;
   }
   public resetIgnoreTags() {
@@ -1547,9 +1665,9 @@ export class AwsProvider extends cdktf.TerraformProvider {
       skip_requesting_account_id: cdktf.booleanToTerraform(this._skipRequestingAccountId),
       token: cdktf.stringToTerraform(this._token),
       alias: cdktf.stringToTerraform(this._alias),
-      assume_role: cdktf.listMapper(awsProviderAssumeRoleToTerraform)(this._assumeRole),
+      assume_role: awsProviderAssumeRoleToTerraform(this._assumeRole),
       endpoints: cdktf.listMapper(awsProviderEndpointsToTerraform)(this._endpoints),
-      ignore_tags: cdktf.listMapper(awsProviderIgnoreTagsToTerraform)(this._ignoreTags),
+      ignore_tags: awsProviderIgnoreTagsToTerraform(this._ignoreTags),
     };
   }
 }

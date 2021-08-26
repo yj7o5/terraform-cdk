@@ -38,7 +38,7 @@ export namespace ACM {
     /**
     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/acm_certificate.html#tags AcmCertificate#tags}
     */
-    readonly tags?: { [key: string]: string } | cdktf.IResolvable;
+    readonly tags?: { [key: string]: string };
     /**
     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/acm_certificate.html#validation_method AcmCertificate#validation_method}
     */
@@ -48,7 +48,7 @@ export namespace ACM {
     * 
     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/acm_certificate.html#options AcmCertificate#options}
     */
-    readonly options?: AcmCertificateOptions[];
+    readonly options?: IAcmCertificateOptions;
   }
   export class AcmCertificateDomainValidationOptions extends cdktf.ComplexComputedList {
 
@@ -72,20 +72,45 @@ export namespace ACM {
       return this.getStringAttribute('resource_record_value');
     }
   }
-  export interface AcmCertificateOptions {
+  export interface IAcmCertificateOptions {
     /**
     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/acm_certificate.html#certificate_transparency_logging_preference AcmCertificate#certificate_transparency_logging_preference}
     */
     readonly certificateTransparencyLoggingPreference?: string;
   }
 
-  function acmCertificateOptionsToTerraform(struct?: AcmCertificateOptions): any {
+  function acmCertificateOptionsToTerraform(struct?: IAcmCertificateOptions): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       certificate_transparency_logging_preference: cdktf.stringToTerraform(struct!.certificateTransparencyLoggingPreference),
     }
   }
 
+  export class AcmCertificateOptions extends cdktf.ComplexObject {
+    /**
+    * @param options AcmCertificateOptions = {}
+    */
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAcmCertificateOptions = {}) {
+      super(terraformResource, terraformAttribute);
+      this._certificateTransparencyLoggingPreference = config.certificateTransparencyLoggingPreference;
+    }
+
+    // certificate_transparency_logging_preference - computed: false, optional: true, required: false
+    private _certificateTransparencyLoggingPreference?: string;
+    public get certificateTransparencyLoggingPreference() {
+      return this.getStringAttribute('certificate_transparency_logging_preference');
+    }
+    public set certificateTransparencyLoggingPreference(value: string ) {
+      this._certificateTransparencyLoggingPreference = value;
+    }
+    public resetCertificateTransparencyLoggingPreference() {
+      this._certificateTransparencyLoggingPreference = undefined;
+    }
+    // Temporarily expose input value. Use with caution.
+    public get certificateTransparencyLoggingPreferenceInput() {
+      return this._certificateTransparencyLoggingPreference
+    }
+  }
 
   /**
   * Represents a {@link https://www.terraform.io/docs/providers/aws/r/acm_certificate.html aws_acm_certificate}
@@ -246,11 +271,11 @@ export namespace ACM {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | cdktf.IResolvable;
+    private _tags?: { [key: string]: string };
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
-    public set tags(value: { [key: string]: string } | cdktf.IResolvable ) {
+    public set tags(value: { [key: string]: string } ) {
       this._tags = value;
     }
     public resetTags() {
@@ -283,11 +308,11 @@ export namespace ACM {
     }
 
     // options - computed: false, optional: true, required: false
-    private _options?: AcmCertificateOptions[];
+    private _options?: IAcmCertificateOptions;
     public get options() {
       return this.interpolationForAttribute('options') as any;
     }
-    public set options(value: AcmCertificateOptions[] ) {
+    public set options(value: AcmCertificateOptions ) {
       this._options = value;
     }
     public resetOptions() {
@@ -312,7 +337,7 @@ export namespace ACM {
         subject_alternative_names: cdktf.listMapper(cdktf.stringToTerraform)(this._subjectAlternativeNames),
         tags: cdktf.hashMapper(cdktf.anyToTerraform)(this._tags),
         validation_method: cdktf.stringToTerraform(this._validationMethod),
-        options: cdktf.listMapper(acmCertificateOptionsToTerraform)(this._options),
+        options: acmCertificateOptionsToTerraform(this._options),
       };
     }
   }

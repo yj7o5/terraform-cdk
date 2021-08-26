@@ -5,7 +5,8 @@ export class Struct {
     public readonly name: string,
     public readonly attributes: AttributeModel[],
     public readonly isClass = false,
-    public readonly isAnonymous = false
+    public readonly isAnonymous = false,
+    public isSingleItem = false
   ) {}
 
   public get assignableAttributes(): AttributeModel[] {
@@ -34,7 +35,7 @@ export class Struct {
   protected filterIgnoredAttributes(
     attributes: AttributeModel[]
   ): AttributeModel[] {
-    return attributes;
+    return attributes.filter((attribute) => !attribute.isConfigIgnored);
   }
 
   public get extends(): string {

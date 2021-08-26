@@ -55,17 +55,37 @@ export class AttributesEmitter {
     }
   }
 
+  private storedClassAccess(att: AttributeModel) {
+    const invocation = `new ${att.type.name}(this as any, "${
+      att.terraformName
+    }"${
+      (att.type.struct?.assignableAttributes.length || 0) > 0
+        ? `, this.${att.storageName}`
+        : ""
+    })`;
+
+    return att.isOptional
+      ? `this.${att.storageName} ? ${invocation} : undefined`
+      : invocation;
+  }
+
   private emitOptional(
     att: AttributeModel,
     escapeReset: boolean,
     escapeInput: boolean
   ) {
-    this.code.line(`private ${att.storageName}?: ${att.type.name};`);
+    this.code.line(
+      `private ${att.storageName}?: ${att.type.isSingleItem ? "I" : ""}${
+        att.type.name
+      };`
+    );
     this.code.openBlock(`public get ${att.name}()`);
     this.code.line(
       `return ${
         att.isProvider
-          ? "this." + att.storageName
+          ? att.type.isSingleItem
+            ? this.storedClassAccess(att)
+            : "this." + att.storageName
           : this.determineGetAttCall(att)
       };`
     );
@@ -94,9 +114,19 @@ export class AttributesEmitter {
     escapeReset: boolean,
     escapeInput: boolean
   ) {
-    this.code.line(`private ${att.storageName}?: ${att.type.name};`);
+    this.code.line(
+      `private ${att.storageName}?: ${att.type.isSingleItem ? "I" : ""}${
+        att.type.name
+      };`
+    );
     this.code.openBlock(`public get ${att.name}()`);
-    this.code.line(`return ${this.determineGetAttCall(att)};`);
+    this.code.line(
+      `return ${
+        att.type.isSingleItem
+          ? this.storedClassAccess(att)
+          : this.determineGetAttCall(att)
+      };`
+    );
     this.code.closeBlock();
 
     this.code.openBlock(`public set ${att.name}(value: ${att.type.name})`);
@@ -115,23 +145,41 @@ export class AttributesEmitter {
 
   private emitOptionalComputedIgnored(att: AttributeModel) {
     this.code.openBlock(`public get ${att.name}()`);
-    this.code.line(`return ${this.determineGetAttCall(att)};`);
+    this.code.line(
+      `return ${
+        att.type.isSingleItem
+          ? this.storedClassAccess(att)
+          : this.determineGetAttCall(att)
+      };`
+    );
     this.code.closeBlock();
   }
 
   private emitComputed(att: AttributeModel) {
     this.code.openBlock(`public get ${att.name}()`);
-    this.code.line(`return ${this.determineGetAttCall(att)};`);
+    this.code.line(
+      `return ${
+        att.type.isSingleItem
+          ? this.storedClassAccess(att)
+          : this.determineGetAttCall(att)
+      };`
+    );
     this.code.closeBlock();
   }
 
   private emitRequired(att: AttributeModel, escapeInput: boolean) {
-    this.code.line(`private ${att.storageName}: ${att.type.name};`);
+    this.code.line(
+      `private ${att.storageName}: ${att.type.isSingleItem ? "I" : ""}${
+        att.type.name
+      };`
+    );
     this.code.openBlock(`public get ${att.name}()`);
     this.code.line(
       `return ${
         att.isProvider
           ? "this." + att.storageName
+          : att.type.isSingleItem
+          ? this.storedClassAccess(att)
           : this.determineGetAttCall(att)
       };`
     );
@@ -172,11 +220,19 @@ export class AttributesEmitter {
     escapeReset: boolean,
     escapeInput: boolean
   ) {
-    this.code.line(`private ${att.storageName}?: ${att.type.name}`);
-    this.code.openBlock(`public get ${att.name}(): ${att.type.name}`);
     this.code.line(
-      `return this.interpolationForAttribute('${att.terraformName}') as any; // Getting the computed value is not yet implemented`
+      `private ${att.storageName}?: ${att.type.isSingleItem ? "I" : ""}${
+        att.type.name
+      }`
     );
+    this.code.openBlock(`public get ${att.name}(): ${att.type.name}`);
+    if (att.type.isSingleItem) {
+      this.code.line(`return ${this.storedClassAccess(att)};`);
+    } else {
+      this.code.line(
+        `return this.interpolationForAttribute('${att.terraformName}') as any; // Getting the computed value is not yet implemented`
+      );
+    }
     this.code.closeBlock();
 
     this.code.openBlock(`public set ${att.name}(value: ${att.type.name})`);
@@ -215,7 +271,7 @@ export class AttributesEmitter {
       return `this.getNumberAttribute('${att.terraformName}')`;
     }
     if (type.isBoolean) {
-      return `this.getBooleanAttribute('${att.terraformName}')`;
+      return `this.getBooleanAttribute('${att.terraformName}') as any`;
     }
     if (process.env.DEBUG) {
       console.error(
@@ -314,7 +370,7 @@ export class AttributesEmitter {
           )}ToTerraform)(${varReference}),`
         );
         break;
-      case type.isList:
+      case type.isList && !type.isSingleItem:
         this.code.line(
           `${
             att.terraformName
