@@ -1,4 +1,4 @@
-import { Testing, TerraformStack, TerraformOutput, Fn } from "../lib";
+import { Testing, TerraformStack, TerraformOutput, fn } from "../lib";
 import { TerraformVariable } from "../lib/terraform-variable";
 import { TerraformLocal } from "../lib/terraform-local";
 
@@ -7,7 +7,7 @@ test("static values", () => {
   const stack = new TerraformStack(app, "test");
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.abs(-42),
+    value: fn.numeric.abs(-42),
   });
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
     "{
@@ -36,7 +36,7 @@ test("dynamic values", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.abs(variable.value),
+    value: fn.numeric.abs(variable.value),
   });
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
     "{
@@ -70,7 +70,7 @@ test("spreaded mixed values", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.max([10, variable.value, 200]),
+    value: fn.numeric.max([10, variable.value, 200]),
   });
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
     "{
@@ -104,7 +104,7 @@ test("spreaded token value", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.max([variable.value]),
+    value: fn.numeric.max([variable.value]),
   });
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
     "{
@@ -134,7 +134,7 @@ test("string values", () => {
   const stack = new TerraformStack(app, "test");
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.parseInt("-210", 10),
+    value: fn.numeric.parseInt("-210", 10),
   });
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
     "{
@@ -163,7 +163,7 @@ test("mixed string spreads values", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.format("There are %d out of %d lights are on in %s", [
+    value: fn.string.format("There are %d out of %d lights are on in %s", [
       variable.value,
       4,
       "Hamburg",
@@ -209,10 +209,14 @@ test("combined functions", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.try([
-      Fn.lookup(Fn.element(list.value, index.value), "internal", "waaat"),
-      Fn.timestamp(),
-      Fn.uuid(),
+    value: fn.type.tryExpression([
+      fn.collection.lookup(
+        fn.collection.element(list.value, index.value),
+        "internal",
+        "waaat"
+      ),
+      fn.date.timestamp(),
+      fn.crypto.uuid(),
     ]),
   });
 
@@ -251,7 +255,7 @@ test("function with varadic args", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.merge([variable.value, [1, 2, 3]]),
+    value: fn.collection.merge([variable.value, [1, 2, 3]]),
   });
 
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
@@ -289,8 +293,11 @@ test("complex example", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.cidrsubnet(
-      Fn.element(Fn.merge([variable1.value, variable2.value]), 3),
+    value: fn.network.cidrsubnet(
+      fn.collection.element(
+        fn.collection.merge([variable1.value, variable2.value]),
+        3
+      ),
       4,
       2
     ),
@@ -331,7 +338,7 @@ test("interpolation within string ", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.cidrsubnet(`172.16.0.0/${variable.value}`, 2, 3),
+    value: fn.network.cidrsubnet(`172.16.0.0/${variable.value}`, 2, 3),
   });
 
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
@@ -366,7 +373,7 @@ test("functions with object inputs", () => {
   });
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.lookup(
+    value: fn.collection.lookup(
       { var: variable.value, stat: 4, internal: true, yes: "no" },
       "internal",
       "waaat"
@@ -401,7 +408,7 @@ test("quoted primitives in list", () => {
   const stack = new TerraformStack(app, "test");
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.join(", ", ["world", "hello"]),
+    value: fn.string.join(", ", ["world", "hello"]),
   });
 
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
@@ -427,7 +434,9 @@ test("quoted primitives, unquoted functions", () => {
   const stack = new TerraformStack(app, "test");
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.join(", ", [Fn.join(" ", Fn.reverse(["world", "hello"]))]),
+    value: fn.string.join(", ", [
+      fn.string.join(" ", fn.collection.reverse(["world", "hello"])),
+    ]),
   });
 
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`
@@ -455,7 +464,7 @@ test("terraform local", () => {
   const local = new TerraformLocal(stack, "list", ["world", "hello"]);
 
   new TerraformOutput(stack, "test-output", {
-    value: Fn.reverse(local.asList),
+    value: fn.collection.reverse(local.asList),
   });
 
   expect(Testing.synth(stack)).toMatchInlineSnapshot(`

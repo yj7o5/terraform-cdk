@@ -26,8 +26,8 @@ class KubeStack extends TerraformStack {
       metadata: [
         {
           name: app,
-          namespace: Fn.lookup(
-            Fn.element(exampleNamespace.metadata, 0),
+          namespace: Fn.collection.lookup(
+            Fn.collection.element(exampleNamespace.metadata, 0),
             "name",
             "default"
           ),
