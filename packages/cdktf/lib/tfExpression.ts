@@ -120,6 +120,21 @@ export function call(name: string, args: Expression[]) {
   return new FunctionCall(name, args) as IResolvable;
 }
 
+export class Iterator implements IResolvable {
+  constructor(private resolvable: IResolvable) {}
+  resolve(context: IResolveContext) {
+    return this.resolvable.resolve(context);
+  }
+
+  public static forEach(list: any[] | IResolvable) {
+    return new Iterator(list);
+  }
+
+  public static map(list: any[] | IResolvable, selector: string) {
+    return new Iterator(list); // TODO: map over list and pluck selector
+  }
+}
+
 export type Expression =
   | Reference
   | FunctionCall
