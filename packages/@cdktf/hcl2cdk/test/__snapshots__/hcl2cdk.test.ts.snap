@@ -69,18 +69,14 @@ exports[`convert blocks should be arrays configuration 1`] = `
 See https://github.com/hashicorp/terraform-cdk/blob/main/docs/working-with-cdk-for-terraform/using-providers.md#importing-providers-and-modules for more details.*/
 import * as google from \\"./.gen/providers/google\\";
 new google.ComputeAutoscaler(this, \\"example\\", {
-  autoscalingPolicy: [
-    {
-      cooldownPeriod: 60,
-      cpuUtilization: [
-        {
-          target: 0.5,
-        },
-      ],
-      maxReplicas: 8,
-      minReplicas: 2,
+  autoscalingPolicy: {
+    cooldownPeriod: 60,
+    cpuUtilization: {
+      target: 0.5,
     },
-  ],
+    maxReplicas: 8,
+    minReplicas: 2,
+  },
   name: \\"example-autoscaler\\",
   zone: \\"us-east1-b\\",
 });

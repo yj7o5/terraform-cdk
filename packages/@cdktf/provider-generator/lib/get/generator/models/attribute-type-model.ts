@@ -68,6 +68,15 @@ export class AttributeTypeModel {
     return this._type;
   }
 
+  public get storedName(): string {
+    let name = this.name;
+    if (this.isComplex && this.isSingleItem) {
+      name = `I${name}`;
+    }
+
+    return `${name}${this.isOptional ? " | undefined" : ""}`;
+  }
+
   public get isComplex(): boolean {
     return !!this.struct || (this.isMap && this.isComputed);
   }

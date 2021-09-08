@@ -95,8 +95,9 @@ public class Main extends TerraformStack {
                                                         .build()
                                                 ).build()
                                         ).build()
-                                ).build()
-                    )).build())
+                                )).build()
+                    ).build()
+                ).build()
             ).build());
 
         new Service(this, "nginx-service", ServiceConfig.builder()
@@ -113,9 +114,9 @@ public class Main extends TerraformStack {
                         .port(80)
                         .targetPort("80")
                         .build()
-                )
+                ))
                 .type("NodePort")
-                .build()))
+                .build())
             .build());
     }
 

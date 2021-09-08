@@ -153,11 +153,11 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[];
+    private _whitelistedNames?: string[] | undefined;
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
-    public set whitelistedNames(value: string[] ) {
+    public set whitelistedNames(value: string[] | undefined) {
       this._whitelistedNames = value;
     }
     public resetWhitelistedNames() {
@@ -212,11 +212,11 @@ export namespace CloudFront {
     }
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[];
+    private _headers?: string[] | undefined;
     public get headers() {
       return this.getListAttribute('headers');
     }
-    public set headers(value: string[] ) {
+    public set headers(value: string[] | undefined) {
       this._headers = value;
     }
     public resetHeaders() {
@@ -241,11 +241,11 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[];
+    private _queryStringCacheKeys?: string[] | undefined;
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
-    public set queryStringCacheKeys(value: string[] ) {
+    public set queryStringCacheKeys(value: string[] | undefined) {
       this._queryStringCacheKeys = value;
     }
     public resetQueryStringCacheKeys() {
@@ -261,7 +261,7 @@ export namespace CloudFront {
     public get cookies() {
       return new CloudfrontDistributionCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", this._cookies);
     }
-    public set cookies(value: CloudfrontDistributionCacheBehaviorForwardedValuesCookies) {
+    public putCookies(value: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -448,11 +448,11 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[];
+    private _whitelistedNames?: string[] | undefined;
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
-    public set whitelistedNames(value: string[] ) {
+    public set whitelistedNames(value: string[] | undefined) {
       this._whitelistedNames = value;
     }
     public resetWhitelistedNames() {
@@ -507,11 +507,11 @@ export namespace CloudFront {
     }
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[];
+    private _headers?: string[] | undefined;
     public get headers() {
       return this.getListAttribute('headers');
     }
-    public set headers(value: string[] ) {
+    public set headers(value: string[] | undefined) {
       this._headers = value;
     }
     public resetHeaders() {
@@ -536,11 +536,11 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[];
+    private _queryStringCacheKeys?: string[] | undefined;
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
-    public set queryStringCacheKeys(value: string[] ) {
+    public set queryStringCacheKeys(value: string[] | undefined) {
       this._queryStringCacheKeys = value;
     }
     public resetQueryStringCacheKeys() {
@@ -556,7 +556,7 @@ export namespace CloudFront {
     public get cookies() {
       return new CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", this._cookies);
     }
-    public set cookies(value: CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies) {
+    public putCookies(value: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -714,11 +714,11 @@ export namespace CloudFront {
     }
 
     // compress - computed: false, optional: true, required: false
-    private _compress?: boolean | cdktf.IResolvable;
+    private _compress?: boolean | cdktf.IResolvable | undefined;
     public get compress() {
       return this.getBooleanAttribute('compress') as any;
     }
-    public set compress(value: boolean | cdktf.IResolvable ) {
+    public set compress(value: boolean | cdktf.IResolvable | undefined) {
       this._compress = value;
     }
     public resetCompress() {
@@ -730,11 +730,11 @@ export namespace CloudFront {
     }
 
     // default_ttl - computed: false, optional: true, required: false
-    private _defaultTtl?: number;
+    private _defaultTtl?: number | undefined;
     public get defaultTtl() {
       return this.getNumberAttribute('default_ttl');
     }
-    public set defaultTtl(value: number ) {
+    public set defaultTtl(value: number | undefined) {
       this._defaultTtl = value;
     }
     public resetDefaultTtl() {
@@ -746,11 +746,11 @@ export namespace CloudFront {
     }
 
     // field_level_encryption_id - computed: false, optional: true, required: false
-    private _fieldLevelEncryptionId?: string;
+    private _fieldLevelEncryptionId?: string | undefined;
     public get fieldLevelEncryptionId() {
       return this.getStringAttribute('field_level_encryption_id');
     }
-    public set fieldLevelEncryptionId(value: string ) {
+    public set fieldLevelEncryptionId(value: string | undefined) {
       this._fieldLevelEncryptionId = value;
     }
     public resetFieldLevelEncryptionId() {
@@ -762,11 +762,11 @@ export namespace CloudFront {
     }
 
     // max_ttl - computed: false, optional: true, required: false
-    private _maxTtl?: number;
+    private _maxTtl?: number | undefined;
     public get maxTtl() {
       return this.getNumberAttribute('max_ttl');
     }
-    public set maxTtl(value: number ) {
+    public set maxTtl(value: number | undefined) {
       this._maxTtl = value;
     }
     public resetMaxTtl() {
@@ -778,11 +778,11 @@ export namespace CloudFront {
     }
 
     // min_ttl - computed: false, optional: true, required: false
-    private _minTtl?: number;
+    private _minTtl?: number | undefined;
     public get minTtl() {
       return this.getNumberAttribute('min_ttl');
     }
-    public set minTtl(value: number ) {
+    public set minTtl(value: number | undefined) {
       this._minTtl = value;
     }
     public resetMinTtl() {
@@ -794,11 +794,11 @@ export namespace CloudFront {
     }
 
     // smooth_streaming - computed: false, optional: true, required: false
-    private _smoothStreaming?: boolean | cdktf.IResolvable;
+    private _smoothStreaming?: boolean | cdktf.IResolvable | undefined;
     public get smoothStreaming() {
       return this.getBooleanAttribute('smooth_streaming') as any;
     }
-    public set smoothStreaming(value: boolean | cdktf.IResolvable ) {
+    public set smoothStreaming(value: boolean | cdktf.IResolvable | undefined) {
       this._smoothStreaming = value;
     }
     public resetSmoothStreaming() {
@@ -823,11 +823,11 @@ export namespace CloudFront {
     }
 
     // trusted_signers - computed: false, optional: true, required: false
-    private _trustedSigners?: string[];
+    private _trustedSigners?: string[] | undefined;
     public get trustedSigners() {
       return this.getListAttribute('trusted_signers');
     }
-    public set trustedSigners(value: string[] ) {
+    public set trustedSigners(value: string[] | undefined) {
       this._trustedSigners = value;
     }
     public resetTrustedSigners() {
@@ -856,7 +856,7 @@ export namespace CloudFront {
     public get forwardedValues() {
       return new CloudfrontDistributionDefaultCacheBehaviorForwardedValues(this as any, \\"forwarded_values\\", this._forwardedValues);
     }
-    public set forwardedValues(value: CloudfrontDistributionDefaultCacheBehaviorForwardedValues) {
+    public putForwardedValues(value: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues) {
       this._forwardedValues = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -865,11 +865,11 @@ export namespace CloudFront {
     }
 
     // lambda_function_association - computed: false, optional: true, required: false
-    private _lambdaFunctionAssociation?: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[];
+    private _lambdaFunctionAssociation?: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[] | undefined;
     public get lambdaFunctionAssociation() {
       return this.interpolationForAttribute('lambda_function_association') as any;
     }
-    public set lambdaFunctionAssociation(value: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[] ) {
+    public set lambdaFunctionAssociation(value: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[] | undefined) {
       this._lambdaFunctionAssociation = value;
     }
     public resetLambdaFunctionAssociation() {
@@ -929,11 +929,11 @@ export namespace CloudFront {
     }
 
     // include_cookies - computed: false, optional: true, required: false
-    private _includeCookies?: boolean | cdktf.IResolvable;
+    private _includeCookies?: boolean | cdktf.IResolvable | undefined;
     public get includeCookies() {
       return this.getBooleanAttribute('include_cookies') as any;
     }
-    public set includeCookies(value: boolean | cdktf.IResolvable ) {
+    public set includeCookies(value: boolean | cdktf.IResolvable | undefined) {
       this._includeCookies = value;
     }
     public resetIncludeCookies() {
@@ -945,11 +945,11 @@ export namespace CloudFront {
     }
 
     // prefix - computed: false, optional: true, required: false
-    private _prefix?: string;
+    private _prefix?: string | undefined;
     public get prefix() {
       return this.getStringAttribute('prefix');
     }
-    public set prefix(value: string ) {
+    public set prefix(value: string | undefined) {
       this._prefix = value;
     }
     public resetPrefix() {
@@ -1003,11 +1003,11 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[];
+    private _whitelistedNames?: string[] | undefined;
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
-    public set whitelistedNames(value: string[] ) {
+    public set whitelistedNames(value: string[] | undefined) {
       this._whitelistedNames = value;
     }
     public resetWhitelistedNames() {
@@ -1062,11 +1062,11 @@ export namespace CloudFront {
     }
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[];
+    private _headers?: string[] | undefined;
     public get headers() {
       return this.getListAttribute('headers');
     }
-    public set headers(value: string[] ) {
+    public set headers(value: string[] | undefined) {
       this._headers = value;
     }
     public resetHeaders() {
@@ -1091,11 +1091,11 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[];
+    private _queryStringCacheKeys?: string[] | undefined;
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
-    public set queryStringCacheKeys(value: string[] ) {
+    public set queryStringCacheKeys(value: string[] | undefined) {
       this._queryStringCacheKeys = value;
     }
     public resetQueryStringCacheKeys() {
@@ -1111,7 +1111,7 @@ export namespace CloudFront {
     public get cookies() {
       return new CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", this._cookies);
     }
-    public set cookies(value: CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies) {
+    public putCookies(value: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -1325,11 +1325,11 @@ export namespace CloudFront {
     }
 
     // origin_keepalive_timeout - computed: false, optional: true, required: false
-    private _originKeepaliveTimeout?: number;
+    private _originKeepaliveTimeout?: number | undefined;
     public get originKeepaliveTimeout() {
       return this.getNumberAttribute('origin_keepalive_timeout');
     }
-    public set originKeepaliveTimeout(value: number ) {
+    public set originKeepaliveTimeout(value: number | undefined) {
       this._originKeepaliveTimeout = value;
     }
     public resetOriginKeepaliveTimeout() {
@@ -1354,11 +1354,11 @@ export namespace CloudFront {
     }
 
     // origin_read_timeout - computed: false, optional: true, required: false
-    private _originReadTimeout?: number;
+    private _originReadTimeout?: number | undefined;
     public get originReadTimeout() {
       return this.getNumberAttribute('origin_read_timeout');
     }
-    public set originReadTimeout(value: number ) {
+    public set originReadTimeout(value: number | undefined) {
       this._originReadTimeout = value;
     }
     public resetOriginReadTimeout() {
@@ -1571,11 +1571,11 @@ export namespace CloudFront {
     }
 
     // locations - computed: false, optional: true, required: false
-    private _locations?: string[];
+    private _locations?: string[] | undefined;
     public get locations() {
       return this.getListAttribute('locations');
     }
-    public set locations(value: string[] ) {
+    public set locations(value: string[] | undefined) {
       this._locations = value;
     }
     public resetLocations() {
@@ -1629,7 +1629,7 @@ export namespace CloudFront {
     public get geoRestriction() {
       return new CloudfrontDistributionRestrictionsGeoRestriction(this as any, \\"geo_restriction\\", this._geoRestriction);
     }
-    public set geoRestriction(value: CloudfrontDistributionRestrictionsGeoRestriction) {
+    public putGeoRestriction(value: ICloudfrontDistributionRestrictionsGeoRestriction) {
       this._geoRestriction = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -1685,11 +1685,11 @@ export namespace CloudFront {
     }
 
     // acm_certificate_arn - computed: false, optional: true, required: false
-    private _acmCertificateArn?: string;
+    private _acmCertificateArn?: string | undefined;
     public get acmCertificateArn() {
       return this.getStringAttribute('acm_certificate_arn');
     }
-    public set acmCertificateArn(value: string ) {
+    public set acmCertificateArn(value: string | undefined) {
       this._acmCertificateArn = value;
     }
     public resetAcmCertificateArn() {
@@ -1701,11 +1701,11 @@ export namespace CloudFront {
     }
 
     // cloudfront_default_certificate - computed: false, optional: true, required: false
-    private _cloudfrontDefaultCertificate?: boolean | cdktf.IResolvable;
+    private _cloudfrontDefaultCertificate?: boolean | cdktf.IResolvable | undefined;
     public get cloudfrontDefaultCertificate() {
       return this.getBooleanAttribute('cloudfront_default_certificate') as any;
     }
-    public set cloudfrontDefaultCertificate(value: boolean | cdktf.IResolvable ) {
+    public set cloudfrontDefaultCertificate(value: boolean | cdktf.IResolvable | undefined) {
       this._cloudfrontDefaultCertificate = value;
     }
     public resetCloudfrontDefaultCertificate() {
@@ -1717,11 +1717,11 @@ export namespace CloudFront {
     }
 
     // iam_certificate_id - computed: false, optional: true, required: false
-    private _iamCertificateId?: string;
+    private _iamCertificateId?: string | undefined;
     public get iamCertificateId() {
       return this.getStringAttribute('iam_certificate_id');
     }
-    public set iamCertificateId(value: string ) {
+    public set iamCertificateId(value: string | undefined) {
       this._iamCertificateId = value;
     }
     public resetIamCertificateId() {
@@ -1733,11 +1733,11 @@ export namespace CloudFront {
     }
 
     // minimum_protocol_version - computed: false, optional: true, required: false
-    private _minimumProtocolVersion?: string;
+    private _minimumProtocolVersion?: string | undefined;
     public get minimumProtocolVersion() {
       return this.getStringAttribute('minimum_protocol_version');
     }
-    public set minimumProtocolVersion(value: string ) {
+    public set minimumProtocolVersion(value: string | undefined) {
       this._minimumProtocolVersion = value;
     }
     public resetMinimumProtocolVersion() {
@@ -1749,11 +1749,11 @@ export namespace CloudFront {
     }
 
     // ssl_support_method - computed: false, optional: true, required: false
-    private _sslSupportMethod?: string;
+    private _sslSupportMethod?: string | undefined;
     public get sslSupportMethod() {
       return this.getStringAttribute('ssl_support_method');
     }
-    public set sslSupportMethod(value: string ) {
+    public set sslSupportMethod(value: string | undefined) {
       this._sslSupportMethod = value;
     }
     public resetSslSupportMethod() {
@@ -1829,11 +1829,11 @@ export namespace CloudFront {
     }
 
     // aliases - computed: false, optional: true, required: false
-    private _aliases?: string[];
+    private _aliases?: string[] | undefined;
     public get aliases() {
       return this.getListAttribute('aliases');
     }
-    public set aliases(value: string[] ) {
+    public set aliases(value: string[] | undefined) {
       this._aliases = value;
     }
     public resetAliases() {
@@ -1855,11 +1855,11 @@ export namespace CloudFront {
     }
 
     // comment - computed: false, optional: true, required: false
-    private _comment?: string;
+    private _comment?: string | undefined;
     public get comment() {
       return this.getStringAttribute('comment');
     }
-    public set comment(value: string ) {
+    public set comment(value: string | undefined) {
       this._comment = value;
     }
     public resetComment() {
@@ -1871,11 +1871,11 @@ export namespace CloudFront {
     }
 
     // default_root_object - computed: false, optional: true, required: false
-    private _defaultRootObject?: string;
+    private _defaultRootObject?: string | undefined;
     public get defaultRootObject() {
       return this.getStringAttribute('default_root_object');
     }
-    public set defaultRootObject(value: string ) {
+    public set defaultRootObject(value: string | undefined) {
       this._defaultRootObject = value;
     }
     public resetDefaultRootObject() {
@@ -1915,11 +1915,11 @@ export namespace CloudFront {
     }
 
     // http_version - computed: false, optional: true, required: false
-    private _httpVersion?: string;
+    private _httpVersion?: string | undefined;
     public get httpVersion() {
       return this.getStringAttribute('http_version');
     }
-    public set httpVersion(value: string ) {
+    public set httpVersion(value: string | undefined) {
       this._httpVersion = value;
     }
     public resetHttpVersion() {
@@ -1941,11 +1941,11 @@ export namespace CloudFront {
     }
 
     // is_ipv6_enabled - computed: false, optional: true, required: false
-    private _isIpv6Enabled?: boolean | cdktf.IResolvable;
+    private _isIpv6Enabled?: boolean | cdktf.IResolvable | undefined;
     public get isIpv6Enabled() {
       return this.getBooleanAttribute('is_ipv6_enabled') as any;
     }
-    public set isIpv6Enabled(value: boolean | cdktf.IResolvable ) {
+    public set isIpv6Enabled(value: boolean | cdktf.IResolvable | undefined) {
       this._isIpv6Enabled = value;
     }
     public resetIsIpv6Enabled() {
@@ -1962,11 +1962,11 @@ export namespace CloudFront {
     }
 
     // price_class - computed: false, optional: true, required: false
-    private _priceClass?: string;
+    private _priceClass?: string | undefined;
     public get priceClass() {
       return this.getStringAttribute('price_class');
     }
-    public set priceClass(value: string ) {
+    public set priceClass(value: string | undefined) {
       this._priceClass = value;
     }
     public resetPriceClass() {
@@ -1978,11 +1978,11 @@ export namespace CloudFront {
     }
 
     // retain_on_delete - computed: false, optional: true, required: false
-    private _retainOnDelete?: boolean | cdktf.IResolvable;
+    private _retainOnDelete?: boolean | cdktf.IResolvable | undefined;
     public get retainOnDelete() {
       return this.getBooleanAttribute('retain_on_delete') as any;
     }
-    public set retainOnDelete(value: boolean | cdktf.IResolvable ) {
+    public set retainOnDelete(value: boolean | cdktf.IResolvable | undefined) {
       this._retainOnDelete = value;
     }
     public resetRetainOnDelete() {
@@ -1999,11 +1999,11 @@ export namespace CloudFront {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string };
+    private _tags?: { [key: string]: string } | undefined;
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
-    public set tags(value: { [key: string]: string } ) {
+    public set tags(value: { [key: string]: string } | undefined) {
       this._tags = value;
     }
     public resetTags() {
@@ -2015,11 +2015,11 @@ export namespace CloudFront {
     }
 
     // wait_for_deployment - computed: false, optional: true, required: false
-    private _waitForDeployment?: boolean | cdktf.IResolvable;
+    private _waitForDeployment?: boolean | cdktf.IResolvable | undefined;
     public get waitForDeployment() {
       return this.getBooleanAttribute('wait_for_deployment') as any;
     }
-    public set waitForDeployment(value: boolean | cdktf.IResolvable ) {
+    public set waitForDeployment(value: boolean | cdktf.IResolvable | undefined) {
       this._waitForDeployment = value;
     }
     public resetWaitForDeployment() {
@@ -2031,11 +2031,11 @@ export namespace CloudFront {
     }
 
     // web_acl_id - computed: false, optional: true, required: false
-    private _webAclId?: string;
+    private _webAclId?: string | undefined;
     public get webAclId() {
       return this.getStringAttribute('web_acl_id');
     }
-    public set webAclId(value: string ) {
+    public set webAclId(value: string | undefined) {
       this._webAclId = value;
     }
     public resetWebAclId() {
@@ -2047,11 +2047,11 @@ export namespace CloudFront {
     }
 
     // cache_behavior - computed: false, optional: true, required: false
-    private _cacheBehavior?: CloudfrontDistributionCacheBehavior[];
+    private _cacheBehavior?: CloudfrontDistributionCacheBehavior[] | undefined;
     public get cacheBehavior() {
       return this.interpolationForAttribute('cache_behavior') as any;
     }
-    public set cacheBehavior(value: CloudfrontDistributionCacheBehavior[] ) {
+    public set cacheBehavior(value: CloudfrontDistributionCacheBehavior[] | undefined) {
       this._cacheBehavior = value;
     }
     public resetCacheBehavior() {
@@ -2063,11 +2063,11 @@ export namespace CloudFront {
     }
 
     // custom_error_response - computed: false, optional: true, required: false
-    private _customErrorResponse?: CloudfrontDistributionCustomErrorResponse[];
+    private _customErrorResponse?: CloudfrontDistributionCustomErrorResponse[] | undefined;
     public get customErrorResponse() {
       return this.interpolationForAttribute('custom_error_response') as any;
     }
-    public set customErrorResponse(value: CloudfrontDistributionCustomErrorResponse[] ) {
+    public set customErrorResponse(value: CloudfrontDistributionCustomErrorResponse[] | undefined) {
       this._customErrorResponse = value;
     }
     public resetCustomErrorResponse() {
@@ -2083,7 +2083,7 @@ export namespace CloudFront {
     public get defaultCacheBehavior() {
       return new CloudfrontDistributionDefaultCacheBehavior(this as any, \\"default_cache_behavior\\", this._defaultCacheBehavior);
     }
-    public set defaultCacheBehavior(value: CloudfrontDistributionDefaultCacheBehavior) {
+    public putDefaultCacheBehavior(value: ICloudfrontDistributionDefaultCacheBehavior) {
       this._defaultCacheBehavior = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -2092,11 +2092,11 @@ export namespace CloudFront {
     }
 
     // logging_config - computed: false, optional: true, required: false
-    private _loggingConfig?: ICloudfrontDistributionLoggingConfig;
+    private _loggingConfig?: ICloudfrontDistributionLoggingConfig | undefined;
     public get loggingConfig() {
-      return this.interpolationForAttribute('logging_config') as any;
+      return this._loggingConfig ? new CloudfrontDistributionLoggingConfig(this as any, \\"logging_config\\", this._loggingConfig) : undefined;
     }
-    public set loggingConfig(value: CloudfrontDistributionLoggingConfig ) {
+    public putLoggingConfig(value: ICloudfrontDistributionLoggingConfig | undefined) {
       this._loggingConfig = value;
     }
     public resetLoggingConfig() {
@@ -2108,11 +2108,11 @@ export namespace CloudFront {
     }
 
     // ordered_cache_behavior - computed: false, optional: true, required: false
-    private _orderedCacheBehavior?: CloudfrontDistributionOrderedCacheBehavior[];
+    private _orderedCacheBehavior?: CloudfrontDistributionOrderedCacheBehavior[] | undefined;
     public get orderedCacheBehavior() {
       return this.interpolationForAttribute('ordered_cache_behavior') as any;
     }
-    public set orderedCacheBehavior(value: CloudfrontDistributionOrderedCacheBehavior[] ) {
+    public set orderedCacheBehavior(value: CloudfrontDistributionOrderedCacheBehavior[] | undefined) {
       this._orderedCacheBehavior = value;
     }
     public resetOrderedCacheBehavior() {
@@ -2137,11 +2137,11 @@ export namespace CloudFront {
     }
 
     // origin_group - computed: false, optional: true, required: false
-    private _originGroup?: CloudfrontDistributionOriginGroup[];
+    private _originGroup?: CloudfrontDistributionOriginGroup[] | undefined;
     public get originGroup() {
       return this.interpolationForAttribute('origin_group') as any;
     }
-    public set originGroup(value: CloudfrontDistributionOriginGroup[] ) {
+    public set originGroup(value: CloudfrontDistributionOriginGroup[] | undefined) {
       this._originGroup = value;
     }
     public resetOriginGroup() {
@@ -2157,7 +2157,7 @@ export namespace CloudFront {
     public get restrictions() {
       return new CloudfrontDistributionRestrictions(this as any, \\"restrictions\\", this._restrictions);
     }
-    public set restrictions(value: CloudfrontDistributionRestrictions) {
+    public putRestrictions(value: ICloudfrontDistributionRestrictions) {
       this._restrictions = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -2170,7 +2170,7 @@ export namespace CloudFront {
     public get viewerCertificate() {
       return new CloudfrontDistributionViewerCertificate(this as any, \\"viewer_certificate\\", this._viewerCertificate);
     }
-    public set viewerCertificate(value: CloudfrontDistributionViewerCertificate) {
+    public putViewerCertificate(value: ICloudfrontDistributionViewerCertificate) {
       this._viewerCertificate = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -2268,11 +2268,11 @@ export namespace FMS {
     // ==========
 
     // account_id - computed: true, optional: true, required: false
-    private _accountId?: string;
+    private _accountId?: string | undefined;
     public get accountId() {
       return this.getStringAttribute('account_id');
     }
-    public set accountId(value: string) {
+    public set accountId(value: string | undefined) {
       this._accountId = value;
     }
     public resetAccountId() {
@@ -2515,11 +2515,11 @@ export namespace S3 {
     }
 
     // date - computed: false, optional: true, required: false
-    private _date?: string;
+    private _date?: string | undefined;
     public get date() {
       return this.getStringAttribute('date');
     }
-    public set date(value: string ) {
+    public set date(value: string | undefined) {
       this._date = value;
     }
     public resetDate() {
@@ -2531,11 +2531,11 @@ export namespace S3 {
     }
 
     // days - computed: false, optional: true, required: false
-    private _days?: number;
+    private _days?: number | undefined;
     public get days() {
       return this.getNumberAttribute('days');
     }
-    public set days(value: number ) {
+    public set days(value: number | undefined) {
       this._days = value;
     }
     public resetDays() {
@@ -2547,11 +2547,11 @@ export namespace S3 {
     }
 
     // expired_object_delete_marker - computed: false, optional: true, required: false
-    private _expiredObjectDeleteMarker?: boolean | cdktf.IResolvable;
+    private _expiredObjectDeleteMarker?: boolean | cdktf.IResolvable | undefined;
     public get expiredObjectDeleteMarker() {
       return this.getBooleanAttribute('expired_object_delete_marker') as any;
     }
-    public set expiredObjectDeleteMarker(value: boolean | cdktf.IResolvable ) {
+    public set expiredObjectDeleteMarker(value: boolean | cdktf.IResolvable | undefined) {
       this._expiredObjectDeleteMarker = value;
     }
     public resetExpiredObjectDeleteMarker() {
@@ -2586,11 +2586,11 @@ export namespace S3 {
     }
 
     // days - computed: false, optional: true, required: false
-    private _days?: number;
+    private _days?: number | undefined;
     public get days() {
       return this.getNumberAttribute('days');
     }
-    public set days(value: number ) {
+    public set days(value: number | undefined) {
       this._days = value;
     }
     public resetDays() {
@@ -2756,11 +2756,11 @@ export namespace S3 {
     }
 
     // days - computed: false, optional: true, required: false
-    private _days?: number;
+    private _days?: number | undefined;
     public get days() {
       return this.getNumberAttribute('days');
     }
-    public set days(value: number ) {
+    public set days(value: number | undefined) {
       this._days = value;
     }
     public resetDays() {
@@ -2785,11 +2785,11 @@ export namespace S3 {
     }
 
     // years - computed: false, optional: true, required: false
-    private _years?: number;
+    private _years?: number | undefined;
     public get years() {
       return this.getNumberAttribute('years');
     }
-    public set years(value: number ) {
+    public set years(value: number | undefined) {
       this._years = value;
     }
     public resetYears() {
@@ -2830,7 +2830,7 @@ export namespace S3 {
     public get defaultRetention() {
       return new S3BucketObjectLockConfigurationRuleDefaultRetention(this as any, \\"default_retention\\", this._defaultRetention);
     }
-    public set defaultRetention(value: S3BucketObjectLockConfigurationRuleDefaultRetention) {
+    public putDefaultRetention(value: IS3BucketObjectLockConfigurationRuleDefaultRetention) {
       this._defaultRetention = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -2883,11 +2883,11 @@ export namespace S3 {
     }
 
     // rule - computed: false, optional: true, required: false
-    private _rule?: IS3BucketObjectLockConfigurationRule;
+    private _rule?: IS3BucketObjectLockConfigurationRule | undefined;
     public get rule() {
-      return this.interpolationForAttribute('rule') as any;
+      return this._rule ? new S3BucketObjectLockConfigurationRule(this as any, \\"rule\\", this._rule) : undefined;
     }
-    public set rule(value: S3BucketObjectLockConfigurationRule ) {
+    public putRule(value: IS3BucketObjectLockConfigurationRule | undefined) {
       this._rule = value;
     }
     public resetRule() {
@@ -2984,11 +2984,11 @@ export namespace S3 {
     }
 
     // account_id - computed: false, optional: true, required: false
-    private _accountId?: string;
+    private _accountId?: string | undefined;
     public get accountId() {
       return this.getStringAttribute('account_id');
     }
-    public set accountId(value: string ) {
+    public set accountId(value: string | undefined) {
       this._accountId = value;
     }
     public resetAccountId() {
@@ -3013,11 +3013,11 @@ export namespace S3 {
     }
 
     // replica_kms_key_id - computed: false, optional: true, required: false
-    private _replicaKmsKeyId?: string;
+    private _replicaKmsKeyId?: string | undefined;
     public get replicaKmsKeyId() {
       return this.getStringAttribute('replica_kms_key_id');
     }
-    public set replicaKmsKeyId(value: string ) {
+    public set replicaKmsKeyId(value: string | undefined) {
       this._replicaKmsKeyId = value;
     }
     public resetReplicaKmsKeyId() {
@@ -3029,11 +3029,11 @@ export namespace S3 {
     }
 
     // storage_class - computed: false, optional: true, required: false
-    private _storageClass?: string;
+    private _storageClass?: string | undefined;
     public get storageClass() {
       return this.getStringAttribute('storage_class');
     }
-    public set storageClass(value: string ) {
+    public set storageClass(value: string | undefined) {
       this._storageClass = value;
     }
     public resetStorageClass() {
@@ -3045,11 +3045,11 @@ export namespace S3 {
     }
 
     // access_control_translation - computed: false, optional: true, required: false
-    private _accessControlTranslation?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation;
+    private _accessControlTranslation?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | undefined;
     public get accessControlTranslation() {
-      return this.interpolationForAttribute('access_control_translation') as any;
+      return this._accessControlTranslation ? new S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation(this as any, \\"access_control_translation\\", this._accessControlTranslation) : undefined;
     }
-    public set accessControlTranslation(value: S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation ) {
+    public putAccessControlTranslation(value: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | undefined) {
       this._accessControlTranslation = value;
     }
     public resetAccessControlTranslation() {
@@ -3090,11 +3090,11 @@ export namespace S3 {
     }
 
     // prefix - computed: false, optional: true, required: false
-    private _prefix?: string;
+    private _prefix?: string | undefined;
     public get prefix() {
       return this.getStringAttribute('prefix');
     }
-    public set prefix(value: string ) {
+    public set prefix(value: string | undefined) {
       this._prefix = value;
     }
     public resetPrefix() {
@@ -3106,11 +3106,11 @@ export namespace S3 {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string };
+    private _tags?: { [key: string]: string } | undefined;
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
-    public set tags(value: { [key: string]: string } ) {
+    public set tags(value: { [key: string]: string } | undefined) {
       this._tags = value;
     }
     public resetTags() {
@@ -3183,11 +3183,11 @@ export namespace S3 {
     }
 
     // sse_kms_encrypted_objects - computed: false, optional: true, required: false
-    private _sseKmsEncryptedObjects?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects;
+    private _sseKmsEncryptedObjects?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | undefined;
     public get sseKmsEncryptedObjects() {
-      return this.interpolationForAttribute('sse_kms_encrypted_objects') as any;
+      return this._sseKmsEncryptedObjects ? new S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects(this as any, \\"sse_kms_encrypted_objects\\", this._sseKmsEncryptedObjects) : undefined;
     }
-    public set sseKmsEncryptedObjects(value: S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects ) {
+    public putSseKmsEncryptedObjects(value: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | undefined) {
       this._sseKmsEncryptedObjects = value;
     }
     public resetSseKmsEncryptedObjects() {
@@ -3335,11 +3335,11 @@ export namespace S3 {
     }
 
     // kms_master_key_id - computed: false, optional: true, required: false
-    private _kmsMasterKeyId?: string;
+    private _kmsMasterKeyId?: string | undefined;
     public get kmsMasterKeyId() {
       return this.getStringAttribute('kms_master_key_id');
     }
-    public set kmsMasterKeyId(value: string ) {
+    public set kmsMasterKeyId(value: string | undefined) {
       this._kmsMasterKeyId = value;
     }
     public resetKmsMasterKeyId() {
@@ -3393,7 +3393,7 @@ export namespace S3 {
     public get applyServerSideEncryptionByDefault() {
       return new S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault(this as any, \\"apply_server_side_encryption_by_default\\", this._applyServerSideEncryptionByDefault);
     }
-    public set applyServerSideEncryptionByDefault(value: S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) {
+    public putApplyServerSideEncryptionByDefault(value: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) {
       this._applyServerSideEncryptionByDefault = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -3431,7 +3431,7 @@ export namespace S3 {
     public get rule() {
       return new S3BucketServerSideEncryptionConfigurationRule(this as any, \\"rule\\", this._rule);
     }
-    public set rule(value: S3BucketServerSideEncryptionConfigurationRule) {
+    public putRule(value: IS3BucketServerSideEncryptionConfigurationRule) {
       this._rule = value;
     }
     // Temporarily expose input value. Use with caution.
@@ -3469,11 +3469,11 @@ export namespace S3 {
     }
 
     // enabled - computed: false, optional: true, required: false
-    private _enabled?: boolean | cdktf.IResolvable;
+    private _enabled?: boolean | cdktf.IResolvable | undefined;
     public get enabled() {
       return this.getBooleanAttribute('enabled') as any;
     }
-    public set enabled(value: boolean | cdktf.IResolvable ) {
+    public set enabled(value: boolean | cdktf.IResolvable | undefined) {
       this._enabled = value;
     }
     public resetEnabled() {
@@ -3485,11 +3485,11 @@ export namespace S3 {
     }
 
     // mfa_delete - computed: false, optional: true, required: false
-    private _mfaDelete?: boolean | cdktf.IResolvable;
+    private _mfaDelete?: boolean | cdktf.IResolvable | undefined;
     public get mfaDelete() {
       return this.getBooleanAttribute('mfa_delete') as any;
     }
-    public set mfaDelete(value: boolean | cdktf.IResolvable ) {
+    public set mfaDelete(value: boolean | cdktf.IResolvable | undefined) {
       this._mfaDelete = value;
     }
     public resetMfaDelete() {
@@ -3542,11 +3542,11 @@ export namespace S3 {
     }
 
     // error_document - computed: false, optional: true, required: false
-    private _errorDocument?: string;
+    private _errorDocument?: string | undefined;
     public get errorDocument() {
       return this.getStringAttribute('error_document');
     }
-    public set errorDocument(value: string ) {
+    public set errorDocument(value: string | undefined) {
       this._errorDocument = value;
     }
     public resetErrorDocument() {
@@ -3558,11 +3558,11 @@ export namespace S3 {
     }
 
     // index_document - computed: false, optional: true, required: false
-    private _indexDocument?: string;
+    private _indexDocument?: string | undefined;
     public get indexDocument() {
       return this.getStringAttribute('index_document');
     }
-    public set indexDocument(value: string ) {
+    public set indexDocument(value: string | undefined) {
       this._indexDocument = value;
     }
     public resetIndexDocument() {
@@ -3574,11 +3574,11 @@ export namespace S3 {
     }
 
     // redirect_all_requests_to - computed: false, optional: true, required: false
-    private _redirectAllRequestsTo?: string;
+    private _redirectAllRequestsTo?: string | undefined;
     public get redirectAllRequestsTo() {
       return this.getStringAttribute('redirect_all_requests_to');
     }
-    public set redirectAllRequestsTo(value: string ) {
+    public set redirectAllRequestsTo(value: string | undefined) {
       this._redirectAllRequestsTo = value;
     }
     public resetRedirectAllRequestsTo() {
@@ -3590,11 +3590,11 @@ export namespace S3 {
     }
 
     // routing_rules - computed: false, optional: true, required: false
-    private _routingRules?: string;
+    private _routingRules?: string | undefined;
     public get routingRules() {
       return this.getStringAttribute('routing_rules');
     }
-    public set routingRules(value: string ) {
+    public set routingRules(value: string | undefined) {
       this._routingRules = value;
     }
     public resetRoutingRules() {
@@ -3666,11 +3666,11 @@ export namespace S3 {
     // ==========
 
     // acceleration_status - computed: true, optional: true, required: false
-    private _accelerationStatus?: string;
+    private _accelerationStatus?: string | undefined;
     public get accelerationStatus() {
       return this.getStringAttribute('acceleration_status');
     }
-    public set accelerationStatus(value: string) {
+    public set accelerationStatus(value: string | undefined) {
       this._accelerationStatus = value;
     }
     public resetAccelerationStatus() {
@@ -3682,11 +3682,11 @@ export namespace S3 {
     }
 
     // acl - computed: false, optional: true, required: false
-    private _acl?: string;
+    private _acl?: string | undefined;
     public get acl() {
       return this.getStringAttribute('acl');
     }
-    public set acl(value: string ) {
+    public set acl(value: string | undefined) {
       this._acl = value;
     }
     public resetAcl() {
@@ -3703,11 +3703,11 @@ export namespace S3 {
     }
 
     // bucket - computed: true, optional: true, required: false
-    private _bucket?: string;
+    private _bucket?: string | undefined;
     public get bucket() {
       return this.getStringAttribute('bucket');
     }
-    public set bucket(value: string) {
+    public set bucket(value: string | undefined) {
       this._bucket = value;
     }
     public resetBucket() {
@@ -3724,11 +3724,11 @@ export namespace S3 {
     }
 
     // bucket_prefix - computed: false, optional: true, required: false
-    private _bucketPrefix?: string;
+    private _bucketPrefix?: string | undefined;
     public get bucketPrefix() {
       return this.getStringAttribute('bucket_prefix');
     }
-    public set bucketPrefix(value: string ) {
+    public set bucketPrefix(value: string | undefined) {
       this._bucketPrefix = value;
     }
     public resetBucketPrefix() {
@@ -3745,11 +3745,11 @@ export namespace S3 {
     }
 
     // force_destroy - computed: false, optional: true, required: false
-    private _forceDestroy?: boolean | cdktf.IResolvable;
+    private _forceDestroy?: boolean | cdktf.IResolvable | undefined;
     public get forceDestroy() {
       return this.getBooleanAttribute('force_destroy') as any;
     }
-    public set forceDestroy(value: boolean | cdktf.IResolvable ) {
+    public set forceDestroy(value: boolean | cdktf.IResolvable | undefined) {
       this._forceDestroy = value;
     }
     public resetForceDestroy() {
@@ -3761,11 +3761,11 @@ export namespace S3 {
     }
 
     // hosted_zone_id - computed: true, optional: true, required: false
-    private _hostedZoneId?: string;
+    private _hostedZoneId?: string | undefined;
     public get hostedZoneId() {
       return this.getStringAttribute('hosted_zone_id');
     }
-    public set hostedZoneId(value: string) {
+    public set hostedZoneId(value: string | undefined) {
       this._hostedZoneId = value;
     }
     public resetHostedZoneId() {
@@ -3782,11 +3782,11 @@ export namespace S3 {
     }
 
     // policy - computed: false, optional: true, required: false
-    private _policy?: string;
+    private _policy?: string | undefined;
     public get policy() {
       return this.getStringAttribute('policy');
     }
-    public set policy(value: string ) {
+    public set policy(value: string | undefined) {
       this._policy = value;
     }
     public resetPolicy() {
@@ -3798,11 +3798,11 @@ export namespace S3 {
     }
 
     // region - computed: true, optional: true, required: false
-    private _region?: string;
+    private _region?: string | undefined;
     public get region() {
       return this.getStringAttribute('region');
     }
-    public set region(value: string) {
+    public set region(value: string | undefined) {
       this._region = value;
     }
     public resetRegion() {
@@ -3814,11 +3814,11 @@ export namespace S3 {
     }
 
     // request_payer - computed: true, optional: true, required: false
-    private _requestPayer?: string;
+    private _requestPayer?: string | undefined;
     public get requestPayer() {
       return this.getStringAttribute('request_payer');
     }
-    public set requestPayer(value: string) {
+    public set requestPayer(value: string | undefined) {
       this._requestPayer = value;
     }
     public resetRequestPayer() {
@@ -3830,11 +3830,11 @@ export namespace S3 {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string };
+    private _tags?: { [key: string]: string } | undefined;
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
-    public set tags(value: { [key: string]: string } ) {
+    public set tags(value: { [key: string]: string } | undefined) {
       this._tags = value;
     }
     public resetTags() {
@@ -3846,11 +3846,11 @@ export namespace S3 {
     }
 
     // website_domain - computed: true, optional: true, required: false
-    private _websiteDomain?: string;
+    private _websiteDomain?: string | undefined;
     public get websiteDomain() {
       return this.getStringAttribute('website_domain');
     }
-    public set websiteDomain(value: string) {
+    public set websiteDomain(value: string | undefined) {
       this._websiteDomain = value;
     }
     public resetWebsiteDomain() {
@@ -3862,11 +3862,11 @@ export namespace S3 {
     }
 
     // website_endpoint - computed: true, optional: true, required: false
-    private _websiteEndpoint?: string;
+    private _websiteEndpoint?: string | undefined;
     public get websiteEndpoint() {
       return this.getStringAttribute('website_endpoint');
     }
-    public set websiteEndpoint(value: string) {
+    public set websiteEndpoint(value: string | undefined) {
       this._websiteEndpoint = value;
     }
     public resetWebsiteEndpoint() {
@@ -3878,11 +3878,11 @@ export namespace S3 {
     }
 
     // cors_rule - computed: false, optional: true, required: false
-    private _corsRule?: S3BucketCorsRule[];
+    private _corsRule?: S3BucketCorsRule[] | undefined;
     public get corsRule() {
       return this.interpolationForAttribute('cors_rule') as any;
     }
-    public set corsRule(value: S3BucketCorsRule[] ) {
+    public set corsRule(value: S3BucketCorsRule[] | undefined) {
       this._corsRule = value;
     }
     public resetCorsRule() {
@@ -3894,11 +3894,11 @@ export namespace S3 {
     }
 
     // grant - computed: false, optional: true, required: false
-    private _grant?: S3BucketGrant[];
+    private _grant?: S3BucketGrant[] | undefined;
     public get grant() {
       return this.interpolationForAttribute('grant') as any;
     }
-    public set grant(value: S3BucketGrant[] ) {
+    public set grant(value: S3BucketGrant[] | undefined) {
       this._grant = value;
     }
     public resetGrant() {
@@ -3910,11 +3910,11 @@ export namespace S3 {
     }
 
     // lifecycle_rule - computed: false, optional: true, required: false
-    private _lifecycleRule?: S3BucketLifecycleRule[];
+    private _lifecycleRule?: S3BucketLifecycleRule[] | undefined;
     public get lifecycleRule() {
       return this.interpolationForAttribute('lifecycle_rule') as any;
     }
-    public set lifecycleRule(value: S3BucketLifecycleRule[] ) {
+    public set lifecycleRule(value: S3BucketLifecycleRule[] | undefined) {
       this._lifecycleRule = value;
     }
     public resetLifecycleRule() {
@@ -3926,11 +3926,11 @@ export namespace S3 {
     }
 
     // logging - computed: false, optional: true, required: false
-    private _logging?: S3BucketLogging[];
+    private _logging?: S3BucketLogging[] | undefined;
     public get logging() {
       return this.interpolationForAttribute('logging') as any;
     }
-    public set logging(value: S3BucketLogging[] ) {
+    public set logging(value: S3BucketLogging[] | undefined) {
       this._logging = value;
     }
     public resetLogging() {
@@ -3942,11 +3942,11 @@ export namespace S3 {
     }
 
     // object_lock_configuration - computed: false, optional: true, required: false
-    private _objectLockConfiguration?: IS3BucketObjectLockConfiguration;
+    private _objectLockConfiguration?: IS3BucketObjectLockConfiguration | undefined;
     public get objectLockConfiguration() {
-      return this.interpolationForAttribute('object_lock_configuration') as any;
+      return this._objectLockConfiguration ? new S3BucketObjectLockConfiguration(this as any, \\"object_lock_configuration\\", this._objectLockConfiguration) : undefined;
     }
-    public set objectLockConfiguration(value: S3BucketObjectLockConfiguration ) {
+    public putObjectLockConfiguration(value: IS3BucketObjectLockConfiguration | undefined) {
       this._objectLockConfiguration = value;
     }
     public resetObjectLockConfiguration() {
@@ -3958,11 +3958,11 @@ export namespace S3 {
     }
 
     // replication_configuration - computed: false, optional: true, required: false
-    private _replicationConfiguration?: IS3BucketReplicationConfiguration;
+    private _replicationConfiguration?: IS3BucketReplicationConfiguration | undefined;
     public get replicationConfiguration() {
-      return this.interpolationForAttribute('replication_configuration') as any;
+      return this._replicationConfiguration ? new S3BucketReplicationConfiguration(this as any, \\"replication_configuration\\", this._replicationConfiguration) : undefined;
     }
-    public set replicationConfiguration(value: S3BucketReplicationConfiguration ) {
+    public putReplicationConfiguration(value: IS3BucketReplicationConfiguration | undefined) {
       this._replicationConfiguration = value;
     }
     public resetReplicationConfiguration() {
@@ -3974,11 +3974,11 @@ export namespace S3 {
     }
 
     // server_side_encryption_configuration - computed: false, optional: true, required: false
-    private _serverSideEncryptionConfiguration?: IS3BucketServerSideEncryptionConfiguration;
+    private _serverSideEncryptionConfiguration?: IS3BucketServerSideEncryptionConfiguration | undefined;
     public get serverSideEncryptionConfiguration() {
-      return this.interpolationForAttribute('server_side_encryption_configuration') as any;
+      return this._serverSideEncryptionConfiguration ? new S3BucketServerSideEncryptionConfiguration(this as any, \\"server_side_encryption_configuration\\", this._serverSideEncryptionConfiguration) : undefined;
     }
-    public set serverSideEncryptionConfiguration(value: S3BucketServerSideEncryptionConfiguration ) {
+    public putServerSideEncryptionConfiguration(value: IS3BucketServerSideEncryptionConfiguration | undefined) {
       this._serverSideEncryptionConfiguration = value;
     }
     public resetServerSideEncryptionConfiguration() {
@@ -3990,11 +3990,11 @@ export namespace S3 {
     }
 
     // versioning - computed: false, optional: true, required: false
-    private _versioning?: IS3BucketVersioning;
+    private _versioning?: IS3BucketVersioning | undefined;
     public get versioning() {
-      return this.interpolationForAttribute('versioning') as any;
+      return this._versioning ? new S3BucketVersioning(this as any, \\"versioning\\", this._versioning) : undefined;
     }
-    public set versioning(value: S3BucketVersioning ) {
+    public putVersioning(value: IS3BucketVersioning | undefined) {
       this._versioning = value;
     }
     public resetVersioning() {
@@ -4006,11 +4006,11 @@ export namespace S3 {
     }
 
     // website - computed: false, optional: true, required: false
-    private _website?: IS3BucketWebsite;
+    private _website?: IS3BucketWebsite | undefined;
     public get website() {
-      return this.interpolationForAttribute('website') as any;
+      return this._website ? new S3BucketWebsite(this as any, \\"website\\", this._website) : undefined;
     }
-    public set website(value: S3BucketWebsite ) {
+    public putWebsite(value: IS3BucketWebsite | undefined) {
       this._website = value;
     }
     public resetWebsite() {
@@ -4243,11 +4243,11 @@ export namespace VPC {
     }
 
     // create - computed: false, optional: true, required: false
-    private _create?: string;
+    private _create?: string | undefined;
     public get create() {
       return this.getStringAttribute('create');
     }
-    public set create(value: string ) {
+    public set create(value: string | undefined) {
       this._create = value;
     }
     public resetCreate() {
@@ -4259,11 +4259,11 @@ export namespace VPC {
     }
 
     // delete - computed: false, optional: true, required: false
-    private _delete?: string;
+    private _delete?: string | undefined;
     public get delete() {
       return this.getStringAttribute('delete');
     }
-    public set delete(value: string ) {
+    public set delete(value: string | undefined) {
       this._delete = value;
     }
     public resetDelete() {
@@ -4328,11 +4328,11 @@ export namespace VPC {
     }
 
     // description - computed: false, optional: true, required: false
-    private _description?: string;
+    private _description?: string | undefined;
     public get description() {
       return this.getStringAttribute('description');
     }
-    public set description(value: string ) {
+    public set description(value: string | undefined) {
       this._description = value;
     }
     public resetDescription() {
@@ -4344,11 +4344,11 @@ export namespace VPC {
     }
 
     // egress - computed: true, optional: true, required: false
-    private _egress?: SecurityGroupEgress[]
-    public get egress(): SecurityGroupEgress[] {
-      return this.interpolationForAttribute('egress') as any; // Getting the computed value is not yet implemented
+    private _egress?: SecurityGroupEgress[] | undefined;
+    public get egress() {
+      return this.interpolationForAttribute('egress') as any;
     }
-    public set egress(value: SecurityGroupEgress[]) {
+    public set egress(value: SecurityGroupEgress[] | undefined) {
       this._egress = value;
     }
     public resetEgress() {
@@ -4365,11 +4365,11 @@ export namespace VPC {
     }
 
     // ingress - computed: true, optional: true, required: false
-    private _ingress?: SecurityGroupIngress[]
-    public get ingress(): SecurityGroupIngress[] {
-      return this.interpolationForAttribute('ingress') as any; // Getting the computed value is not yet implemented
+    private _ingress?: SecurityGroupIngress[] | undefined;
+    public get ingress() {
+      return this.interpolationForAttribute('ingress') as any;
     }
-    public set ingress(value: SecurityGroupIngress[]) {
+    public set ingress(value: SecurityGroupIngress[] | undefined) {
       this._ingress = value;
     }
     public resetIngress() {
@@ -4381,11 +4381,11 @@ export namespace VPC {
     }
 
     // name - computed: true, optional: true, required: false
-    private _name?: string;
+    private _name?: string | undefined;
     public get name() {
       return this.getStringAttribute('name');
     }
-    public set name(value: string) {
+    public set name(value: string | undefined) {
       this._name = value;
     }
     public resetName() {
@@ -4397,11 +4397,11 @@ export namespace VPC {
     }
 
     // name_prefix - computed: false, optional: true, required: false
-    private _namePrefix?: string;
+    private _namePrefix?: string | undefined;
     public get namePrefix() {
       return this.getStringAttribute('name_prefix');
     }
-    public set namePrefix(value: string ) {
+    public set namePrefix(value: string | undefined) {
       this._namePrefix = value;
     }
     public resetNamePrefix() {
@@ -4418,11 +4418,11 @@ export namespace VPC {
     }
 
     // revoke_rules_on_delete - computed: false, optional: true, required: false
-    private _revokeRulesOnDelete?: boolean | cdktf.IResolvable;
+    private _revokeRulesOnDelete?: boolean | cdktf.IResolvable | undefined;
     public get revokeRulesOnDelete() {
       return this.getBooleanAttribute('revoke_rules_on_delete') as any;
     }
-    public set revokeRulesOnDelete(value: boolean | cdktf.IResolvable ) {
+    public set revokeRulesOnDelete(value: boolean | cdktf.IResolvable | undefined) {
       this._revokeRulesOnDelete = value;
     }
     public resetRevokeRulesOnDelete() {
@@ -4434,11 +4434,11 @@ export namespace VPC {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string };
+    private _tags?: { [key: string]: string } | undefined;
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
-    public set tags(value: { [key: string]: string } ) {
+    public set tags(value: { [key: string]: string } | undefined) {
       this._tags = value;
     }
     public resetTags() {
@@ -4450,11 +4450,11 @@ export namespace VPC {
     }
 
     // vpc_id - computed: true, optional: true, required: false
-    private _vpcId?: string;
+    private _vpcId?: string | undefined;
     public get vpcId() {
       return this.getStringAttribute('vpc_id');
     }
-    public set vpcId(value: string) {
+    public set vpcId(value: string | undefined) {
       this._vpcId = value;
     }
     public resetVpcId() {
@@ -4466,11 +4466,11 @@ export namespace VPC {
     }
 
     // timeouts - computed: false, optional: true, required: false
-    private _timeouts?: ISecurityGroupTimeouts;
+    private _timeouts?: ISecurityGroupTimeouts | undefined;
     public get timeouts() {
-      return this.interpolationForAttribute('timeouts') as any;
+      return this._timeouts ? new SecurityGroupTimeouts(this as any, \\"timeouts\\", this._timeouts) : undefined;
     }
-    public set timeouts(value: SecurityGroupTimeouts ) {
+    public putTimeouts(value: ISecurityGroupTimeouts | undefined) {
       this._timeouts = value;
     }
     public resetTimeouts() {
