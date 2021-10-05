@@ -51,6 +51,7 @@ export namespace ACM {
     readonly options?: IAcmCertificateOptions;
   }
   export class AcmCertificateDomainValidationOptions extends cdktf.ComplexComputedList {
+    public withinArray = true;
 
     // domain_name - computed: true, optional: false, required: false
     public get domainName() {
@@ -71,6 +72,10 @@ export namespace ACM {
     public get resourceRecordValue() {
       return this.getStringAttribute('resource_record_value');
     }
+    public asList(): AcmCertificateDomainValidationOptions[] {
+      this.withinArray = true;
+      return [this];
+    }
   }
   export interface IAcmCertificateOptions {
     /**
@@ -90,10 +95,11 @@ export namespace ACM {
     /**
     * @param options AcmCertificateOptions = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAcmCertificateOptions = {}) {
-      super(terraformResource, terraformAttribute);
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IAcmCertificateOptions = {}) {
+      super(terraformResource, terraformAttribute, isSingleItem);
       this._certificateTransparencyLoggingPreference = config.certificateTransparencyLoggingPreference;
     }
+    public withinArray = true;
 
     // certificate_transparency_logging_preference - computed: false, optional: true, required: false
     private _certificateTransparencyLoggingPreference?: string | undefined;
@@ -109,6 +115,10 @@ export namespace ACM {
     // Temporarily expose input value. Use with caution.
     public get certificateTransparencyLoggingPreferenceInput() {
       return this._certificateTransparencyLoggingPreference
+    }
+    public asList(): AcmCertificateOptions[] {
+      this.withinArray = true;
+      return [this];
     }
   }
 
@@ -310,7 +320,7 @@ export namespace ACM {
     // options - computed: false, optional: true, required: false
     private _options?: IAcmCertificateOptions | undefined;
     public get options() {
-      return this._options ? new AcmCertificateOptions(this as any, \\"options\\", this._options) : undefined;
+      return this._options ? new AcmCertificateOptions(this as any, \\"options\\", true, this._options) : undefined;
     }
     public putOptions(value: IAcmCertificateOptions | undefined) {
       this._options = value;

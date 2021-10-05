@@ -62,10 +62,10 @@ export class StructEmitter {
 
   private emitClass(struct: Struct) {
     this.code.openBlock(
-      `export class ${struct.name} ${
+      `export class ${struct.name} extends ${
         struct.isSingleItem
-          ? "extends cdktf.ComplexObject"
-          : "extends cdktf.ComplexComputedList"
+          ? "cdktf.ComplexObject"
+          : "cdktf.ComplexComputedList"
       }`
     );
 
@@ -74,18 +74,21 @@ export class StructEmitter {
       this.code.line(`* @param options ${struct.attributeType}`);
       this.code.line(`*/`);
       this.code.openBlock(
-        `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string ${
+        `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean ${
           struct.assignableAttributes.length > 0
             ? `, config: I${struct.attributeType}`
             : ""
         })`
       );
-      this.code.line(`super(terraformResource, terraformAttribute);`);
+      this.code.line(
+        `super(terraformResource, terraformAttribute, isSingleItem);`
+      );
       for (const att of struct.assignableAttributes) {
         this.code.line(`this.${att.storageName} = config.${att.name};`);
       }
       this.code.closeBlock();
     }
+    this.code.line(`public withinArray = true;`);
 
     for (const att of struct.attributes) {
       this.attributesEmitter.emit(
@@ -94,6 +97,14 @@ export class StructEmitter {
         this.attributesEmitter.needsInputEscape(att, struct.attributes)
       );
     }
+
+    // We want to be able to create a list of this type out of an instance
+    // of this type.
+    this.code.openBlock(`public asList(): ${struct.name}[]`);
+    this.code.line(`this.withinArray = true;`);
+    this.code.line(`return [this];`);
+    this.code.closeBlock();
+
     this.code.closeBlock();
   }
 

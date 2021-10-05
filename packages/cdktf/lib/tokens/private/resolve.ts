@@ -9,7 +9,13 @@ import {
   StringConcat,
 } from "../resolvable";
 import { TokenizedStringFragments } from "../string-fragments";
-import { containsListTokenElement, TokenString, unresolved } from "./encoding";
+import {
+  containsListTokenElement,
+  containsComplexListTokenElement,
+  TokenString,
+  unresolved,
+  containsComplexElement,
+} from "./encoding";
 import { TokenMap } from "./token-map";
 
 // This file should not be exported to consumers, resolving should happen through Construct.resolve()
@@ -165,6 +171,9 @@ export function resolve(obj: any, options: IResolveOptions): any {
     if (containsListTokenElement(obj)) {
       return options.resolver.resolveList(obj, makeContext()[0]);
     }
+    if (containsComplexListTokenElement(obj)) {
+      return obj[0].interpolationAsList();
+    }
 
     const arr = obj
       .map((x, i) => makeContext(`${i}`)[0].resolve(x))
@@ -180,6 +189,15 @@ export function resolve(obj: any, options: IResolveOptions): any {
   if (unresolved(obj)) {
     const [context, postProcessor] = makeContext();
     return options.resolver.resolveToken(obj, context, postProcessor);
+  }
+
+  //
+  // list items - throw an error since they must not be directly accessed
+  //
+  if (containsComplexElement(obj)) {
+    throw new Error(
+      `Found a list item token ${obj.__tfid} in a list. List items can only be accessed via the containing list. Path: ${pathName}`
+    );
   }
 
   //

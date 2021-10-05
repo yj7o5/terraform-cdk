@@ -226,6 +226,7 @@ import * as cdktf from 'cdktf';
 export interface ComputedComplexConfig extends cdktf.TerraformMetaArguments {
 }
 export class ComputedComplexEgress extends cdktf.ComplexComputedList {
+  public withinArray = true;
 
   // cidr_blocks - computed: true, optional: false, required: false
   public get cidrBlocks() {
@@ -270,6 +271,10 @@ export class ComputedComplexEgress extends cdktf.ComplexComputedList {
   // to_port - computed: true, optional: false, required: false
   public get toPort() {
     return this.getNumberAttribute('to_port');
+  }
+  public asList(): ComputedComplexEgress[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 
@@ -340,13 +345,19 @@ import * as cdktf from 'cdktf';
 export interface ComputedComplexNestedConfig extends cdktf.TerraformMetaArguments {
 }
 export class ComputedComplexNestedResourcesAutoscalingGroups extends cdktf.ComplexComputedList {
+  public withinArray = true;
 
   // name - computed: true, optional: false, required: false
   public get name() {
     return this.getStringAttribute('name');
   }
+  public asList(): ComputedComplexNestedResourcesAutoscalingGroups[] {
+    this.withinArray = true;
+    return [this];
+  }
 }
 export class ComputedComplexNestedResources extends cdktf.ComplexComputedList {
+  public withinArray = true;
 
   // autoscaling_groups - computed: true, optional: false, required: false
   public get autoscalingGroups() {
@@ -356,6 +367,10 @@ export class ComputedComplexNestedResources extends cdktf.ComplexComputedList {
   // remote_access_security_group_id - computed: true, optional: false, required: false
   public get remoteAccessSecurityGroupId() {
     return this.getStringAttribute('remote_access_security_group_id');
+  }
+  public asList(): ComputedComplexNestedResources[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 
@@ -687,10 +702,11 @@ export class DeeplyNestedBlockTypesLifecycleRuleExpiration extends cdktf.Complex
   /**
   * @param options DeeplyNestedBlockTypesLifecycleRuleExpiration = {}
   */
-  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IDeeplyNestedBlockTypesLifecycleRuleExpiration = {}) {
-    super(terraformResource, terraformAttribute);
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IDeeplyNestedBlockTypesLifecycleRuleExpiration = {}) {
+    super(terraformResource, terraformAttribute, isSingleItem);
     this._date = config.date;
   }
+  public withinArray = true;
 
   // date - computed: false, optional: true, required: false
   private _date?: string | undefined;
@@ -706,6 +722,10 @@ export class DeeplyNestedBlockTypesLifecycleRuleExpiration extends cdktf.Complex
   // Temporarily expose input value. Use with caution.
   public get dateInput() {
     return this._date
+  }
+  public asList(): DeeplyNestedBlockTypesLifecycleRuleExpiration[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 export interface DeeplyNestedBlockTypesLifecycleRule {
@@ -2116,10 +2136,11 @@ export class SingleBlockTypeTimeouts extends cdktf.ComplexObject {
   /**
   * @param options SingleBlockTypeTimeouts = {}
   */
-  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: ISingleBlockTypeTimeouts = {}) {
-    super(terraformResource, terraformAttribute);
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ISingleBlockTypeTimeouts = {}) {
+    super(terraformResource, terraformAttribute, isSingleItem);
     this._create = config.create;
   }
+  public withinArray = true;
 
   // create - computed: false, optional: true, required: false
   private _create?: string | undefined;
@@ -2135,6 +2156,10 @@ export class SingleBlockTypeTimeouts extends cdktf.ComplexObject {
   // Temporarily expose input value. Use with caution.
   public get createInput() {
     return this._create
+  }
+  public asList(): SingleBlockTypeTimeouts[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 
@@ -2180,7 +2205,7 @@ export class SingleBlockType extends cdktf.TerraformResource {
   // timeouts - computed: false, optional: true, required: false
   private _timeouts?: ISingleBlockTypeTimeouts | undefined;
   public get timeouts() {
-    return this._timeouts ? new SingleBlockTypeTimeouts(this as any, \\"timeouts\\", this._timeouts) : undefined;
+    return this._timeouts ? new SingleBlockTypeTimeouts(this as any, \\"timeouts\\", true, this._timeouts) : undefined;
   }
   public putTimeouts(value: ISingleBlockTypeTimeouts | undefined) {
     this._timeouts = value;

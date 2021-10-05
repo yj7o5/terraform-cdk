@@ -177,13 +177,14 @@ export class AwsProviderAssumeRole extends cdktf.ComplexObject {
   /**
   * @param options AwsProviderAssumeRole = {}
   */
-  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAwsProviderAssumeRole = {}) {
-    super(terraformResource, terraformAttribute);
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IAwsProviderAssumeRole = {}) {
+    super(terraformResource, terraformAttribute, isSingleItem);
     this._externalId = config.externalId;
     this._policy = config.policy;
     this._roleArn = config.roleArn;
     this._sessionName = config.sessionName;
   }
+  public withinArray = true;
 
   // external_id - computed: false, optional: true, required: false
   private _externalId?: string | undefined;
@@ -247,6 +248,10 @@ export class AwsProviderAssumeRole extends cdktf.ComplexObject {
   // Temporarily expose input value. Use with caution.
   public get sessionNameInput() {
     return this._sessionName
+  }
+  public asList(): AwsProviderAssumeRole[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 export interface AwsProviderEndpoints {
@@ -1230,11 +1235,12 @@ export class AwsProviderIgnoreTags extends cdktf.ComplexObject {
   /**
   * @param options AwsProviderIgnoreTags = {}
   */
-  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string , config: IAwsProviderIgnoreTags = {}) {
-    super(terraformResource, terraformAttribute);
+  public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IAwsProviderIgnoreTags = {}) {
+    super(terraformResource, terraformAttribute, isSingleItem);
     this._keyPrefixes = config.keyPrefixes;
     this._keys = config.keys;
   }
+  public withinArray = true;
 
   // key_prefixes - computed: false, optional: true, required: false
   private _keyPrefixes?: string[] | undefined;
@@ -1266,6 +1272,10 @@ export class AwsProviderIgnoreTags extends cdktf.ComplexObject {
   // Temporarily expose input value. Use with caution.
   public get keysInput() {
     return this._keys
+  }
+  public asList(): AwsProviderIgnoreTags[] {
+    this.withinArray = true;
+    return [this];
   }
 }
 
@@ -1597,7 +1607,7 @@ export class AwsProvider extends cdktf.TerraformProvider {
   // assume_role - computed: false, optional: true, required: false
   private _assumeRole?: IAwsProviderAssumeRole | undefined;
   public get assumeRole() {
-    return this._assumeRole ? new AwsProviderAssumeRole(this as any, \\"assume_role\\", this._assumeRole) : undefined;
+    return this._assumeRole ? new AwsProviderAssumeRole(this as any, \\"assume_role\\", true, this._assumeRole) : undefined;
   }
   public putAssumeRole(value: IAwsProviderAssumeRole | undefined) {
     this._assumeRole = value;
@@ -1629,7 +1639,7 @@ export class AwsProvider extends cdktf.TerraformProvider {
   // ignore_tags - computed: false, optional: true, required: false
   private _ignoreTags?: IAwsProviderIgnoreTags | undefined;
   public get ignoreTags() {
-    return this._ignoreTags ? new AwsProviderIgnoreTags(this as any, \\"ignore_tags\\", this._ignoreTags) : undefined;
+    return this._ignoreTags ? new AwsProviderIgnoreTags(this as any, \\"ignore_tags\\", true, this._ignoreTags) : undefined;
   }
   public putIgnoreTags(value: IAwsProviderIgnoreTags | undefined) {
     this._ignoreTags = value;

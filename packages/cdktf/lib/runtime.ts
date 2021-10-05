@@ -5,6 +5,12 @@
 //
 // We use identity mappers for the primitive types. These don't do anything but are there to make the code
 // generation work out nicely (so the code generator doesn't need to emit different code for primitive
+
+import {
+  containsComplexElement,
+  containsComplexListTokenElement,
+} from "./tokens/private/encoding";
+
 // vs. complex types).
 export type Mapper = (x: any) => any;
 
@@ -22,6 +28,15 @@ export function listMapper(elementMapper: Mapper): Mapper {
     if (!canInspect(x)) {
       return x;
     }
+    // Check if it's a token list
+    if (containsComplexListTokenElement(x)) {
+      return x;
+    }
+
+    if (!Array.isArray(x)) {
+      return x;
+    }
+
     return x.map(elementMapper);
   };
 }
@@ -29,6 +44,11 @@ export function listMapper(elementMapper: Mapper): Mapper {
 export function hashMapper(elementMapper: Mapper): Mapper {
   return (x: any) => {
     if (!canInspect(x)) {
+      return x;
+    }
+
+    // Check if it's a token object
+    if (containsComplexElement(x)) {
       return x;
     }
 

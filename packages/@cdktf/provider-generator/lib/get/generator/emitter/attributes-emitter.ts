@@ -39,6 +39,8 @@ export class AttributesEmitter {
 
     let getterType: GetterType = { _type: "plain" };
 
+    // TODO: move this logic into Attribute Type Model
+    // TODO: replace complex computed list with normal list
     if (
       // Complex Computed List Map
       att.computed &&
@@ -159,14 +161,19 @@ export class AttributesEmitter {
   }
 
   private storedClassAccess(att: AttributeModel) {
-    const invocation = `new ${att.type.name}(this as any, "${
+    let invocation = `new ${att.type.name}(this as any, "${
       att.terraformName
-    }"${
+    }", ${att.type.isSingleItem ? "true" : "false"}${
       (att.type.struct?.assignableAttributes.length || 0) > 0
         ? `, this.${att.storageName}`
         : ""
     })`;
 
+    if (att.type.isList && !att.type.isSingleItem) {
+      invocation = `${invocation}.asList()`;
+    }
+
+    // TODO: Should there be even optionals in this context
     return att.isOptional
       ? `this.${att.storageName} ? ${invocation} : undefined`
       : invocation;
