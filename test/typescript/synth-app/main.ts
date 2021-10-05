@@ -54,7 +54,7 @@ export class HelloTerra extends TerraformStack {
     });
 
     new TerraformOutput(this, "instance-http-endpoint", {
-      value: instance.metadataOptions.httpEndpoint,
+      value: instance.metadataOptions?.httpEndpoint,
     });
 
     this.addOverride("terraform.backend", {
