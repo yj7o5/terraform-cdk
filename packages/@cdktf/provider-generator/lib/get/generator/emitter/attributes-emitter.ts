@@ -3,23 +3,6 @@ import { AttributeModel } from "../models";
 import { downcaseFirst } from "../../../util";
 import { CUSTOM_DEFAULTS } from "../custom-defaults";
 
-type GetterType =
-  | { _type: "plain" }
-  | {
-      _type: "args";
-      args: string;
-      returnType?: string;
-      returnStatement: string;
-    }
-  | {
-      _type: "stored_class";
-    };
-
-type SetterType =
-  | { __type: "none" }
-  | { __type: "set"; type: string }
-  | { __type: "put"; type: string };
-
 function titleCase(value: string) {
   return value[0].toUpperCase() + value.slice(1);
 }
@@ -33,80 +16,15 @@ export class AttributesEmitter {
       `// ${att.terraformName} - computed: ${att.computed}, optional: ${att.isOptional}, required: ${att.isRequired}`
     );
 
-    const isStored = att.isAssignable && !att.isConfigIgnored;
+    const isStored = att.isStored;
     const hasResetMethod = isStored && !att.isRequired;
     const hasInputMethod = isStored;
 
-    let getterType: GetterType = { _type: "plain" };
-
-    // TODO: move this logic into Attribute Type Model
-    // TODO: replace complex computed list with normal list
-    if (
-      // Complex Computed List Map
-      att.computed &&
-      !att.isOptional &&
-      att.type.isComputedComplex &&
-      att.type.isList &&
-      att.type.isMap
-    ) {
-      getterType = {
-        _type: "args",
-        args: "index: string, key: string",
-        returnType: this.determineMapType(att),
-        returnStatement: `new ${att.type.name}(this, \`${att.terraformName}.\${index}\`).lookup(key)`,
-      };
-    } else if (
-      // Complex Computed List
-      att.computed &&
-      !att.isOptional &&
-      att.type.isComputedComplex &&
-      att.type.isList
-    ) {
-      getterType = {
-        _type: "args",
-        args: "index: string",
-        returnStatement: `new ${att.type.name}(this, '${att.terraformName}', index)`,
-      };
-    } else if (
-      // Complex Computed Map
-      att.computed &&
-      !att.isOptional &&
-      att.type.isComputedComplex &&
-      att.type.isMap
-    ) {
-      getterType = {
-        _type: "args",
-        args: "key: string",
-        returnType: this.determineMapType(att),
-        returnStatement: `new ${att.type.name}(this, '${att.terraformName}').lookup(key)`,
-      };
-    }
-
-    if (att.type.isSingleItem && att.type.isComplex) {
-      getterType = { _type: "stored_class" };
-    }
-
-    const setterType: SetterType = isStored
-      ? att.type.isSingleItem
-        ? {
-            __type: "put",
-            type: att.type.storedName,
-          }
-        : {
-            __type: "set",
-            type: att.type.storedName,
-          }
-      : { __type: "none" };
-
     if (isStored) {
-      this.code.line(
-        `private ${att.storageName}${att.isOptional ? "?" : ""}: ${
-          att.type.storedName
-        };`
-      );
+      this.code.line(`private ${att.storageName}?: ${att.type.storedName}; `);
     }
 
-    switch (getterType._type) {
+    switch (att.getterType._type) {
       case "plain":
         this.code.openBlock(`public get ${att.name}()`);
         this.code.line(`return ${this.determineGetAttCall(att)};`);
@@ -115,28 +33,33 @@ export class AttributesEmitter {
 
       case "args":
         this.code.openBlock(
-          `public ${att.name}(${getterType.args})${
-            getterType.returnType ? ": " + getterType.returnType : ""
+          `public ${att.name}(${att.getterType.args})${
+            att.getterType.returnType ? ": " + att.getterType.returnType : ""
           }`
         );
-        this.code.line(`return ${getterType.returnStatement};`);
+        this.code.line(`return ${att.getterType.returnStatement};`);
         this.code.closeBlock();
         break;
 
       case "stored_class":
+        this.code.line(
+          `private _${att.storageName}Class = ${this.storedClassInit(att)};`
+        );
         this.code.openBlock(`public get ${att.name}()`);
-        this.code.line(`return ${this.storedClassAccess(att)};`);
+        this.code.line(`return this._${att.storageName}Class;`);
         this.code.closeBlock();
         break;
     }
 
-    if (setterType.__type === "set") {
-      this.code.openBlock(`public set ${att.name}(value: ${setterType.type})`);
+    if (att.setterType.__type === "set") {
+      this.code.openBlock(
+        `public set ${att.name}(value: ${att.setterType.type})`
+      );
       this.code.line(`this.${att.storageName} = value;`);
       this.code.closeBlock();
-    } else if (setterType.__type === "put") {
+    } else if (att.setterType.__type === "put") {
       this.code.openBlock(
-        `public put${titleCase(att.name)}(value: ${setterType.type})`
+        `public put${titleCase(att.name)}(value: ${att.setterType.type})`
       );
       this.code.line(`this.${att.storageName} = value;`);
       this.code.closeBlock();
@@ -160,23 +83,16 @@ export class AttributesEmitter {
     }
   }
 
-  private storedClassAccess(att: AttributeModel) {
+  private storedClassInit(att: AttributeModel) {
     let invocation = `new ${att.type.name}(this as any, "${
       att.terraformName
-    }", ${att.type.isSingleItem ? "true" : "false"}${
-      (att.type.struct?.assignableAttributes.length || 0) > 0
-        ? `, this.${att.storageName}`
-        : ""
-    })`;
+    }", ${att.type.isSingleItem ? "true" : "false"})`;
 
-    if (att.type.isList && !att.type.isSingleItem) {
-      invocation = `${invocation}.asList()`;
-    }
+    // if (att.type.isList && !att.type.isSingleItem) {
+    //   invocation = `${invocation}.asList()`;
+    // }
 
-    // TODO: Should there be even optionals in this context
-    return att.isOptional
-      ? `this.${att.storageName} ? ${invocation} : undefined`
-      : invocation;
+    return invocation;
   }
 
   public determineGetAttCall(att: AttributeModel): string {
@@ -203,25 +119,6 @@ export class AttributesEmitter {
       );
     }
     return `this.interpolationForAttribute('${att.terraformName}') as any`;
-  }
-
-  public determineMapType(att: AttributeModel): string {
-    const type = att.type;
-    if (type.isStringMap) {
-      return `string`;
-    }
-    if (type.isNumberMap) {
-      return `number`;
-    }
-    if (type.isBooleanMap) {
-      return `boolean`;
-    }
-    if (process.env.DEBUG) {
-      console.error(
-        `The attribute ${JSON.stringify(att)} isn't implemented yet`
-      );
-    }
-    return `any`;
   }
 
   public needsInputEscape(
@@ -278,11 +175,7 @@ export class AttributesEmitter {
     switch (true) {
       case type.isList && type.isMap:
         this.code.line(
-          `${
-            att.terraformName
-          }: ${defaultCheck}cdktf.listMapper(cdktf.hashMapper(cdktf.${this.determineMapType(
-            att
-          )}ToTerraform))(${varReference}),`
+          `${att.terraformName}: ${defaultCheck}cdktf.listMapper(cdktf.hashMapper(cdktf.${att.mapType}ToTerraform))(${varReference}),`
         );
         break;
       case type.isStringList || type.isNumberList || type.isBooleanList:
@@ -305,11 +198,7 @@ export class AttributesEmitter {
         break;
       case type.isMap:
         this.code.line(
-          `${
-            att.terraformName
-          }: ${defaultCheck}cdktf.hashMapper(cdktf.${this.determineMapType(
-            att
-          )}ToTerraform)(${varReference}),`
+          `${att.terraformName}: ${defaultCheck}cdktf.hashMapper(cdktf.${att.mapType}ToTerraform)(${varReference}),`
         );
         break;
       case type.isString:

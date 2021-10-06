@@ -20,8 +20,7 @@ class KubeStack extends TerraformStack {
     });
 
     const app = "nginx-example";
-    // const nginx =
-    new Deployment(this, "nginx-deployment", {
+    const nginx = new Deployment(this, "nginx-deployment", {
       metadata: {
         name: app,
         namespace: exampleNamespace.metadata.name,
@@ -69,20 +68,20 @@ class KubeStack extends TerraformStack {
       },
     });
 
-    // const single = new Deployment(this, "single-nginx", {
-    //   metadata: nginx.metadata,
-    //   spec: {
-    //     replicas: 1,
-    //     selector: nginx.spec.selector,
-    //     template: {
-    //       metadata: nginx.spec.template.metadata,
-    //       spec: {
-    //         container: nginx.spec.template.spec.container,
-    //       },
-    //     },
-    //   },
-    // });
-    // single.metadata.name = "single-nginx";
+    const single = new Deployment(this, "single-nginx", {
+      metadata: nginx.metadata,
+      spec: {
+        replicas: 1,
+        selector: nginx.spec.selector,
+        template: {
+          metadata: nginx.spec.template.metadata,
+          spec: {
+            container: nginx.spec.template.spec.container,
+          },
+        },
+      },
+    });
+    single.metadata.name = "single-nginx";
 
     new Service(this, "nginx-service", {
       metadata: {

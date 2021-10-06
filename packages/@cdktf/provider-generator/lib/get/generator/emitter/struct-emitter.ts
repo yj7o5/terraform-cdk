@@ -74,21 +74,14 @@ export class StructEmitter {
       this.code.line(`* @param options ${struct.attributeType}`);
       this.code.line(`*/`);
       this.code.openBlock(
-        `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean ${
-          struct.assignableAttributes.length > 0
-            ? `, config: I${struct.attributeType}`
-            : ""
-        })`
+        `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean)`
       );
       this.code.line(
         `super(terraformResource, terraformAttribute, isSingleItem);`
       );
-      for (const att of struct.assignableAttributes) {
-        this.code.line(`this.${att.storageName} = config.${att.name};`);
-      }
       this.code.closeBlock();
     }
-    this.code.line(`public withinArray = true;`);
+    this.code.line(`public withinArray = false;`);
 
     for (const att of struct.attributes) {
       this.attributesEmitter.emit(
@@ -112,10 +105,11 @@ export class StructEmitter {
     this.code.line();
     this.code.openBlock(
       `function ${downcaseFirst(struct.name)}ToTerraform(struct?: ${
-        struct.isSingleItem ? "I" : ""
+        struct.isSingleItem ? `${struct.name} | I` : ""
       }${struct.name}): any`
     );
     this.code.line(`if (!cdktf.canInspect(struct)) { return struct; }`);
+
     this.code.openBlock("return");
     for (const att of struct.isClass
       ? struct.attributes
