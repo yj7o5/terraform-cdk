@@ -51,7 +51,7 @@ export namespace ACM {
     readonly options?: IAcmCertificateOptions;
   }
   export class AcmCertificateDomainValidationOptions extends cdktf.ComplexComputedList {
-    public withinArray = true;
+    public withinArray = false;
 
     // domain_name - computed: true, optional: false, required: false
     public get domainName() {
@@ -84,7 +84,7 @@ export namespace ACM {
     readonly certificateTransparencyLoggingPreference?: string;
   }
 
-  function acmCertificateOptionsToTerraform(struct?: IAcmCertificateOptions): any {
+  function acmCertificateOptionsToTerraform(struct?: AcmCertificateOptions | IAcmCertificateOptions): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       certificate_transparency_logging_preference: cdktf.stringToTerraform(struct!.certificateTransparencyLoggingPreference),
@@ -95,14 +95,13 @@ export namespace ACM {
     /**
     * @param options AcmCertificateOptions = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IAcmCertificateOptions = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._certificateTransparencyLoggingPreference = config.certificateTransparencyLoggingPreference;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // certificate_transparency_logging_preference - computed: false, optional: true, required: false
-    private _certificateTransparencyLoggingPreference?: string | undefined;
+    private _certificateTransparencyLoggingPreference?: string | undefined; 
     public get certificateTransparencyLoggingPreference() {
       return this.getStringAttribute('certificate_transparency_logging_preference');
     }
@@ -175,7 +174,7 @@ export namespace ACM {
     }
 
     // certificate_authority_arn - computed: false, optional: true, required: false
-    private _certificateAuthorityArn?: string | undefined;
+    private _certificateAuthorityArn?: string | undefined; 
     public get certificateAuthorityArn() {
       return this.getStringAttribute('certificate_authority_arn');
     }
@@ -191,7 +190,7 @@ export namespace ACM {
     }
 
     // certificate_body - computed: false, optional: true, required: false
-    private _certificateBody?: string | undefined;
+    private _certificateBody?: string | undefined; 
     public get certificateBody() {
       return this.getStringAttribute('certificate_body');
     }
@@ -207,7 +206,7 @@ export namespace ACM {
     }
 
     // certificate_chain - computed: false, optional: true, required: false
-    private _certificateChain?: string | undefined;
+    private _certificateChain?: string | undefined; 
     public get certificateChain() {
       return this.getStringAttribute('certificate_chain');
     }
@@ -223,7 +222,7 @@ export namespace ACM {
     }
 
     // domain_name - computed: true, optional: true, required: false
-    private _domainName?: string | undefined;
+    private _domainName?: string | undefined; 
     public get domainName() {
       return this.getStringAttribute('domain_name');
     }
@@ -249,7 +248,7 @@ export namespace ACM {
     }
 
     // private_key - computed: false, optional: true, required: false
-    private _privateKey?: string | undefined;
+    private _privateKey?: string | undefined; 
     public get privateKey() {
       return this.getStringAttribute('private_key');
     }
@@ -265,7 +264,7 @@ export namespace ACM {
     }
 
     // subject_alternative_names - computed: true, optional: true, required: false
-    private _subjectAlternativeNames?: string[] | undefined;
+    private _subjectAlternativeNames?: string[] | undefined; 
     public get subjectAlternativeNames() {
       return this.getListAttribute('subject_alternative_names');
     }
@@ -281,7 +280,7 @@ export namespace ACM {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | undefined;
+    private _tags?: { [key: string]: string } | undefined; 
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
@@ -302,7 +301,7 @@ export namespace ACM {
     }
 
     // validation_method - computed: true, optional: true, required: false
-    private _validationMethod?: string | undefined;
+    private _validationMethod?: string | undefined; 
     public get validationMethod() {
       return this.getStringAttribute('validation_method');
     }
@@ -318,9 +317,10 @@ export namespace ACM {
     }
 
     // options - computed: false, optional: true, required: false
-    private _options?: IAcmCertificateOptions | undefined;
+    private _options?: IAcmCertificateOptions | undefined; 
+    private __optionsClass = new AcmCertificateOptions(this as any, \\"options\\", true);
     public get options() {
-      return this._options ? new AcmCertificateOptions(this as any, \\"options\\", true, this._options) : undefined;
+      return this.__optionsClass;
     }
     public putOptions(value: IAcmCertificateOptions | undefined) {
       this._options = value;

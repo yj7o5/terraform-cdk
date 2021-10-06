@@ -121,7 +121,7 @@ export namespace CloudFront {
     readonly whitelistedNames?: string[];
   }
 
-  function cloudfrontDistributionCacheBehaviorForwardedValuesCookiesToTerraform(struct?: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies): any {
+  function cloudfrontDistributionCacheBehaviorForwardedValuesCookiesToTerraform(struct?: CloudfrontDistributionCacheBehaviorForwardedValuesCookies | ICloudfrontDistributionCacheBehaviorForwardedValuesCookies): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       forward: cdktf.stringToTerraform(struct!.forward),
@@ -133,15 +133,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionCacheBehaviorForwardedValuesCookies
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._forward = config.forward;
-      this._whitelistedNames = config.whitelistedNames;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // forward - computed: false, optional: false, required: true
-    private _forward: string;
+    private _forward?: string; 
     public get forward() {
       return this.getStringAttribute('forward');
     }
@@ -154,7 +152,7 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[] | undefined;
+    private _whitelistedNames?: string[] | undefined; 
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
@@ -194,7 +192,7 @@ export namespace CloudFront {
     readonly cookies: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies;
   }
 
-  function cloudfrontDistributionCacheBehaviorForwardedValuesToTerraform(struct?: ICloudfrontDistributionCacheBehaviorForwardedValues): any {
+  function cloudfrontDistributionCacheBehaviorForwardedValuesToTerraform(struct?: CloudfrontDistributionCacheBehaviorForwardedValues | ICloudfrontDistributionCacheBehaviorForwardedValues): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       headers: cdktf.listMapper(cdktf.stringToTerraform)(struct!.headers),
@@ -208,17 +206,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionCacheBehaviorForwardedValues
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionCacheBehaviorForwardedValues) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._headers = config.headers;
-      this._queryString = config.queryString;
-      this._queryStringCacheKeys = config.queryStringCacheKeys;
-      this._cookies = config.cookies;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[] | undefined;
+    private _headers?: string[] | undefined; 
     public get headers() {
       return this.getListAttribute('headers');
     }
@@ -234,7 +228,7 @@ export namespace CloudFront {
     }
 
     // query_string - computed: false, optional: false, required: true
-    private _queryString: boolean | cdktf.IResolvable;
+    private _queryString?: boolean | cdktf.IResolvable; 
     public get queryString() {
       return this.getBooleanAttribute('query_string') as any;
     }
@@ -247,7 +241,7 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[] | undefined;
+    private _queryStringCacheKeys?: string[] | undefined; 
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
@@ -263,9 +257,10 @@ export namespace CloudFront {
     }
 
     // cookies - computed: false, optional: false, required: true
-    private _cookies: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies;
+    private _cookies?: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies; 
+    private __cookiesClass = new CloudfrontDistributionCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true);
     public get cookies() {
-      return new CloudfrontDistributionCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true, this._cookies);
+      return this.__cookiesClass;
     }
     public putCookies(value: ICloudfrontDistributionCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
@@ -426,7 +421,7 @@ export namespace CloudFront {
     readonly whitelistedNames?: string[];
   }
 
-  function cloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesToTerraform(struct?: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies): any {
+  function cloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookiesToTerraform(struct?: CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies | ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       forward: cdktf.stringToTerraform(struct!.forward),
@@ -438,15 +433,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._forward = config.forward;
-      this._whitelistedNames = config.whitelistedNames;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // forward - computed: false, optional: false, required: true
-    private _forward: string;
+    private _forward?: string; 
     public get forward() {
       return this.getStringAttribute('forward');
     }
@@ -459,7 +452,7 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[] | undefined;
+    private _whitelistedNames?: string[] | undefined; 
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
@@ -499,7 +492,7 @@ export namespace CloudFront {
     readonly cookies: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies;
   }
 
-  function cloudfrontDistributionDefaultCacheBehaviorForwardedValuesToTerraform(struct?: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues): any {
+  function cloudfrontDistributionDefaultCacheBehaviorForwardedValuesToTerraform(struct?: CloudfrontDistributionDefaultCacheBehaviorForwardedValues | ICloudfrontDistributionDefaultCacheBehaviorForwardedValues): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       headers: cdktf.listMapper(cdktf.stringToTerraform)(struct!.headers),
@@ -513,17 +506,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionDefaultCacheBehaviorForwardedValues
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._headers = config.headers;
-      this._queryString = config.queryString;
-      this._queryStringCacheKeys = config.queryStringCacheKeys;
-      this._cookies = config.cookies;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[] | undefined;
+    private _headers?: string[] | undefined; 
     public get headers() {
       return this.getListAttribute('headers');
     }
@@ -539,7 +528,7 @@ export namespace CloudFront {
     }
 
     // query_string - computed: false, optional: false, required: true
-    private _queryString: boolean | cdktf.IResolvable;
+    private _queryString?: boolean | cdktf.IResolvable; 
     public get queryString() {
       return this.getBooleanAttribute('query_string') as any;
     }
@@ -552,7 +541,7 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[] | undefined;
+    private _queryStringCacheKeys?: string[] | undefined; 
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
@@ -568,9 +557,10 @@ export namespace CloudFront {
     }
 
     // cookies - computed: false, optional: false, required: true
-    private _cookies: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies;
+    private _cookies?: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies; 
+    private __cookiesClass = new CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true);
     public get cookies() {
-      return new CloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true, this._cookies);
+      return this.__cookiesClass;
     }
     public putCookies(value: ICloudfrontDistributionDefaultCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
@@ -667,7 +657,7 @@ export namespace CloudFront {
     readonly lambdaFunctionAssociation?: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[];
   }
 
-  function cloudfrontDistributionDefaultCacheBehaviorToTerraform(struct?: ICloudfrontDistributionDefaultCacheBehavior): any {
+  function cloudfrontDistributionDefaultCacheBehaviorToTerraform(struct?: CloudfrontDistributionDefaultCacheBehavior | ICloudfrontDistributionDefaultCacheBehavior): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       allowed_methods: cdktf.listMapper(cdktf.stringToTerraform)(struct!.allowedMethods),
@@ -690,26 +680,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionDefaultCacheBehavior
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionDefaultCacheBehavior) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._allowedMethods = config.allowedMethods;
-      this._cachedMethods = config.cachedMethods;
-      this._compress = config.compress;
-      this._defaultTtl = config.defaultTtl;
-      this._fieldLevelEncryptionId = config.fieldLevelEncryptionId;
-      this._maxTtl = config.maxTtl;
-      this._minTtl = config.minTtl;
-      this._smoothStreaming = config.smoothStreaming;
-      this._targetOriginId = config.targetOriginId;
-      this._trustedSigners = config.trustedSigners;
-      this._viewerProtocolPolicy = config.viewerProtocolPolicy;
-      this._forwardedValues = config.forwardedValues;
-      this._lambdaFunctionAssociation = config.lambdaFunctionAssociation;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // allowed_methods - computed: false, optional: false, required: true
-    private _allowedMethods: string[];
+    private _allowedMethods?: string[]; 
     public get allowedMethods() {
       return this.getListAttribute('allowed_methods');
     }
@@ -722,7 +699,7 @@ export namespace CloudFront {
     }
 
     // cached_methods - computed: false, optional: false, required: true
-    private _cachedMethods: string[];
+    private _cachedMethods?: string[]; 
     public get cachedMethods() {
       return this.getListAttribute('cached_methods');
     }
@@ -735,7 +712,7 @@ export namespace CloudFront {
     }
 
     // compress - computed: false, optional: true, required: false
-    private _compress?: boolean | cdktf.IResolvable | undefined;
+    private _compress?: boolean | cdktf.IResolvable | undefined; 
     public get compress() {
       return this.getBooleanAttribute('compress') as any;
     }
@@ -751,7 +728,7 @@ export namespace CloudFront {
     }
 
     // default_ttl - computed: false, optional: true, required: false
-    private _defaultTtl?: number | undefined;
+    private _defaultTtl?: number | undefined; 
     public get defaultTtl() {
       return this.getNumberAttribute('default_ttl');
     }
@@ -767,7 +744,7 @@ export namespace CloudFront {
     }
 
     // field_level_encryption_id - computed: false, optional: true, required: false
-    private _fieldLevelEncryptionId?: string | undefined;
+    private _fieldLevelEncryptionId?: string | undefined; 
     public get fieldLevelEncryptionId() {
       return this.getStringAttribute('field_level_encryption_id');
     }
@@ -783,7 +760,7 @@ export namespace CloudFront {
     }
 
     // max_ttl - computed: false, optional: true, required: false
-    private _maxTtl?: number | undefined;
+    private _maxTtl?: number | undefined; 
     public get maxTtl() {
       return this.getNumberAttribute('max_ttl');
     }
@@ -799,7 +776,7 @@ export namespace CloudFront {
     }
 
     // min_ttl - computed: false, optional: true, required: false
-    private _minTtl?: number | undefined;
+    private _minTtl?: number | undefined; 
     public get minTtl() {
       return this.getNumberAttribute('min_ttl');
     }
@@ -815,7 +792,7 @@ export namespace CloudFront {
     }
 
     // smooth_streaming - computed: false, optional: true, required: false
-    private _smoothStreaming?: boolean | cdktf.IResolvable | undefined;
+    private _smoothStreaming?: boolean | cdktf.IResolvable | undefined; 
     public get smoothStreaming() {
       return this.getBooleanAttribute('smooth_streaming') as any;
     }
@@ -831,7 +808,7 @@ export namespace CloudFront {
     }
 
     // target_origin_id - computed: false, optional: false, required: true
-    private _targetOriginId: string;
+    private _targetOriginId?: string; 
     public get targetOriginId() {
       return this.getStringAttribute('target_origin_id');
     }
@@ -844,7 +821,7 @@ export namespace CloudFront {
     }
 
     // trusted_signers - computed: false, optional: true, required: false
-    private _trustedSigners?: string[] | undefined;
+    private _trustedSigners?: string[] | undefined; 
     public get trustedSigners() {
       return this.getListAttribute('trusted_signers');
     }
@@ -860,7 +837,7 @@ export namespace CloudFront {
     }
 
     // viewer_protocol_policy - computed: false, optional: false, required: true
-    private _viewerProtocolPolicy: string;
+    private _viewerProtocolPolicy?: string; 
     public get viewerProtocolPolicy() {
       return this.getStringAttribute('viewer_protocol_policy');
     }
@@ -873,9 +850,10 @@ export namespace CloudFront {
     }
 
     // forwarded_values - computed: false, optional: false, required: true
-    private _forwardedValues: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues;
+    private _forwardedValues?: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues; 
+    private __forwardedValuesClass = new CloudfrontDistributionDefaultCacheBehaviorForwardedValues(this as any, \\"forwarded_values\\", true);
     public get forwardedValues() {
-      return new CloudfrontDistributionDefaultCacheBehaviorForwardedValues(this as any, \\"forwarded_values\\", true, this._forwardedValues);
+      return this.__forwardedValuesClass;
     }
     public putForwardedValues(value: ICloudfrontDistributionDefaultCacheBehaviorForwardedValues) {
       this._forwardedValues = value;
@@ -886,7 +864,7 @@ export namespace CloudFront {
     }
 
     // lambda_function_association - computed: false, optional: true, required: false
-    private _lambdaFunctionAssociation?: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[] | undefined;
+    private _lambdaFunctionAssociation?: CloudfrontDistributionDefaultCacheBehaviorLambdaFunctionAssociation[] | undefined; 
     public get lambdaFunctionAssociation() {
       return this.interpolationForAttribute('lambda_function_association') as any;
     }
@@ -920,7 +898,7 @@ export namespace CloudFront {
     readonly prefix?: string;
   }
 
-  function cloudfrontDistributionLoggingConfigToTerraform(struct?: ICloudfrontDistributionLoggingConfig): any {
+  function cloudfrontDistributionLoggingConfigToTerraform(struct?: CloudfrontDistributionLoggingConfig | ICloudfrontDistributionLoggingConfig): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       bucket: cdktf.stringToTerraform(struct!.bucket),
@@ -933,16 +911,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionLoggingConfig
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionLoggingConfig) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._bucket = config.bucket;
-      this._includeCookies = config.includeCookies;
-      this._prefix = config.prefix;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // bucket - computed: false, optional: false, required: true
-    private _bucket: string;
+    private _bucket?: string; 
     public get bucket() {
       return this.getStringAttribute('bucket');
     }
@@ -955,7 +930,7 @@ export namespace CloudFront {
     }
 
     // include_cookies - computed: false, optional: true, required: false
-    private _includeCookies?: boolean | cdktf.IResolvable | undefined;
+    private _includeCookies?: boolean | cdktf.IResolvable | undefined; 
     public get includeCookies() {
       return this.getBooleanAttribute('include_cookies') as any;
     }
@@ -971,7 +946,7 @@ export namespace CloudFront {
     }
 
     // prefix - computed: false, optional: true, required: false
-    private _prefix?: string | undefined;
+    private _prefix?: string | undefined; 
     public get prefix() {
       return this.getStringAttribute('prefix');
     }
@@ -1001,7 +976,7 @@ export namespace CloudFront {
     readonly whitelistedNames?: string[];
   }
 
-  function cloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesToTerraform(struct?: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies): any {
+  function cloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookiesToTerraform(struct?: CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies | ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       forward: cdktf.stringToTerraform(struct!.forward),
@@ -1013,15 +988,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._forward = config.forward;
-      this._whitelistedNames = config.whitelistedNames;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // forward - computed: false, optional: false, required: true
-    private _forward: string;
+    private _forward?: string; 
     public get forward() {
       return this.getStringAttribute('forward');
     }
@@ -1034,7 +1007,7 @@ export namespace CloudFront {
     }
 
     // whitelisted_names - computed: false, optional: true, required: false
-    private _whitelistedNames?: string[] | undefined;
+    private _whitelistedNames?: string[] | undefined; 
     public get whitelistedNames() {
       return this.getListAttribute('whitelisted_names');
     }
@@ -1074,7 +1047,7 @@ export namespace CloudFront {
     readonly cookies: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies;
   }
 
-  function cloudfrontDistributionOrderedCacheBehaviorForwardedValuesToTerraform(struct?: ICloudfrontDistributionOrderedCacheBehaviorForwardedValues): any {
+  function cloudfrontDistributionOrderedCacheBehaviorForwardedValuesToTerraform(struct?: CloudfrontDistributionOrderedCacheBehaviorForwardedValues | ICloudfrontDistributionOrderedCacheBehaviorForwardedValues): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       headers: cdktf.listMapper(cdktf.stringToTerraform)(struct!.headers),
@@ -1088,17 +1061,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionOrderedCacheBehaviorForwardedValues
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionOrderedCacheBehaviorForwardedValues) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._headers = config.headers;
-      this._queryString = config.queryString;
-      this._queryStringCacheKeys = config.queryStringCacheKeys;
-      this._cookies = config.cookies;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // headers - computed: false, optional: true, required: false
-    private _headers?: string[] | undefined;
+    private _headers?: string[] | undefined; 
     public get headers() {
       return this.getListAttribute('headers');
     }
@@ -1114,7 +1083,7 @@ export namespace CloudFront {
     }
 
     // query_string - computed: false, optional: false, required: true
-    private _queryString: boolean | cdktf.IResolvable;
+    private _queryString?: boolean | cdktf.IResolvable; 
     public get queryString() {
       return this.getBooleanAttribute('query_string') as any;
     }
@@ -1127,7 +1096,7 @@ export namespace CloudFront {
     }
 
     // query_string_cache_keys - computed: false, optional: true, required: false
-    private _queryStringCacheKeys?: string[] | undefined;
+    private _queryStringCacheKeys?: string[] | undefined; 
     public get queryStringCacheKeys() {
       return this.getListAttribute('query_string_cache_keys');
     }
@@ -1143,9 +1112,10 @@ export namespace CloudFront {
     }
 
     // cookies - computed: false, optional: false, required: true
-    private _cookies: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies;
+    private _cookies?: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies; 
+    private __cookiesClass = new CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true);
     public get cookies() {
-      return new CloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies(this as any, \\"cookies\\", true, this._cookies);
+      return this.__cookiesClass;
     }
     public putCookies(value: ICloudfrontDistributionOrderedCacheBehaviorForwardedValuesCookies) {
       this._cookies = value;
@@ -1312,7 +1282,7 @@ export namespace CloudFront {
     readonly originSslProtocols: string[];
   }
 
-  function cloudfrontDistributionOriginCustomOriginConfigToTerraform(struct?: ICloudfrontDistributionOriginCustomOriginConfig): any {
+  function cloudfrontDistributionOriginCustomOriginConfigToTerraform(struct?: CloudfrontDistributionOriginCustomOriginConfig | ICloudfrontDistributionOriginCustomOriginConfig): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       http_port: cdktf.numberToTerraform(struct!.httpPort),
@@ -1328,19 +1298,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionOriginCustomOriginConfig
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionOriginCustomOriginConfig) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._httpPort = config.httpPort;
-      this._httpsPort = config.httpsPort;
-      this._originKeepaliveTimeout = config.originKeepaliveTimeout;
-      this._originProtocolPolicy = config.originProtocolPolicy;
-      this._originReadTimeout = config.originReadTimeout;
-      this._originSslProtocols = config.originSslProtocols;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // http_port - computed: false, optional: false, required: true
-    private _httpPort: number;
+    private _httpPort?: number; 
     public get httpPort() {
       return this.getNumberAttribute('http_port');
     }
@@ -1353,7 +1317,7 @@ export namespace CloudFront {
     }
 
     // https_port - computed: false, optional: false, required: true
-    private _httpsPort: number;
+    private _httpsPort?: number; 
     public get httpsPort() {
       return this.getNumberAttribute('https_port');
     }
@@ -1366,7 +1330,7 @@ export namespace CloudFront {
     }
 
     // origin_keepalive_timeout - computed: false, optional: true, required: false
-    private _originKeepaliveTimeout?: number | undefined;
+    private _originKeepaliveTimeout?: number | undefined; 
     public get originKeepaliveTimeout() {
       return this.getNumberAttribute('origin_keepalive_timeout');
     }
@@ -1382,7 +1346,7 @@ export namespace CloudFront {
     }
 
     // origin_protocol_policy - computed: false, optional: false, required: true
-    private _originProtocolPolicy: string;
+    private _originProtocolPolicy?: string; 
     public get originProtocolPolicy() {
       return this.getStringAttribute('origin_protocol_policy');
     }
@@ -1395,7 +1359,7 @@ export namespace CloudFront {
     }
 
     // origin_read_timeout - computed: false, optional: true, required: false
-    private _originReadTimeout?: number | undefined;
+    private _originReadTimeout?: number | undefined; 
     public get originReadTimeout() {
       return this.getNumberAttribute('origin_read_timeout');
     }
@@ -1411,7 +1375,7 @@ export namespace CloudFront {
     }
 
     // origin_ssl_protocols - computed: false, optional: false, required: true
-    private _originSslProtocols: string[];
+    private _originSslProtocols?: string[]; 
     public get originSslProtocols() {
       return this.getListAttribute('origin_ssl_protocols');
     }
@@ -1434,7 +1398,7 @@ export namespace CloudFront {
     readonly originAccessIdentity: string;
   }
 
-  function cloudfrontDistributionOriginS3OriginConfigToTerraform(struct?: ICloudfrontDistributionOriginS3OriginConfig): any {
+  function cloudfrontDistributionOriginS3OriginConfigToTerraform(struct?: CloudfrontDistributionOriginS3OriginConfig | ICloudfrontDistributionOriginS3OriginConfig): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       origin_access_identity: cdktf.stringToTerraform(struct!.originAccessIdentity),
@@ -1445,14 +1409,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionOriginS3OriginConfig
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionOriginS3OriginConfig) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._originAccessIdentity = config.originAccessIdentity;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // origin_access_identity - computed: false, optional: false, required: true
-    private _originAccessIdentity: string;
+    private _originAccessIdentity?: string; 
     public get originAccessIdentity() {
       return this.getStringAttribute('origin_access_identity');
     }
@@ -1520,7 +1483,7 @@ export namespace CloudFront {
     readonly statusCodes: number[];
   }
 
-  function cloudfrontDistributionOriginGroupFailoverCriteriaToTerraform(struct?: ICloudfrontDistributionOriginGroupFailoverCriteria): any {
+  function cloudfrontDistributionOriginGroupFailoverCriteriaToTerraform(struct?: CloudfrontDistributionOriginGroupFailoverCriteria | ICloudfrontDistributionOriginGroupFailoverCriteria): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       status_codes: cdktf.listMapper(cdktf.numberToTerraform)(struct!.statusCodes),
@@ -1531,14 +1494,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionOriginGroupFailoverCriteria
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionOriginGroupFailoverCriteria) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._statusCodes = config.statusCodes;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // status_codes - computed: false, optional: false, required: true
-    private _statusCodes: number[];
+    private _statusCodes?: number[]; 
     public get statusCodes() {
       return this.interpolationForAttribute('status_codes') as any;
     }
@@ -1607,7 +1569,7 @@ export namespace CloudFront {
     readonly restrictionType: string;
   }
 
-  function cloudfrontDistributionRestrictionsGeoRestrictionToTerraform(struct?: ICloudfrontDistributionRestrictionsGeoRestriction): any {
+  function cloudfrontDistributionRestrictionsGeoRestrictionToTerraform(struct?: CloudfrontDistributionRestrictionsGeoRestriction | ICloudfrontDistributionRestrictionsGeoRestriction): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       locations: cdktf.listMapper(cdktf.stringToTerraform)(struct!.locations),
@@ -1619,15 +1581,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionRestrictionsGeoRestriction
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionRestrictionsGeoRestriction) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._locations = config.locations;
-      this._restrictionType = config.restrictionType;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // locations - computed: false, optional: true, required: false
-    private _locations?: string[] | undefined;
+    private _locations?: string[] | undefined; 
     public get locations() {
       return this.getListAttribute('locations');
     }
@@ -1643,7 +1603,7 @@ export namespace CloudFront {
     }
 
     // restriction_type - computed: false, optional: false, required: true
-    private _restrictionType: string;
+    private _restrictionType?: string; 
     public get restrictionType() {
       return this.getStringAttribute('restriction_type');
     }
@@ -1668,7 +1628,7 @@ export namespace CloudFront {
     readonly geoRestriction: ICloudfrontDistributionRestrictionsGeoRestriction;
   }
 
-  function cloudfrontDistributionRestrictionsToTerraform(struct?: ICloudfrontDistributionRestrictions): any {
+  function cloudfrontDistributionRestrictionsToTerraform(struct?: CloudfrontDistributionRestrictions | ICloudfrontDistributionRestrictions): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       geo_restriction: cloudfrontDistributionRestrictionsGeoRestrictionToTerraform(struct!.geoRestriction),
@@ -1679,16 +1639,16 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionRestrictions
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionRestrictions) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._geoRestriction = config.geoRestriction;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // geo_restriction - computed: false, optional: false, required: true
-    private _geoRestriction: ICloudfrontDistributionRestrictionsGeoRestriction;
+    private _geoRestriction?: ICloudfrontDistributionRestrictionsGeoRestriction; 
+    private __geoRestrictionClass = new CloudfrontDistributionRestrictionsGeoRestriction(this as any, \\"geo_restriction\\", true);
     public get geoRestriction() {
-      return new CloudfrontDistributionRestrictionsGeoRestriction(this as any, \\"geo_restriction\\", true, this._geoRestriction);
+      return this.__geoRestrictionClass;
     }
     public putGeoRestriction(value: ICloudfrontDistributionRestrictionsGeoRestriction) {
       this._geoRestriction = value;
@@ -1725,7 +1685,7 @@ export namespace CloudFront {
     readonly sslSupportMethod?: string;
   }
 
-  function cloudfrontDistributionViewerCertificateToTerraform(struct?: ICloudfrontDistributionViewerCertificate): any {
+  function cloudfrontDistributionViewerCertificateToTerraform(struct?: CloudfrontDistributionViewerCertificate | ICloudfrontDistributionViewerCertificate): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       acm_certificate_arn: cdktf.stringToTerraform(struct!.acmCertificateArn),
@@ -1740,18 +1700,13 @@ export namespace CloudFront {
     /**
     * @param options CloudfrontDistributionViewerCertificate = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ICloudfrontDistributionViewerCertificate = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._acmCertificateArn = config.acmCertificateArn;
-      this._cloudfrontDefaultCertificate = config.cloudfrontDefaultCertificate;
-      this._iamCertificateId = config.iamCertificateId;
-      this._minimumProtocolVersion = config.minimumProtocolVersion;
-      this._sslSupportMethod = config.sslSupportMethod;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // acm_certificate_arn - computed: false, optional: true, required: false
-    private _acmCertificateArn?: string | undefined;
+    private _acmCertificateArn?: string | undefined; 
     public get acmCertificateArn() {
       return this.getStringAttribute('acm_certificate_arn');
     }
@@ -1767,7 +1722,7 @@ export namespace CloudFront {
     }
 
     // cloudfront_default_certificate - computed: false, optional: true, required: false
-    private _cloudfrontDefaultCertificate?: boolean | cdktf.IResolvable | undefined;
+    private _cloudfrontDefaultCertificate?: boolean | cdktf.IResolvable | undefined; 
     public get cloudfrontDefaultCertificate() {
       return this.getBooleanAttribute('cloudfront_default_certificate') as any;
     }
@@ -1783,7 +1738,7 @@ export namespace CloudFront {
     }
 
     // iam_certificate_id - computed: false, optional: true, required: false
-    private _iamCertificateId?: string | undefined;
+    private _iamCertificateId?: string | undefined; 
     public get iamCertificateId() {
       return this.getStringAttribute('iam_certificate_id');
     }
@@ -1799,7 +1754,7 @@ export namespace CloudFront {
     }
 
     // minimum_protocol_version - computed: false, optional: true, required: false
-    private _minimumProtocolVersion?: string | undefined;
+    private _minimumProtocolVersion?: string | undefined; 
     public get minimumProtocolVersion() {
       return this.getStringAttribute('minimum_protocol_version');
     }
@@ -1815,7 +1770,7 @@ export namespace CloudFront {
     }
 
     // ssl_support_method - computed: false, optional: true, required: false
-    private _sslSupportMethod?: string | undefined;
+    private _sslSupportMethod?: string | undefined; 
     public get sslSupportMethod() {
       return this.getStringAttribute('ssl_support_method');
     }
@@ -1899,7 +1854,7 @@ export namespace CloudFront {
     }
 
     // aliases - computed: false, optional: true, required: false
-    private _aliases?: string[] | undefined;
+    private _aliases?: string[] | undefined; 
     public get aliases() {
       return this.getListAttribute('aliases');
     }
@@ -1925,7 +1880,7 @@ export namespace CloudFront {
     }
 
     // comment - computed: false, optional: true, required: false
-    private _comment?: string | undefined;
+    private _comment?: string | undefined; 
     public get comment() {
       return this.getStringAttribute('comment');
     }
@@ -1941,7 +1896,7 @@ export namespace CloudFront {
     }
 
     // default_root_object - computed: false, optional: true, required: false
-    private _defaultRootObject?: string | undefined;
+    private _defaultRootObject?: string | undefined; 
     public get defaultRootObject() {
       return this.getStringAttribute('default_root_object');
     }
@@ -1962,7 +1917,7 @@ export namespace CloudFront {
     }
 
     // enabled - computed: false, optional: false, required: true
-    private _enabled: boolean | cdktf.IResolvable;
+    private _enabled?: boolean | cdktf.IResolvable; 
     public get enabled() {
       return this.getBooleanAttribute('enabled') as any;
     }
@@ -1985,7 +1940,7 @@ export namespace CloudFront {
     }
 
     // http_version - computed: false, optional: true, required: false
-    private _httpVersion?: string | undefined;
+    private _httpVersion?: string | undefined; 
     public get httpVersion() {
       return this.getStringAttribute('http_version');
     }
@@ -2011,7 +1966,7 @@ export namespace CloudFront {
     }
 
     // is_ipv6_enabled - computed: false, optional: true, required: false
-    private _isIpv6Enabled?: boolean | cdktf.IResolvable | undefined;
+    private _isIpv6Enabled?: boolean | cdktf.IResolvable | undefined; 
     public get isIpv6Enabled() {
       return this.getBooleanAttribute('is_ipv6_enabled') as any;
     }
@@ -2032,7 +1987,7 @@ export namespace CloudFront {
     }
 
     // price_class - computed: false, optional: true, required: false
-    private _priceClass?: string | undefined;
+    private _priceClass?: string | undefined; 
     public get priceClass() {
       return this.getStringAttribute('price_class');
     }
@@ -2048,7 +2003,7 @@ export namespace CloudFront {
     }
 
     // retain_on_delete - computed: false, optional: true, required: false
-    private _retainOnDelete?: boolean | cdktf.IResolvable | undefined;
+    private _retainOnDelete?: boolean | cdktf.IResolvable | undefined; 
     public get retainOnDelete() {
       return this.getBooleanAttribute('retain_on_delete') as any;
     }
@@ -2069,7 +2024,7 @@ export namespace CloudFront {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | undefined;
+    private _tags?: { [key: string]: string } | undefined; 
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
@@ -2085,7 +2040,7 @@ export namespace CloudFront {
     }
 
     // wait_for_deployment - computed: false, optional: true, required: false
-    private _waitForDeployment?: boolean | cdktf.IResolvable | undefined;
+    private _waitForDeployment?: boolean | cdktf.IResolvable | undefined; 
     public get waitForDeployment() {
       return this.getBooleanAttribute('wait_for_deployment') as any;
     }
@@ -2101,7 +2056,7 @@ export namespace CloudFront {
     }
 
     // web_acl_id - computed: false, optional: true, required: false
-    private _webAclId?: string | undefined;
+    private _webAclId?: string | undefined; 
     public get webAclId() {
       return this.getStringAttribute('web_acl_id');
     }
@@ -2117,7 +2072,7 @@ export namespace CloudFront {
     }
 
     // cache_behavior - computed: false, optional: true, required: false
-    private _cacheBehavior?: CloudfrontDistributionCacheBehavior[] | undefined;
+    private _cacheBehavior?: CloudfrontDistributionCacheBehavior[] | undefined; 
     public get cacheBehavior() {
       return this.interpolationForAttribute('cache_behavior') as any;
     }
@@ -2133,7 +2088,7 @@ export namespace CloudFront {
     }
 
     // custom_error_response - computed: false, optional: true, required: false
-    private _customErrorResponse?: CloudfrontDistributionCustomErrorResponse[] | undefined;
+    private _customErrorResponse?: CloudfrontDistributionCustomErrorResponse[] | undefined; 
     public get customErrorResponse() {
       return this.interpolationForAttribute('custom_error_response') as any;
     }
@@ -2149,9 +2104,10 @@ export namespace CloudFront {
     }
 
     // default_cache_behavior - computed: false, optional: false, required: true
-    private _defaultCacheBehavior: ICloudfrontDistributionDefaultCacheBehavior;
+    private _defaultCacheBehavior?: ICloudfrontDistributionDefaultCacheBehavior; 
+    private __defaultCacheBehaviorClass = new CloudfrontDistributionDefaultCacheBehavior(this as any, \\"default_cache_behavior\\", true);
     public get defaultCacheBehavior() {
-      return new CloudfrontDistributionDefaultCacheBehavior(this as any, \\"default_cache_behavior\\", true, this._defaultCacheBehavior);
+      return this.__defaultCacheBehaviorClass;
     }
     public putDefaultCacheBehavior(value: ICloudfrontDistributionDefaultCacheBehavior) {
       this._defaultCacheBehavior = value;
@@ -2162,9 +2118,10 @@ export namespace CloudFront {
     }
 
     // logging_config - computed: false, optional: true, required: false
-    private _loggingConfig?: ICloudfrontDistributionLoggingConfig | undefined;
+    private _loggingConfig?: ICloudfrontDistributionLoggingConfig | undefined; 
+    private __loggingConfigClass = new CloudfrontDistributionLoggingConfig(this as any, \\"logging_config\\", true);
     public get loggingConfig() {
-      return this._loggingConfig ? new CloudfrontDistributionLoggingConfig(this as any, \\"logging_config\\", true, this._loggingConfig) : undefined;
+      return this.__loggingConfigClass;
     }
     public putLoggingConfig(value: ICloudfrontDistributionLoggingConfig | undefined) {
       this._loggingConfig = value;
@@ -2178,7 +2135,7 @@ export namespace CloudFront {
     }
 
     // ordered_cache_behavior - computed: false, optional: true, required: false
-    private _orderedCacheBehavior?: CloudfrontDistributionOrderedCacheBehavior[] | undefined;
+    private _orderedCacheBehavior?: CloudfrontDistributionOrderedCacheBehavior[] | undefined; 
     public get orderedCacheBehavior() {
       return this.interpolationForAttribute('ordered_cache_behavior') as any;
     }
@@ -2194,7 +2151,7 @@ export namespace CloudFront {
     }
 
     // origin - computed: false, optional: false, required: true
-    private _origin: CloudfrontDistributionOrigin[];
+    private _origin?: CloudfrontDistributionOrigin[]; 
     public get origin() {
       return this.interpolationForAttribute('origin') as any;
     }
@@ -2207,7 +2164,7 @@ export namespace CloudFront {
     }
 
     // origin_group - computed: false, optional: true, required: false
-    private _originGroup?: CloudfrontDistributionOriginGroup[] | undefined;
+    private _originGroup?: CloudfrontDistributionOriginGroup[] | undefined; 
     public get originGroup() {
       return this.interpolationForAttribute('origin_group') as any;
     }
@@ -2223,9 +2180,10 @@ export namespace CloudFront {
     }
 
     // restrictions - computed: false, optional: false, required: true
-    private _restrictions: ICloudfrontDistributionRestrictions;
+    private _restrictions?: ICloudfrontDistributionRestrictions; 
+    private __restrictionsClass = new CloudfrontDistributionRestrictions(this as any, \\"restrictions\\", true);
     public get restrictions() {
-      return new CloudfrontDistributionRestrictions(this as any, \\"restrictions\\", true, this._restrictions);
+      return this.__restrictionsClass;
     }
     public putRestrictions(value: ICloudfrontDistributionRestrictions) {
       this._restrictions = value;
@@ -2236,9 +2194,10 @@ export namespace CloudFront {
     }
 
     // viewer_certificate - computed: false, optional: false, required: true
-    private _viewerCertificate: ICloudfrontDistributionViewerCertificate;
+    private _viewerCertificate?: ICloudfrontDistributionViewerCertificate; 
+    private __viewerCertificateClass = new CloudfrontDistributionViewerCertificate(this as any, \\"viewer_certificate\\", true);
     public get viewerCertificate() {
-      return new CloudfrontDistributionViewerCertificate(this as any, \\"viewer_certificate\\", true, this._viewerCertificate);
+      return this.__viewerCertificateClass;
     }
     public putViewerCertificate(value: ICloudfrontDistributionViewerCertificate) {
       this._viewerCertificate = value;
@@ -2338,7 +2297,7 @@ export namespace FMS {
     // ==========
 
     // account_id - computed: true, optional: true, required: false
-    private _accountId?: string | undefined;
+    private _accountId?: string | undefined; 
     public get accountId() {
       return this.getStringAttribute('account_id');
     }
@@ -2564,7 +2523,7 @@ export namespace S3 {
     readonly expiredObjectDeleteMarker?: boolean | cdktf.IResolvable;
   }
 
-  function s3BucketLifecycleRuleExpirationToTerraform(struct?: IS3BucketLifecycleRuleExpiration): any {
+  function s3BucketLifecycleRuleExpirationToTerraform(struct?: S3BucketLifecycleRuleExpiration | IS3BucketLifecycleRuleExpiration): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       date: cdktf.stringToTerraform(struct!.date),
@@ -2577,16 +2536,13 @@ export namespace S3 {
     /**
     * @param options S3BucketLifecycleRuleExpiration = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketLifecycleRuleExpiration = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._date = config.date;
-      this._days = config.days;
-      this._expiredObjectDeleteMarker = config.expiredObjectDeleteMarker;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // date - computed: false, optional: true, required: false
-    private _date?: string | undefined;
+    private _date?: string | undefined; 
     public get date() {
       return this.getStringAttribute('date');
     }
@@ -2602,7 +2558,7 @@ export namespace S3 {
     }
 
     // days - computed: false, optional: true, required: false
-    private _days?: number | undefined;
+    private _days?: number | undefined; 
     public get days() {
       return this.getNumberAttribute('days');
     }
@@ -2618,7 +2574,7 @@ export namespace S3 {
     }
 
     // expired_object_delete_marker - computed: false, optional: true, required: false
-    private _expiredObjectDeleteMarker?: boolean | cdktf.IResolvable | undefined;
+    private _expiredObjectDeleteMarker?: boolean | cdktf.IResolvable | undefined; 
     public get expiredObjectDeleteMarker() {
       return this.getBooleanAttribute('expired_object_delete_marker') as any;
     }
@@ -2644,7 +2600,7 @@ export namespace S3 {
     readonly days?: number;
   }
 
-  function s3BucketLifecycleRuleNoncurrentVersionExpirationToTerraform(struct?: IS3BucketLifecycleRuleNoncurrentVersionExpiration): any {
+  function s3BucketLifecycleRuleNoncurrentVersionExpirationToTerraform(struct?: S3BucketLifecycleRuleNoncurrentVersionExpiration | IS3BucketLifecycleRuleNoncurrentVersionExpiration): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       days: cdktf.numberToTerraform(struct!.days),
@@ -2655,14 +2611,13 @@ export namespace S3 {
     /**
     * @param options S3BucketLifecycleRuleNoncurrentVersionExpiration = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketLifecycleRuleNoncurrentVersionExpiration = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._days = config.days;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // days - computed: false, optional: true, required: false
-    private _days?: number | undefined;
+    private _days?: number | undefined; 
     public get days() {
       return this.getNumberAttribute('days');
     }
@@ -2815,7 +2770,7 @@ export namespace S3 {
     readonly years?: number;
   }
 
-  function s3BucketObjectLockConfigurationRuleDefaultRetentionToTerraform(struct?: IS3BucketObjectLockConfigurationRuleDefaultRetention): any {
+  function s3BucketObjectLockConfigurationRuleDefaultRetentionToTerraform(struct?: S3BucketObjectLockConfigurationRuleDefaultRetention | IS3BucketObjectLockConfigurationRuleDefaultRetention): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       days: cdktf.numberToTerraform(struct!.days),
@@ -2828,16 +2783,13 @@ export namespace S3 {
     /**
     * @param options S3BucketObjectLockConfigurationRuleDefaultRetention
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketObjectLockConfigurationRuleDefaultRetention) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._days = config.days;
-      this._mode = config.mode;
-      this._years = config.years;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // days - computed: false, optional: true, required: false
-    private _days?: number | undefined;
+    private _days?: number | undefined; 
     public get days() {
       return this.getNumberAttribute('days');
     }
@@ -2853,7 +2805,7 @@ export namespace S3 {
     }
 
     // mode - computed: false, optional: false, required: true
-    private _mode: string;
+    private _mode?: string; 
     public get mode() {
       return this.getStringAttribute('mode');
     }
@@ -2866,7 +2818,7 @@ export namespace S3 {
     }
 
     // years - computed: false, optional: true, required: false
-    private _years?: number | undefined;
+    private _years?: number | undefined; 
     public get years() {
       return this.getNumberAttribute('years');
     }
@@ -2894,7 +2846,7 @@ export namespace S3 {
     readonly defaultRetention: IS3BucketObjectLockConfigurationRuleDefaultRetention;
   }
 
-  function s3BucketObjectLockConfigurationRuleToTerraform(struct?: IS3BucketObjectLockConfigurationRule): any {
+  function s3BucketObjectLockConfigurationRuleToTerraform(struct?: S3BucketObjectLockConfigurationRule | IS3BucketObjectLockConfigurationRule): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       default_retention: s3BucketObjectLockConfigurationRuleDefaultRetentionToTerraform(struct!.defaultRetention),
@@ -2905,16 +2857,16 @@ export namespace S3 {
     /**
     * @param options S3BucketObjectLockConfigurationRule
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketObjectLockConfigurationRule) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._defaultRetention = config.defaultRetention;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // default_retention - computed: false, optional: false, required: true
-    private _defaultRetention: IS3BucketObjectLockConfigurationRuleDefaultRetention;
+    private _defaultRetention?: IS3BucketObjectLockConfigurationRuleDefaultRetention; 
+    private __defaultRetentionClass = new S3BucketObjectLockConfigurationRuleDefaultRetention(this as any, \\"default_retention\\", true);
     public get defaultRetention() {
-      return new S3BucketObjectLockConfigurationRuleDefaultRetention(this as any, \\"default_retention\\", true, this._defaultRetention);
+      return this.__defaultRetentionClass;
     }
     public putDefaultRetention(value: IS3BucketObjectLockConfigurationRuleDefaultRetention) {
       this._defaultRetention = value;
@@ -2941,7 +2893,7 @@ export namespace S3 {
     readonly rule?: IS3BucketObjectLockConfigurationRule;
   }
 
-  function s3BucketObjectLockConfigurationToTerraform(struct?: IS3BucketObjectLockConfiguration): any {
+  function s3BucketObjectLockConfigurationToTerraform(struct?: S3BucketObjectLockConfiguration | IS3BucketObjectLockConfiguration): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       object_lock_enabled: cdktf.stringToTerraform(struct!.objectLockEnabled),
@@ -2953,15 +2905,13 @@ export namespace S3 {
     /**
     * @param options S3BucketObjectLockConfiguration
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketObjectLockConfiguration) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._objectLockEnabled = config.objectLockEnabled;
-      this._rule = config.rule;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // object_lock_enabled - computed: false, optional: false, required: true
-    private _objectLockEnabled: string;
+    private _objectLockEnabled?: string; 
     public get objectLockEnabled() {
       return this.getStringAttribute('object_lock_enabled');
     }
@@ -2974,9 +2924,10 @@ export namespace S3 {
     }
 
     // rule - computed: false, optional: true, required: false
-    private _rule?: IS3BucketObjectLockConfigurationRule | undefined;
+    private _rule?: IS3BucketObjectLockConfigurationRule | undefined; 
+    private __ruleClass = new S3BucketObjectLockConfigurationRule(this as any, \\"rule\\", true);
     public get rule() {
-      return this._rule ? new S3BucketObjectLockConfigurationRule(this as any, \\"rule\\", true, this._rule) : undefined;
+      return this.__ruleClass;
     }
     public putRule(value: IS3BucketObjectLockConfigurationRule | undefined) {
       this._rule = value;
@@ -3000,7 +2951,7 @@ export namespace S3 {
     readonly owner: string;
   }
 
-  function s3BucketReplicationConfigurationRulesDestinationAccessControlTranslationToTerraform(struct?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation): any {
+  function s3BucketReplicationConfigurationRulesDestinationAccessControlTranslationToTerraform(struct?: S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       owner: cdktf.stringToTerraform(struct!.owner),
@@ -3011,14 +2962,13 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._owner = config.owner;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // owner - computed: false, optional: false, required: true
-    private _owner: string;
+    private _owner?: string; 
     public get owner() {
       return this.getStringAttribute('owner');
     }
@@ -3059,7 +3009,7 @@ export namespace S3 {
     readonly accessControlTranslation?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation;
   }
 
-  function s3BucketReplicationConfigurationRulesDestinationToTerraform(struct?: IS3BucketReplicationConfigurationRulesDestination): any {
+  function s3BucketReplicationConfigurationRulesDestinationToTerraform(struct?: S3BucketReplicationConfigurationRulesDestination | IS3BucketReplicationConfigurationRulesDestination): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       account_id: cdktf.stringToTerraform(struct!.accountId),
@@ -3074,18 +3024,13 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfigurationRulesDestination
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfigurationRulesDestination) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._accountId = config.accountId;
-      this._bucket = config.bucket;
-      this._replicaKmsKeyId = config.replicaKmsKeyId;
-      this._storageClass = config.storageClass;
-      this._accessControlTranslation = config.accessControlTranslation;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // account_id - computed: false, optional: true, required: false
-    private _accountId?: string | undefined;
+    private _accountId?: string | undefined; 
     public get accountId() {
       return this.getStringAttribute('account_id');
     }
@@ -3101,7 +3046,7 @@ export namespace S3 {
     }
 
     // bucket - computed: false, optional: false, required: true
-    private _bucket: string;
+    private _bucket?: string; 
     public get bucket() {
       return this.getStringAttribute('bucket');
     }
@@ -3114,7 +3059,7 @@ export namespace S3 {
     }
 
     // replica_kms_key_id - computed: false, optional: true, required: false
-    private _replicaKmsKeyId?: string | undefined;
+    private _replicaKmsKeyId?: string | undefined; 
     public get replicaKmsKeyId() {
       return this.getStringAttribute('replica_kms_key_id');
     }
@@ -3130,7 +3075,7 @@ export namespace S3 {
     }
 
     // storage_class - computed: false, optional: true, required: false
-    private _storageClass?: string | undefined;
+    private _storageClass?: string | undefined; 
     public get storageClass() {
       return this.getStringAttribute('storage_class');
     }
@@ -3146,9 +3091,10 @@ export namespace S3 {
     }
 
     // access_control_translation - computed: false, optional: true, required: false
-    private _accessControlTranslation?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | undefined;
+    private _accessControlTranslation?: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | undefined; 
+    private __accessControlTranslationClass = new S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation(this as any, \\"access_control_translation\\", true);
     public get accessControlTranslation() {
-      return this._accessControlTranslation ? new S3BucketReplicationConfigurationRulesDestinationAccessControlTranslation(this as any, \\"access_control_translation\\", true, this._accessControlTranslation) : undefined;
+      return this.__accessControlTranslationClass;
     }
     public putAccessControlTranslation(value: IS3BucketReplicationConfigurationRulesDestinationAccessControlTranslation | undefined) {
       this._accessControlTranslation = value;
@@ -3176,7 +3122,7 @@ export namespace S3 {
     readonly tags?: { [key: string]: string };
   }
 
-  function s3BucketReplicationConfigurationRulesFilterToTerraform(struct?: IS3BucketReplicationConfigurationRulesFilter): any {
+  function s3BucketReplicationConfigurationRulesFilterToTerraform(struct?: S3BucketReplicationConfigurationRulesFilter | IS3BucketReplicationConfigurationRulesFilter): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       prefix: cdktf.stringToTerraform(struct!.prefix),
@@ -3188,15 +3134,13 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfigurationRulesFilter = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfigurationRulesFilter = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._prefix = config.prefix;
-      this._tags = config.tags;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // prefix - computed: false, optional: true, required: false
-    private _prefix?: string | undefined;
+    private _prefix?: string | undefined; 
     public get prefix() {
       return this.getStringAttribute('prefix');
     }
@@ -3212,7 +3156,7 @@ export namespace S3 {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | undefined;
+    private _tags?: { [key: string]: string } | undefined; 
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
@@ -3238,7 +3182,7 @@ export namespace S3 {
     readonly enabled: boolean | cdktf.IResolvable;
   }
 
-  function s3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjectsToTerraform(struct?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects): any {
+  function s3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjectsToTerraform(struct?: S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       enabled: cdktf.booleanToTerraform(struct!.enabled),
@@ -3249,14 +3193,13 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._enabled = config.enabled;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // enabled - computed: false, optional: false, required: true
-    private _enabled: boolean | cdktf.IResolvable;
+    private _enabled?: boolean | cdktf.IResolvable; 
     public get enabled() {
       return this.getBooleanAttribute('enabled') as any;
     }
@@ -3281,7 +3224,7 @@ export namespace S3 {
     readonly sseKmsEncryptedObjects?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects;
   }
 
-  function s3BucketReplicationConfigurationRulesSourceSelectionCriteriaToTerraform(struct?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteria): any {
+  function s3BucketReplicationConfigurationRulesSourceSelectionCriteriaToTerraform(struct?: S3BucketReplicationConfigurationRulesSourceSelectionCriteria | IS3BucketReplicationConfigurationRulesSourceSelectionCriteria): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       sse_kms_encrypted_objects: s3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjectsToTerraform(struct!.sseKmsEncryptedObjects),
@@ -3292,16 +3235,16 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfigurationRulesSourceSelectionCriteria = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfigurationRulesSourceSelectionCriteria = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._sseKmsEncryptedObjects = config.sseKmsEncryptedObjects;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // sse_kms_encrypted_objects - computed: false, optional: true, required: false
-    private _sseKmsEncryptedObjects?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | undefined;
+    private _sseKmsEncryptedObjects?: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | undefined; 
+    private __sseKmsEncryptedObjectsClass = new S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects(this as any, \\"sse_kms_encrypted_objects\\", true);
     public get sseKmsEncryptedObjects() {
-      return this._sseKmsEncryptedObjects ? new S3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects(this as any, \\"sse_kms_encrypted_objects\\", true, this._sseKmsEncryptedObjects) : undefined;
+      return this.__sseKmsEncryptedObjectsClass;
     }
     public putSseKmsEncryptedObjects(value: IS3BucketReplicationConfigurationRulesSourceSelectionCriteriaSseKmsEncryptedObjects | undefined) {
       this._sseKmsEncryptedObjects = value;
@@ -3381,7 +3324,7 @@ export namespace S3 {
     readonly rules: S3BucketReplicationConfigurationRules[];
   }
 
-  function s3BucketReplicationConfigurationToTerraform(struct?: IS3BucketReplicationConfiguration): any {
+  function s3BucketReplicationConfigurationToTerraform(struct?: S3BucketReplicationConfiguration | IS3BucketReplicationConfiguration): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       role: cdktf.stringToTerraform(struct!.role),
@@ -3393,15 +3336,13 @@ export namespace S3 {
     /**
     * @param options S3BucketReplicationConfiguration
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketReplicationConfiguration) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._role = config.role;
-      this._rules = config.rules;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // role - computed: false, optional: false, required: true
-    private _role: string;
+    private _role?: string; 
     public get role() {
       return this.getStringAttribute('role');
     }
@@ -3414,7 +3355,7 @@ export namespace S3 {
     }
 
     // rules - computed: false, optional: false, required: true
-    private _rules: S3BucketReplicationConfigurationRules[];
+    private _rules?: S3BucketReplicationConfigurationRules[]; 
     public get rules() {
       return this.interpolationForAttribute('rules') as any;
     }
@@ -3441,7 +3382,7 @@ export namespace S3 {
     readonly sseAlgorithm: string;
   }
 
-  function s3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultToTerraform(struct?: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault): any {
+  function s3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultToTerraform(struct?: S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault | IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       kms_master_key_id: cdktf.stringToTerraform(struct!.kmsMasterKeyId),
@@ -3453,15 +3394,13 @@ export namespace S3 {
     /**
     * @param options S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._kmsMasterKeyId = config.kmsMasterKeyId;
-      this._sseAlgorithm = config.sseAlgorithm;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // kms_master_key_id - computed: false, optional: true, required: false
-    private _kmsMasterKeyId?: string | undefined;
+    private _kmsMasterKeyId?: string | undefined; 
     public get kmsMasterKeyId() {
       return this.getStringAttribute('kms_master_key_id');
     }
@@ -3477,7 +3416,7 @@ export namespace S3 {
     }
 
     // sse_algorithm - computed: false, optional: false, required: true
-    private _sseAlgorithm: string;
+    private _sseAlgorithm?: string; 
     public get sseAlgorithm() {
       return this.getStringAttribute('sse_algorithm');
     }
@@ -3502,7 +3441,7 @@ export namespace S3 {
     readonly applyServerSideEncryptionByDefault: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault;
   }
 
-  function s3BucketServerSideEncryptionConfigurationRuleToTerraform(struct?: IS3BucketServerSideEncryptionConfigurationRule): any {
+  function s3BucketServerSideEncryptionConfigurationRuleToTerraform(struct?: S3BucketServerSideEncryptionConfigurationRule | IS3BucketServerSideEncryptionConfigurationRule): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       apply_server_side_encryption_by_default: s3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultToTerraform(struct!.applyServerSideEncryptionByDefault),
@@ -3513,16 +3452,16 @@ export namespace S3 {
     /**
     * @param options S3BucketServerSideEncryptionConfigurationRule
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketServerSideEncryptionConfigurationRule) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._applyServerSideEncryptionByDefault = config.applyServerSideEncryptionByDefault;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // apply_server_side_encryption_by_default - computed: false, optional: false, required: true
-    private _applyServerSideEncryptionByDefault: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault;
+    private _applyServerSideEncryptionByDefault?: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault; 
+    private __applyServerSideEncryptionByDefaultClass = new S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault(this as any, \\"apply_server_side_encryption_by_default\\", true);
     public get applyServerSideEncryptionByDefault() {
-      return new S3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault(this as any, \\"apply_server_side_encryption_by_default\\", true, this._applyServerSideEncryptionByDefault);
+      return this.__applyServerSideEncryptionByDefaultClass;
     }
     public putApplyServerSideEncryptionByDefault(value: IS3BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) {
       this._applyServerSideEncryptionByDefault = value;
@@ -3545,7 +3484,7 @@ export namespace S3 {
     readonly rule: IS3BucketServerSideEncryptionConfigurationRule;
   }
 
-  function s3BucketServerSideEncryptionConfigurationToTerraform(struct?: IS3BucketServerSideEncryptionConfiguration): any {
+  function s3BucketServerSideEncryptionConfigurationToTerraform(struct?: S3BucketServerSideEncryptionConfiguration | IS3BucketServerSideEncryptionConfiguration): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       rule: s3BucketServerSideEncryptionConfigurationRuleToTerraform(struct!.rule),
@@ -3556,16 +3495,16 @@ export namespace S3 {
     /**
     * @param options S3BucketServerSideEncryptionConfiguration
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketServerSideEncryptionConfiguration) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._rule = config.rule;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // rule - computed: false, optional: false, required: true
-    private _rule: IS3BucketServerSideEncryptionConfigurationRule;
+    private _rule?: IS3BucketServerSideEncryptionConfigurationRule; 
+    private __ruleClass = new S3BucketServerSideEncryptionConfigurationRule(this as any, \\"rule\\", true);
     public get rule() {
-      return new S3BucketServerSideEncryptionConfigurationRule(this as any, \\"rule\\", true, this._rule);
+      return this.__ruleClass;
     }
     public putRule(value: IS3BucketServerSideEncryptionConfigurationRule) {
       this._rule = value;
@@ -3590,7 +3529,7 @@ export namespace S3 {
     readonly mfaDelete?: boolean | cdktf.IResolvable;
   }
 
-  function s3BucketVersioningToTerraform(struct?: IS3BucketVersioning): any {
+  function s3BucketVersioningToTerraform(struct?: S3BucketVersioning | IS3BucketVersioning): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       enabled: cdktf.booleanToTerraform(struct!.enabled),
@@ -3602,15 +3541,13 @@ export namespace S3 {
     /**
     * @param options S3BucketVersioning = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketVersioning = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._enabled = config.enabled;
-      this._mfaDelete = config.mfaDelete;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // enabled - computed: false, optional: true, required: false
-    private _enabled?: boolean | cdktf.IResolvable | undefined;
+    private _enabled?: boolean | cdktf.IResolvable | undefined; 
     public get enabled() {
       return this.getBooleanAttribute('enabled') as any;
     }
@@ -3626,7 +3563,7 @@ export namespace S3 {
     }
 
     // mfa_delete - computed: false, optional: true, required: false
-    private _mfaDelete?: boolean | cdktf.IResolvable | undefined;
+    private _mfaDelete?: boolean | cdktf.IResolvable | undefined; 
     public get mfaDelete() {
       return this.getBooleanAttribute('mfa_delete') as any;
     }
@@ -3664,7 +3601,7 @@ export namespace S3 {
     readonly routingRules?: string;
   }
 
-  function s3BucketWebsiteToTerraform(struct?: IS3BucketWebsite): any {
+  function s3BucketWebsiteToTerraform(struct?: S3BucketWebsite | IS3BucketWebsite): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       error_document: cdktf.stringToTerraform(struct!.errorDocument),
@@ -3678,17 +3615,13 @@ export namespace S3 {
     /**
     * @param options S3BucketWebsite = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: IS3BucketWebsite = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._errorDocument = config.errorDocument;
-      this._indexDocument = config.indexDocument;
-      this._redirectAllRequestsTo = config.redirectAllRequestsTo;
-      this._routingRules = config.routingRules;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // error_document - computed: false, optional: true, required: false
-    private _errorDocument?: string | undefined;
+    private _errorDocument?: string | undefined; 
     public get errorDocument() {
       return this.getStringAttribute('error_document');
     }
@@ -3704,7 +3637,7 @@ export namespace S3 {
     }
 
     // index_document - computed: false, optional: true, required: false
-    private _indexDocument?: string | undefined;
+    private _indexDocument?: string | undefined; 
     public get indexDocument() {
       return this.getStringAttribute('index_document');
     }
@@ -3720,7 +3653,7 @@ export namespace S3 {
     }
 
     // redirect_all_requests_to - computed: false, optional: true, required: false
-    private _redirectAllRequestsTo?: string | undefined;
+    private _redirectAllRequestsTo?: string | undefined; 
     public get redirectAllRequestsTo() {
       return this.getStringAttribute('redirect_all_requests_to');
     }
@@ -3736,7 +3669,7 @@ export namespace S3 {
     }
 
     // routing_rules - computed: false, optional: true, required: false
-    private _routingRules?: string | undefined;
+    private _routingRules?: string | undefined; 
     public get routingRules() {
       return this.getStringAttribute('routing_rules');
     }
@@ -3816,7 +3749,7 @@ export namespace S3 {
     // ==========
 
     // acceleration_status - computed: true, optional: true, required: false
-    private _accelerationStatus?: string | undefined;
+    private _accelerationStatus?: string | undefined; 
     public get accelerationStatus() {
       return this.getStringAttribute('acceleration_status');
     }
@@ -3832,7 +3765,7 @@ export namespace S3 {
     }
 
     // acl - computed: false, optional: true, required: false
-    private _acl?: string | undefined;
+    private _acl?: string | undefined; 
     public get acl() {
       return this.getStringAttribute('acl');
     }
@@ -3853,7 +3786,7 @@ export namespace S3 {
     }
 
     // bucket - computed: true, optional: true, required: false
-    private _bucket?: string | undefined;
+    private _bucket?: string | undefined; 
     public get bucket() {
       return this.getStringAttribute('bucket');
     }
@@ -3874,7 +3807,7 @@ export namespace S3 {
     }
 
     // bucket_prefix - computed: false, optional: true, required: false
-    private _bucketPrefix?: string | undefined;
+    private _bucketPrefix?: string | undefined; 
     public get bucketPrefix() {
       return this.getStringAttribute('bucket_prefix');
     }
@@ -3895,7 +3828,7 @@ export namespace S3 {
     }
 
     // force_destroy - computed: false, optional: true, required: false
-    private _forceDestroy?: boolean | cdktf.IResolvable | undefined;
+    private _forceDestroy?: boolean | cdktf.IResolvable | undefined; 
     public get forceDestroy() {
       return this.getBooleanAttribute('force_destroy') as any;
     }
@@ -3911,7 +3844,7 @@ export namespace S3 {
     }
 
     // hosted_zone_id - computed: true, optional: true, required: false
-    private _hostedZoneId?: string | undefined;
+    private _hostedZoneId?: string | undefined; 
     public get hostedZoneId() {
       return this.getStringAttribute('hosted_zone_id');
     }
@@ -3932,7 +3865,7 @@ export namespace S3 {
     }
 
     // policy - computed: false, optional: true, required: false
-    private _policy?: string | undefined;
+    private _policy?: string | undefined; 
     public get policy() {
       return this.getStringAttribute('policy');
     }
@@ -3948,7 +3881,7 @@ export namespace S3 {
     }
 
     // region - computed: true, optional: true, required: false
-    private _region?: string | undefined;
+    private _region?: string | undefined; 
     public get region() {
       return this.getStringAttribute('region');
     }
@@ -3964,7 +3897,7 @@ export namespace S3 {
     }
 
     // request_payer - computed: true, optional: true, required: false
-    private _requestPayer?: string | undefined;
+    private _requestPayer?: string | undefined; 
     public get requestPayer() {
       return this.getStringAttribute('request_payer');
     }
@@ -3980,7 +3913,7 @@ export namespace S3 {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | undefined;
+    private _tags?: { [key: string]: string } | undefined; 
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
@@ -3996,7 +3929,7 @@ export namespace S3 {
     }
 
     // website_domain - computed: true, optional: true, required: false
-    private _websiteDomain?: string | undefined;
+    private _websiteDomain?: string | undefined; 
     public get websiteDomain() {
       return this.getStringAttribute('website_domain');
     }
@@ -4012,7 +3945,7 @@ export namespace S3 {
     }
 
     // website_endpoint - computed: true, optional: true, required: false
-    private _websiteEndpoint?: string | undefined;
+    private _websiteEndpoint?: string | undefined; 
     public get websiteEndpoint() {
       return this.getStringAttribute('website_endpoint');
     }
@@ -4028,7 +3961,7 @@ export namespace S3 {
     }
 
     // cors_rule - computed: false, optional: true, required: false
-    private _corsRule?: S3BucketCorsRule[] | undefined;
+    private _corsRule?: S3BucketCorsRule[] | undefined; 
     public get corsRule() {
       return this.interpolationForAttribute('cors_rule') as any;
     }
@@ -4044,7 +3977,7 @@ export namespace S3 {
     }
 
     // grant - computed: false, optional: true, required: false
-    private _grant?: S3BucketGrant[] | undefined;
+    private _grant?: S3BucketGrant[] | undefined; 
     public get grant() {
       return this.interpolationForAttribute('grant') as any;
     }
@@ -4060,7 +3993,7 @@ export namespace S3 {
     }
 
     // lifecycle_rule - computed: false, optional: true, required: false
-    private _lifecycleRule?: S3BucketLifecycleRule[] | undefined;
+    private _lifecycleRule?: S3BucketLifecycleRule[] | undefined; 
     public get lifecycleRule() {
       return this.interpolationForAttribute('lifecycle_rule') as any;
     }
@@ -4076,7 +4009,7 @@ export namespace S3 {
     }
 
     // logging - computed: false, optional: true, required: false
-    private _logging?: S3BucketLogging[] | undefined;
+    private _logging?: S3BucketLogging[] | undefined; 
     public get logging() {
       return this.interpolationForAttribute('logging') as any;
     }
@@ -4092,9 +4025,10 @@ export namespace S3 {
     }
 
     // object_lock_configuration - computed: false, optional: true, required: false
-    private _objectLockConfiguration?: IS3BucketObjectLockConfiguration | undefined;
+    private _objectLockConfiguration?: IS3BucketObjectLockConfiguration | undefined; 
+    private __objectLockConfigurationClass = new S3BucketObjectLockConfiguration(this as any, \\"object_lock_configuration\\", true);
     public get objectLockConfiguration() {
-      return this._objectLockConfiguration ? new S3BucketObjectLockConfiguration(this as any, \\"object_lock_configuration\\", true, this._objectLockConfiguration) : undefined;
+      return this.__objectLockConfigurationClass;
     }
     public putObjectLockConfiguration(value: IS3BucketObjectLockConfiguration | undefined) {
       this._objectLockConfiguration = value;
@@ -4108,9 +4042,10 @@ export namespace S3 {
     }
 
     // replication_configuration - computed: false, optional: true, required: false
-    private _replicationConfiguration?: IS3BucketReplicationConfiguration | undefined;
+    private _replicationConfiguration?: IS3BucketReplicationConfiguration | undefined; 
+    private __replicationConfigurationClass = new S3BucketReplicationConfiguration(this as any, \\"replication_configuration\\", true);
     public get replicationConfiguration() {
-      return this._replicationConfiguration ? new S3BucketReplicationConfiguration(this as any, \\"replication_configuration\\", true, this._replicationConfiguration) : undefined;
+      return this.__replicationConfigurationClass;
     }
     public putReplicationConfiguration(value: IS3BucketReplicationConfiguration | undefined) {
       this._replicationConfiguration = value;
@@ -4124,9 +4059,10 @@ export namespace S3 {
     }
 
     // server_side_encryption_configuration - computed: false, optional: true, required: false
-    private _serverSideEncryptionConfiguration?: IS3BucketServerSideEncryptionConfiguration | undefined;
+    private _serverSideEncryptionConfiguration?: IS3BucketServerSideEncryptionConfiguration | undefined; 
+    private __serverSideEncryptionConfigurationClass = new S3BucketServerSideEncryptionConfiguration(this as any, \\"server_side_encryption_configuration\\", true);
     public get serverSideEncryptionConfiguration() {
-      return this._serverSideEncryptionConfiguration ? new S3BucketServerSideEncryptionConfiguration(this as any, \\"server_side_encryption_configuration\\", true, this._serverSideEncryptionConfiguration) : undefined;
+      return this.__serverSideEncryptionConfigurationClass;
     }
     public putServerSideEncryptionConfiguration(value: IS3BucketServerSideEncryptionConfiguration | undefined) {
       this._serverSideEncryptionConfiguration = value;
@@ -4140,9 +4076,10 @@ export namespace S3 {
     }
 
     // versioning - computed: false, optional: true, required: false
-    private _versioning?: IS3BucketVersioning | undefined;
+    private _versioning?: IS3BucketVersioning | undefined; 
+    private __versioningClass = new S3BucketVersioning(this as any, \\"versioning\\", true);
     public get versioning() {
-      return this._versioning ? new S3BucketVersioning(this as any, \\"versioning\\", true, this._versioning) : undefined;
+      return this.__versioningClass;
     }
     public putVersioning(value: IS3BucketVersioning | undefined) {
       this._versioning = value;
@@ -4156,9 +4093,10 @@ export namespace S3 {
     }
 
     // website - computed: false, optional: true, required: false
-    private _website?: IS3BucketWebsite | undefined;
+    private _website?: IS3BucketWebsite | undefined; 
+    private __websiteClass = new S3BucketWebsite(this as any, \\"website\\", true);
     public get website() {
-      return this._website ? new S3BucketWebsite(this as any, \\"website\\", true, this._website) : undefined;
+      return this.__websiteClass;
     }
     public putWebsite(value: IS3BucketWebsite | undefined) {
       this._website = value;
@@ -4374,7 +4312,7 @@ export namespace VPC {
     readonly delete?: string;
   }
 
-  function securityGroupTimeoutsToTerraform(struct?: ISecurityGroupTimeouts): any {
+  function securityGroupTimeoutsToTerraform(struct?: SecurityGroupTimeouts | ISecurityGroupTimeouts): any {
     if (!cdktf.canInspect(struct)) { return struct; }
     return {
       create: cdktf.stringToTerraform(struct!.create),
@@ -4386,15 +4324,13 @@ export namespace VPC {
     /**
     * @param options SecurityGroupTimeouts = {}
     */
-    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean , config: ISecurityGroupTimeouts = {}) {
+    public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean) {
       super(terraformResource, terraformAttribute, isSingleItem);
-      this._create = config.create;
-      this._delete = config.delete;
     }
-    public withinArray = true;
+    public withinArray = false;
 
     // create - computed: false, optional: true, required: false
-    private _create?: string | undefined;
+    private _create?: string | undefined; 
     public get create() {
       return this.getStringAttribute('create');
     }
@@ -4410,7 +4346,7 @@ export namespace VPC {
     }
 
     // delete - computed: false, optional: true, required: false
-    private _delete?: string | undefined;
+    private _delete?: string | undefined; 
     public get delete() {
       return this.getStringAttribute('delete');
     }
@@ -4483,7 +4419,7 @@ export namespace VPC {
     }
 
     // description - computed: false, optional: true, required: false
-    private _description?: string | undefined;
+    private _description?: string | undefined; 
     public get description() {
       return this.getStringAttribute('description');
     }
@@ -4499,7 +4435,7 @@ export namespace VPC {
     }
 
     // egress - computed: true, optional: true, required: false
-    private _egress?: SecurityGroupEgress[] | undefined;
+    private _egress?: SecurityGroupEgress[] | undefined; 
     public get egress() {
       return this.interpolationForAttribute('egress') as any;
     }
@@ -4520,7 +4456,7 @@ export namespace VPC {
     }
 
     // ingress - computed: true, optional: true, required: false
-    private _ingress?: SecurityGroupIngress[] | undefined;
+    private _ingress?: SecurityGroupIngress[] | undefined; 
     public get ingress() {
       return this.interpolationForAttribute('ingress') as any;
     }
@@ -4536,7 +4472,7 @@ export namespace VPC {
     }
 
     // name - computed: true, optional: true, required: false
-    private _name?: string | undefined;
+    private _name?: string | undefined; 
     public get name() {
       return this.getStringAttribute('name');
     }
@@ -4552,7 +4488,7 @@ export namespace VPC {
     }
 
     // name_prefix - computed: false, optional: true, required: false
-    private _namePrefix?: string | undefined;
+    private _namePrefix?: string | undefined; 
     public get namePrefix() {
       return this.getStringAttribute('name_prefix');
     }
@@ -4573,7 +4509,7 @@ export namespace VPC {
     }
 
     // revoke_rules_on_delete - computed: false, optional: true, required: false
-    private _revokeRulesOnDelete?: boolean | cdktf.IResolvable | undefined;
+    private _revokeRulesOnDelete?: boolean | cdktf.IResolvable | undefined; 
     public get revokeRulesOnDelete() {
       return this.getBooleanAttribute('revoke_rules_on_delete') as any;
     }
@@ -4589,7 +4525,7 @@ export namespace VPC {
     }
 
     // tags - computed: false, optional: true, required: false
-    private _tags?: { [key: string]: string } | undefined;
+    private _tags?: { [key: string]: string } | undefined; 
     public get tags() {
       return this.interpolationForAttribute('tags') as any;
     }
@@ -4605,7 +4541,7 @@ export namespace VPC {
     }
 
     // vpc_id - computed: true, optional: true, required: false
-    private _vpcId?: string | undefined;
+    private _vpcId?: string | undefined; 
     public get vpcId() {
       return this.getStringAttribute('vpc_id');
     }
@@ -4621,9 +4557,10 @@ export namespace VPC {
     }
 
     // timeouts - computed: false, optional: true, required: false
-    private _timeouts?: ISecurityGroupTimeouts | undefined;
+    private _timeouts?: ISecurityGroupTimeouts | undefined; 
+    private __timeoutsClass = new SecurityGroupTimeouts(this as any, \\"timeouts\\", true);
     public get timeouts() {
-      return this._timeouts ? new SecurityGroupTimeouts(this as any, \\"timeouts\\", true, this._timeouts) : undefined;
+      return this.__timeoutsClass;
     }
     public putTimeouts(value: ISecurityGroupTimeouts | undefined) {
       this._timeouts = value;

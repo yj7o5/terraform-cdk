@@ -7,6 +7,9 @@ abstract class ComplexComputedAttribute {
     protected terraformAttribute: string
   ) {}
 
+  /**
+   * @internal
+   */
   public get __tfid() {
     return `${this.terraformResource}.${this.terraformAttribute}`;
   }
