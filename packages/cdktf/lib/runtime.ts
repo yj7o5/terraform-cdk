@@ -10,6 +10,7 @@ import {
   containsComplexElement,
   containsComplexListTokenElement,
 } from "./tokens/private/encoding";
+import { Tokenization } from "./tokens";
 
 // vs. complex types).
 export type Mapper = (x: any) => any;
@@ -49,6 +50,10 @@ export function hashMapper(elementMapper: Mapper): Mapper {
 
     // Check if it's a token object
     if (containsComplexElement(x)) {
+      return x;
+    }
+
+    if (Tokenization.isResolvable(x)) {
       return x;
     }
 
