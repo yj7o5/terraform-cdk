@@ -70,8 +70,8 @@ export class AttributeTypeModel {
 
   public get storedName(): string {
     let name = this.name;
-    if (this.isComplex && this.isSingleItem) {
-      name = `I${name}`;
+    if (this.isList && !this.isPrimitiveList) {
+      name = `I${name} | ${name}`;
     }
 
     return `${name}${this.isOptional ? " | undefined" : ""}`;
@@ -103,6 +103,10 @@ export class AttributeTypeModel {
 
   public get isBooleanList(): boolean {
     return this.isList && this._type === TokenizableTypes.BOOLEAN;
+  }
+
+  public get isPrimitiveList(): boolean {
+    return this.isStringList || this.isNumberList || this.isBooleanList;
   }
 
   public get isBoolean(): boolean {

@@ -58,7 +58,7 @@ export class AttributeModel {
 
   public get typeDefinition() {
     const optional = this.optional ? "?" : "";
-    return `${this.name}${optional}: ${this.type.isSingleItem ? "I" : ""}${
+    return `${this.name}${optional}: ${this.type.isComplex ? "I" : ""}${
       this.type.name
     }`;
   }
@@ -103,16 +103,12 @@ export class AttributeModel {
         returnStatement: `new ${this.type.name}(this, \`${this.terraformName}.\${index}\`).lookup(key)`,
       };
     } else if (
-      // Complex Computed List
-      this.computed &&
-      !this.isOptional &&
-      this.type.isComputedComplex &&
+      // Complex List
+      this.type.isComplex &&
       this.type.isList
     ) {
       getterType = {
-        _type: "args",
-        args: "index: string",
-        returnStatement: `new ${this.type.name}(this, '${this.terraformName}', index)`,
+        _type: "stored_class",
       };
     } else if (
       // Complex Computed Map

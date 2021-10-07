@@ -92,7 +92,7 @@ export class ResourceEmitter {
     this.code.line(`* @param options ${resource.configStruct.attributeType}`);
     this.code.line(`*/`);
     this.code.openBlock(
-      `public constructor(scope: Construct, id: string, config: ${resource.configStruct.attributeType})`
+      `public constructor(scope: Construct, id: string, config: I${resource.configStruct.attributeType})`
     );
 
     resource.isProvider

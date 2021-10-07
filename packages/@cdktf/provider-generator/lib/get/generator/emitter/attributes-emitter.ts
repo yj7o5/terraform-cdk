@@ -43,7 +43,10 @@ export class AttributesEmitter {
 
       case "stored_class":
         this.code.line(
-          `private _${att.storageName}Class = ${this.storedClassInit(att)};`
+          `private _${att.storageName}Class = ${this.storedClassInit(
+            att,
+            att.type.isList && !att.type.isSingleItem
+          )};`
         );
         this.code.openBlock(`public get ${att.name}()`);
         this.code.line(`return this._${att.storageName}Class;`);
@@ -83,14 +86,14 @@ export class AttributesEmitter {
     }
   }
 
-  private storedClassInit(att: AttributeModel) {
-    let invocation = `new ${att.type.name}(this as any, "${
+  private storedClassInit(att: AttributeModel, asList: boolean) {
+    let invocation = `new ${att.type.innerType}(this as any, "${
       att.terraformName
     }", ${att.type.isSingleItem ? "true" : "false"})`;
 
-    // if (att.type.isList && !att.type.isSingleItem) {
-    //   invocation = `${invocation}.asList()`;
-    // }
+    if (asList) {
+      invocation = `${invocation}.asList()`;
+    }
 
     return invocation;
   }
@@ -113,6 +116,7 @@ export class AttributesEmitter {
     if (type.isBoolean) {
       return `this.getBooleanAttribute('${att.terraformName}') as any`;
     }
+
     if (process.env.DEBUG) {
       console.error(
         `The attribute ${JSON.stringify(att)} isn't implemented yet`

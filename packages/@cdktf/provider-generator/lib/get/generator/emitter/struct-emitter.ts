@@ -12,14 +12,8 @@ export class StructEmitter {
 
   public emit(resource: ResourceModel) {
     resource.structs.forEach((struct) => {
-      if (struct.isSingleItem) {
-        this.emitInterface(resource, struct, `I${struct.name}`);
-        this.emitClass(struct);
-      } else if (struct.isClass) {
-        this.emitClass(struct);
-      } else {
-        this.emitInterface(resource, struct);
-      }
+      this.emitInterface(resource, struct, `I${struct.name}`);
+      this.emitClass(struct);
     });
   }
 
@@ -62,25 +56,25 @@ export class StructEmitter {
 
   private emitClass(struct: Struct) {
     this.code.openBlock(
-      `export class ${struct.name} extends ${
-        struct.isSingleItem
-          ? "cdktf.ComplexObject"
-          : "cdktf.ComplexComputedList"
-      }`
+      `export class ${struct.name} extends cdktf.ComplexObject`
     );
 
-    if (struct.isSingleItem) {
-      this.code.line(`/**`);
-      this.code.line(`* @param options ${struct.attributeType}`);
-      this.code.line(`*/`);
-      this.code.openBlock(
-        `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean)`
-      );
-      this.code.line(
-        `super(terraformResource, terraformAttribute, isSingleItem);`
-      );
-      this.code.closeBlock();
-    }
+    this.code.line(`/**`);
+    this.code.line(`* @param terraformResource: Parent Terraform Resource`);
+    this.code.line(
+      `* @param terraformAttribute: Name of the attribute this value is used in`
+    );
+    this.code.line(
+      `* @param isSingleItem: If this element is of a single item block type (max_items = 1)`
+    );
+    this.code.line(`*/`);
+    this.code.openBlock(
+      `public constructor(terraformResource: cdktf.ITerraformResource, terraformAttribute: string, isSingleItem: boolean)`
+    );
+    this.code.line(
+      `super(terraformResource, terraformAttribute, isSingleItem);`
+    );
+    this.code.closeBlock();
     this.code.line(`public withinArray = false;`);
 
     for (const att of struct.attributes) {
@@ -103,9 +97,10 @@ export class StructEmitter {
 
   private emitToTerraformFunction(struct: Struct) {
     this.code.line();
+    // TODO: remove export and only generate conditionally
     this.code.openBlock(
-      `function ${downcaseFirst(struct.name)}ToTerraform(struct?: ${
-        struct.isSingleItem ? `${struct.name} | I` : ""
+      `export function ${downcaseFirst(struct.name)}ToTerraform(struct?: ${
+        struct.isSingleItem || struct.isClass ? `${struct.name} | I` : ""
       }${struct.name}): any`
     );
     this.code.line(`if (!cdktf.canInspect(struct)) { return struct; }`);
