@@ -35,7 +35,7 @@ export class Struct {
   protected filterIgnoredAttributes(
     attributes: AttributeModel[]
   ): AttributeModel[] {
-    return attributes.filter((attribute) => !attribute.isConfigIgnored);
+    return attributes;
   }
 
   public get extends(): string {

@@ -2739,6 +2739,10 @@ export namespace S3 {
     */
     readonly enabled: boolean | cdktf.IResolvable;
     /**
+    * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#id S3Bucket#id}
+    */
+    readonly id?: string;
+    /**
     * Docs at Terraform Registry: {@link https://www.terraform.io/docs/providers/aws/r/s3_bucket.html#prefix S3Bucket#prefix}
     */
     readonly prefix?: string;
