@@ -1,0 +1,13 @@
+diff --git a/node_modules/jsii-srcmak/lib/util.js b/node_modules/jsii-srcmak/lib/util.js
+index f2cc7e4..69ca1a3 100644
+--- a/node_modules/jsii-srcmak/lib/util.js
++++ b/node_modules/jsii-srcmak/lib/util.js
+@@ -47,6 +47,8 @@ async function exec(moduleName, args = [], options = {}) {
+         const opts = {
+             ...options,
+             stdio: ['inherit', 'pipe', 'pipe'],
++            shell: true,
++            env: { ...process.env }
+         };
+         const child = (0, child_process_1.spawn)(process.execPath, [moduleName, ...args], opts);
+         const data = new Array();
