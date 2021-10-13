@@ -12,7 +12,11 @@ import { FUTURE_FLAGS } from "cdktf/lib/features";
 import { downloadFile, HttpError } from "../../../lib/util";
 import { logFileName, logger } from "../../../lib/logging";
 import { Errors } from "../../../lib/errors";
-import { convertProject, getTerraformConfigFromDir } from "@cdktf/hcl2cdk";
+import {
+  convertProject,
+  getTerraformConfigFromDir,
+  parseProviderRequirements,
+} from "@cdktf/hcl2cdk";
 import { execSync } from "child_process";
 import { sendTelemetry } from "../../../lib/checkpoint";
 import { v4 as uuid } from "uuid";
@@ -59,7 +63,6 @@ type Options = {
   dist?: string;
   destination: string;
   fromTerraformProject?: string;
-  providerRequirements?: string[];
 };
 export async function runInit(argv: Options) {
   const telemetryData: Record<string, unknown> = {};
@@ -140,11 +143,16 @@ This means that your Terraform state file will be stored locally on disk in a fi
         path.resolve(process.cwd(), argv.fromTerraformProject)
       );
 
+      // Fetch all provider requirements from the project
+      const providerRequirements = await parseProviderRequirements(
+        combinedTfFile
+      );
+
       // Get all the provider schemas
       const { providerSchema } = await readSchema(
-        (argv.providerRequirements || []).map((spec) =>
+        Object.entries(providerRequirements).map(([name, version]) =>
           ConstructsMakerProviderTarget.from(
-            new config.TerraformProviderConstraint(spec),
+            new config.TerraformProviderConstraint(`${name}@ ${version}`),
             LANGUAGES[0]
           )
         )
