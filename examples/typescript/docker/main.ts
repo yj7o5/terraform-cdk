@@ -21,6 +21,7 @@ import {
   DockerProvider,
   Service,
 } from "./.gen/providers/docker";
+import { IamAssumableRoleWithOidc } from "./.gen/modules/terraform-aws-modules/aws/iam/modules/iam-assumable-role-with-oidc";
 
 class MyStack extends TerraformStack {
   public readonly dockerImage: Image;
@@ -53,6 +54,13 @@ class MyStack extends TerraformStack {
           image: this.dockerImage.latest,
         },
       },
+    });
+
+    new IamAssumableRoleWithOidc(this, "role", {
+      numberOfRolePolicyArns: 2,
+      roleName: "foo",
+      roleNamePrefix: "bar",
+      oidcFullyQualifiedAudiences: ["https://foo.com"],
     });
   }
 }

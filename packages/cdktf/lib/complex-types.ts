@@ -1,4 +1,4 @@
-import { Token } from "./tokens";
+import { Token, IResolvable } from "./tokens";
 import { ITerraformResource } from "./terraform-resource";
 
 abstract class ComplexComputedAttribute {
@@ -106,5 +106,22 @@ export class ComplexObject extends ComplexComputedAttribute {
     return this.terraformResource.interpolationForAttribute(
       `${this.terraformAttribute}.*`
     );
+  }
+}
+
+export class CdktfSet {}
+
+export class StringSet extends CdktfSet implements IResolvable {
+  public creationStack = [];
+  constructor(private valueRepresentation: string) {
+    super();
+  }
+
+  static fromArray(array: any[]) {
+    return new StringSet(`[${array.join(",")}]`);
+  }
+
+  public resolve(_context: any): any {
+    return this.valueRepresentation;
   }
 }

@@ -3,5 +3,9 @@
   "app": "npm run --silent compile && node main.js",
   "terraformProviders": [
     "terraform-providers/docker@~> 2.0"
-  ]
+  ],
+  "terraformModules": [
+    "terraform-aws-modules/iam/aws//modules/iam-assumable-role-with-oidc@4.3.0"
+  ],
+  "projectId": "eeab70c5-8a47-49a8-9087-a07a88618b68"
 }
