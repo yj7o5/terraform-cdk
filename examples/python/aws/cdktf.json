@@ -1,7 +1,12 @@
 {
   "language": "python",
   "app": "pipenv run python main.py",
-  "terraformProviders": ["aws@~> 2.0"],
-  "terraformModules": ["terraform-aws-modules/vpc/aws@2.77.0"],
-  "codeMakerOutput": "imports"
+  "terraformProviders": [
+    "aws@~> 2.0"
+  ],
+  "terraformModules": [
+    "terraform-aws-modules/vpc/aws@2.77.0"
+  ],
+  "codeMakerOutput": "imports",
+  "projectId": "b75a6217-4b91-43d4-b7c8-7fa5423eaff8"
 }

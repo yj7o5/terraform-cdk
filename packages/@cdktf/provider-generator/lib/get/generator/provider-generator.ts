@@ -4,6 +4,7 @@ import { ResourceModel } from "./models";
 import { ResourceParser } from "./resource-parser";
 import { ResourceEmitter, StructEmitter } from "./emitter";
 import { ConstructsMakerTarget } from "../constructs-maker";
+import { JSIIOverrides } from "./constants/provider-namespaces";
 
 interface ProviderData {
   name: string;
@@ -167,10 +168,15 @@ export class TerraformProviderGenerator {
     const ns = resources[0].namespace;
     const comment = ns?.comment;
     const name = ns?.name || "";
+
     const baseFilePath = resources[0].filePath
       .split("/")
       .slice(0, -1)
       .join("/");
+
+    if (ns?.jsiiOverrides) {
+      this.emitJsiiOverrides(ns.jsiiOverrides, baseFilePath);
+    }
     const filePath = `${baseFilePath}/${name}.ts`;
 
     const importStatements = [
@@ -199,6 +205,18 @@ export class TerraformProviderGenerator {
     this.code.closeBlock(); // namespace
     this.code.closeFile(filePath);
     return filePath;
+  }
+
+  private emitJsiiOverrides(
+    jsiiOverrides: JSIIOverrides,
+    baseFilePath: string
+  ) {
+    const filePath = `${baseFilePath}/.jsiirc.json`;
+    this.code.openFile(filePath);
+    this.code.line(`// generated from terraform resource schema`);
+    this.code.line();
+    this.code.line(JSON.stringify(jsiiOverrides, null, 2));
+    this.code.closeFile(filePath);
   }
 
   private emitFileHeader(resource: ResourceModel) {

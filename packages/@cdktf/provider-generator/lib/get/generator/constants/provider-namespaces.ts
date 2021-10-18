@@ -1,8 +1,13 @@
 type Prefix = string;
+type Target = string;
+// For more info on jsiiOverrides see https://github.com/aws/jsii/pull/1690
+type TargetConfig = Record<string, string>;
+export type JSIIOverrides = { targets: Record<Target, TargetConfig> };
 export type ResourceNamespace = {
   name: string;
   comment: string;
   additionalPrefix?: Prefix[];
+  jsiiOverrides?: JSIIOverrides;
 };
 
 // If the same prefix is used, the longest will take precedent over the others.
@@ -324,6 +329,13 @@ const aws: Record<Prefix, ResourceNamespace> = {
   lambda: {
     name: "Lambda",
     comment: "AWS Lambda",
+    jsiiOverrides: {
+      targets: {
+        python: {
+          module: "lambda_function",
+        },
+      },
+    },
   },
   lex: {
     name: "Lex",
