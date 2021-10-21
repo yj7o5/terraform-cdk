@@ -22,18 +22,28 @@ import {
   Service,
 } from "./.gen/providers/docker";
 
-class MyStack extends TerraformStack {
-  public readonly dockerImage: Image;
-
-  constructor(scope: Construct, name: string) {
-    super(scope, name);
-
+class MyImages extends TerraformStack {
+  public readonly nginxImage: Image;
+  constructor(scope: Construct, id: string) {
+    super(scope, id);
     new DockerProvider(this, "provider", {});
 
-    this.dockerImage = new Image(this, "nginxImage", {
+    this.nginxImage = new Image(this, "nginxImage", {
       name: "nginx:latest",
       keepLocally: false,
     });
+  }
+}
+
+class MyStack extends TerraformStack {
+  constructor(
+    scope: Construct,
+    name: string,
+    private readonly dockerImage: Image
+  ) {
+    super(scope, name);
+
+    new DockerProvider(this, "provider", {});
 
     new Container(this, "nginxContainer", {
       image: this.dockerImage.latest,
@@ -58,5 +68,6 @@ class MyStack extends TerraformStack {
 }
 
 const app = new App();
-new MyStack(app, "demo-cdktf-ts-docker");
+const images = new MyImages(app, "images");
+new MyStack(app, "demo-cdktf-ts-docker", images.nginxImage);
 app.synth();

@@ -3,5 +3,6 @@
   "app": "npm run --silent compile && node main.js",
   "terraformProviders": [
     "terraform-providers/docker@~> 2.0"
-  ]
+  ],
+  "projectId": "46125b33-8b34-4902-a66e-e5e35a84a95f"
 }
