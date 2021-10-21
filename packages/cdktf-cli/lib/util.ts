@@ -4,7 +4,7 @@ import { https, http } from "follow-redirects";
 import * as os from "os";
 import * as path from "path";
 import { processLoggerError, processLoggerDebug } from "./logging";
-import { IManifest, Manifest } from "cdktf/lib/manifest";
+import { IManifest, Manifest } from "cdktf";
 import { config } from "@cdktf/provider-generator";
 
 export async function shell(
@@ -27,7 +27,7 @@ export async function shell(
     );
   } catch (e) {
     if (stderr.length > 0) {
-      e.stderr = stderr.map((chunk) => chunk.toString()).join("");
+      e.stderr = stderr.map(chunk => chunk.toString()).join("");
     }
     if (stdout.length > 0) {
       e.stdout = stdout.join("");
@@ -100,7 +100,7 @@ export const exec = async (
     child.once("close", (code: number) => {
       if (code !== 0) {
         const error = new Error(`non-zero exit code ${code}`);
-        (error as any).stderr = err.map((chunk) => chunk.toString()).join("");
+        (error as any).stderr = err.map(chunk => chunk.toString()).join("");
         return ko(error);
       }
       return ok(Buffer.concat(out).toString("utf-8"));
@@ -152,7 +152,7 @@ export async function downloadFile(
   const client = url.startsWith("http://") ? http : https;
   const file = fs.createWriteStream(targetFilename);
   return new Promise((ok, ko) => {
-    const request = client.get(url, (response) => {
+    const request = client.get(url, response => {
       if (response.statusCode !== 200) {
         ko(
           new HttpError(
@@ -167,11 +167,11 @@ export async function downloadFile(
 
     file.on("finish", () => ok());
 
-    request.on("error", (err) => {
+    request.on("error", err => {
       fs.unlink(targetFilename, () => ko(err));
     });
 
-    file.on("error", (err) => {
+    file.on("error", err => {
       fs.unlink(targetFilename, () => ko(err));
     });
 

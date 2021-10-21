@@ -1,3 +1,4 @@
 !tsconfig.json
 .yalc
 yalc.lock
+!rollup.config.js
